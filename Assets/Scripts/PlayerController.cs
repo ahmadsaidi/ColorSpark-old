@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -126,6 +126,9 @@ public class PlayerController : MonoBehaviour
                 jumpspeed = 30000;
                 highJump = true;
                 tilePickupAudio.PlayOneShot(highJumpAudio);
+                SceneManager.LoadScene("Lose");
+            }else if (other.gameObject.CompareTag("trap")){
+                SceneManager.LoadScene("Lose");
             }
             reset_timer();
         // }
