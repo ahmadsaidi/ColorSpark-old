@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -36,8 +37,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < -10) {
-            Application.Quit();
+        if (transform.position.y < -100)
+        {
+            SceneManager.LoadScene("Lose");
+
         }
         if (Input.GetKeyDown("space") && canjump)
         {
@@ -67,15 +70,15 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetKey("d"))
             {
-                rb.AddForce(0.3f*speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-            } 
+                rb.AddForce(0.3f * speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            }
             else if (Input.GetKey("a"))
             {
-                rb.AddForce(-0.3f*speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+                rb.AddForce(-0.3f * speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
             }
-            
+
         }
-        
+
 
         if (fast || ghost || highJump)
         {
@@ -95,42 +98,44 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other) 
+    void OnTriggerEnter(Collider other)
     {
         // if (!fast && !ghost && !highJump)
         // {
-            // Once a player hit a color grid
-            // no matter what state the player is in
-            // the player changes state immediately after hitting the grid
-            // and timer resets
-            if (other.gameObject.CompareTag("green"))
-            {
-                other.gameObject.SetActive(false);
-                tilePickupAudio.PlayOneShot(fastAudio);
-                ChangeColor(Color.green);
-                speedLimit = 200;
-                fast = true;
-            }
-            else if (other.gameObject.CompareTag("blue"))
-            {
-                other.gameObject.SetActive(false);
-                ChangeColor(Color.blue);
-                powerups.ghost(false);
-                ghost = true;
-                tilePickupAudio.PlayOneShot(ghostAudio);
-            }
-            else if (other.gameObject.CompareTag("red"))
-            {
-                other.gameObject.SetActive(false);
-                ChangeColor(Color.red);
-                jumpspeed = 30000;
-                highJump = true;
-                tilePickupAudio.PlayOneShot(highJumpAudio);
-                SceneManager.LoadScene("Lose");
-            }else if (other.gameObject.CompareTag("trap")){
-                SceneManager.LoadScene("Lose");
-            }
-            reset_timer();
+        // Once a player hit a color grid
+        // no matter what state the player is in
+        // the player changes state immediately after hitting the grid
+        // and timer resets
+        if (other.gameObject.CompareTag("green"))
+        {
+            other.gameObject.SetActive(false);
+            tilePickupAudio.PlayOneShot(fastAudio);
+            ChangeColor(Color.green);
+            speedLimit = 200;
+            fast = true;
+        }
+        else if (other.gameObject.CompareTag("blue"))
+        {
+            other.gameObject.SetActive(false);
+            ChangeColor(Color.blue);
+            powerups.ghost(false);
+            ghost = true;
+            tilePickupAudio.PlayOneShot(ghostAudio);
+        }
+        else if (other.gameObject.CompareTag("red"))
+        {
+            other.gameObject.SetActive(false);
+            ChangeColor(Color.red);
+            jumpspeed = 30000;
+            highJump = true;
+            tilePickupAudio.PlayOneShot(highJumpAudio);
+        }
+        else if (other.gameObject.CompareTag("trap")) {
+            SceneManager.LoadScene("Lose");
+
+        }
+
+        reset_timer();
         // }
 
 

@@ -11,6 +11,7 @@ TagManager:
   - land
   - ghost
   - floor
+  - trap
   layers:
   - Default
   - TransparentFX
