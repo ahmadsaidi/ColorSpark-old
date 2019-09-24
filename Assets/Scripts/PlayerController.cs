@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
             speedLimit = 100;
             jumpspeed = 10000;
             powerups.ghost(true);
+            reset_timer();
             ChangeColor(Color.white);
         }
 
@@ -122,7 +123,7 @@ public class PlayerController : MonoBehaviour
             {
                 other.gameObject.SetActive(false);
                 ChangeColor(Color.red);
-                jumpspeed = 20000;
+                jumpspeed = 30000;
                 highJump = true;
                 tilePickupAudio.PlayOneShot(highJumpAudio);
             }
