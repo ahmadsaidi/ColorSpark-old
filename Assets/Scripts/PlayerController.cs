@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
         powerups = rb.gameObject.GetComponent<PowerUps>();
     }
 
+    void reset_timer()
+    {
+        time = 2;
+    }
 
     private void Update()
     {
@@ -51,24 +55,25 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.velocity.magnitude < speedLimit)
         {
+            // w and s cannot be pressed at the same time
+            // however w and a/d can be pressed at the same time
             if (Input.GetKey("w"))
             {
-
                 rb.AddForce(0, 0, speed * Time.deltaTime, ForceMode.VelocityChange);
-
-            }
-            else if (Input.GetKey("d"))
-            {
-                rb.AddForce(0.25f*speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-            }
-            else if (Input.GetKey("a"))
-            {
-                rb.AddForce(-0.25f*speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
             }
             else if (Input.GetKey("s"))
             {
                 rb.AddForce(0, 0, -speed * Time.deltaTime, ForceMode.VelocityChange);
             }
+            if (Input.GetKey("d"))
+            {
+                rb.AddForce(0.3f*speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            } 
+            else if (Input.GetKey("a"))
+            {
+                rb.AddForce(-0.3f*speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            }
+            
         }
         
 
@@ -84,7 +89,6 @@ public class PlayerController : MonoBehaviour
             speedLimit = 100;
             jumpspeed = 10000;
             powerups.ghost(true);
-            time = 2;
             ChangeColor(Color.white);
         }
 
@@ -92,8 +96,12 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
-        if (!fast && !ghost && !highJump)
-        {
+        // if (!fast && !ghost && !highJump)
+        // {
+            // Once a player hit a color grid
+            // no matter what state the player is in
+            // the player changes state immediately after hitting the grid
+            // and timer resets
             if (other.gameObject.CompareTag("green"))
             {
                 other.gameObject.SetActive(false);
@@ -102,7 +110,7 @@ public class PlayerController : MonoBehaviour
                 speedLimit = 200;
                 fast = true;
             }
-            if (other.gameObject.CompareTag("blue"))
+            else if (other.gameObject.CompareTag("blue"))
             {
                 other.gameObject.SetActive(false);
                 ChangeColor(Color.blue);
@@ -110,7 +118,7 @@ public class PlayerController : MonoBehaviour
                 ghost = true;
                 tilePickupAudio.PlayOneShot(ghostAudio);
             }
-            if (other.gameObject.CompareTag("red"))
+            else if (other.gameObject.CompareTag("red"))
             {
                 other.gameObject.SetActive(false);
                 ChangeColor(Color.red);
@@ -118,7 +126,8 @@ public class PlayerController : MonoBehaviour
                 highJump = true;
                 tilePickupAudio.PlayOneShot(highJumpAudio);
             }
-        }
+            reset_timer();
+        // }
 
 
     }
