@@ -144,6 +144,9 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         canjump = true;
+        if (collision.collider.gameObject.CompareTag("sand")) {
+            Destroy(collision.collider.gameObject);
+        }
     }
 
     void ChangeColor(Color color)

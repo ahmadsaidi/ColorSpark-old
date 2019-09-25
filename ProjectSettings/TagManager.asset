@@ -12,6 +12,7 @@ TagManager:
   - ghost
   - floor
   - trap
+  - sand
   layers:
   - Default
   - TransparentFX
