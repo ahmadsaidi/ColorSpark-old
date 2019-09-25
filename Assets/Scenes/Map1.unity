@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10476,9 +10476,9 @@ MonoBehaviour:
   goodpick: {fileID: 0}
   jumpspeed: 10000
   speedLimit: 100
-  ghostAudio: {fileID: 8300000, guid: b8ec6b0a2420d5b409d2da9360879e1b, type: 3}
-  fastAudio: {fileID: 8300000, guid: 8d02736b7a1196845b9c2472a2d09081, type: 3}
-  highJumpAudio: {fileID: 8300000, guid: 9e04ac536008b764e831c7e300d19ce0, type: 3}
+  ghostAudio: {fileID: 8300000, guid: e5d2f43059145f74e9c686b3d7ecf59e, type: 3}
+  fastAudio: {fileID: 8300000, guid: 56c6483058b60ca49a0d265a7a409e33, type: 3}
+  highJumpAudio: {fileID: 8300000, guid: 76377d85033a2dc47b0896cbdfc292a9, type: 3}
   tilePickupAudio: {fileID: 453661022}
 --- !u!23 &453661021
 MeshRenderer:
@@ -16197,7 +16197,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: -2.655e-10, z: 6.314003e-35, w: 8.6169677e-38}
+  m_BoundingSphereOverride: {x: 1.5046328e-36, y: 2.7105054e-20, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
