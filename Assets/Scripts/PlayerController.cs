@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +19,7 @@ public class PlayerController : MonoBehaviour
     PowerUps powerups;
     public AudioClip ghostAudio, fastAudio, highJumpAudio;
     public AudioSource tilePickupAudio;
+    GameManager gm;
 
     void Start()
     {
@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
         rb.freezeRotation = true;
         m_Material = GetComponent<Renderer>().material;
         powerups = rb.gameObject.GetComponent<PowerUps>();
+        gm = FindObjectOfType<GameManager>();
     }
 
     void reset_timer()
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y < -100)
         {
-            SceneManager.LoadScene("Lose");
+            gm.LoseGame();
 
         }
         if (Input.GetKeyDown("space") && canjump)
@@ -131,8 +132,13 @@ public class PlayerController : MonoBehaviour
             tilePickupAudio.PlayOneShot(highJumpAudio);
         }
         else if (other.gameObject.CompareTag("trap")) {
-            SceneManager.LoadScene("Lose");
+            gm.LoseGame();
 
+        }
+        else if (other.gameObject.CompareTag("finish"))
+        {
+            Debug.Log("win");
+            gm.WinGame();
         }
 
         reset_timer();
@@ -146,7 +152,7 @@ public class PlayerController : MonoBehaviour
         canjump = true;
         if (collision.collider.gameObject.CompareTag("sand")) {
             Destroy(collision.collider.gameObject);
-        }
+        } 
     }
 
     void ChangeColor(Color color)

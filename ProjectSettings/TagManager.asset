@@ -13,6 +13,7 @@ TagManager:
   - floor
   - trap
   - sand
+  - finish
   layers:
   - Default
   - TransparentFX
