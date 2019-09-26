@@ -109,26 +109,34 @@ public class PlayerController : MonoBehaviour
         // and timer resets
         if (other.gameObject.CompareTag("green"))
         {
-            other.gameObject.SetActive(false);
+            //other.gameObject.SetActive(false);
             tilePickupAudio.PlayOneShot(fastAudio);
             ChangeColor(Color.green);
             speedLimit = 200;
             fast = true;
+            highJump = false;
+            ghost = false;
+            powerups.ghost(true);
         }
         else if (other.gameObject.CompareTag("blue"))
         {
-            other.gameObject.SetActive(false);
+            //other.gameObject.SetActive(false);
             ChangeColor(Color.blue);
             powerups.ghost(false);
             ghost = true;
             tilePickupAudio.PlayOneShot(ghostAudio);
+            fast = false;
+            highJump = false;
         }
         else if (other.gameObject.CompareTag("red"))
         {
-            other.gameObject.SetActive(false);
+            //other.gameObject.SetActive(false);
             ChangeColor(Color.red);
             jumpspeed = 30000;
             highJump = true;
+            fast = false;
+            ghost = false;
+            powerups.ghost(true);
             tilePickupAudio.PlayOneShot(highJumpAudio);
         }
         else if (other.gameObject.CompareTag("trap")) {
