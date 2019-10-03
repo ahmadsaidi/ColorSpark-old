@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 
     public float speed;
+    public float rotationSpeed;
     public AudioSource goodpick;
     Material m_Material;
     public float jumpspeed = 10000;
@@ -24,7 +25,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        speed = 1000;
+        speed = 40;
+        rotationSpeed = 100;
         rb.freezeRotation = true;
         m_Material = GetComponent<Renderer>().material;
         powerups = rb.gameObject.GetComponent<PowerUps>();
@@ -43,42 +45,22 @@ public class PlayerController : MonoBehaviour
             gm.LoseGame();
 
         }
-        if (Input.GetKeyDown("space") && canjump)
+        float translation = Input.GetAxis("Vertical") * speed;
+        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
+        translation *= Time.deltaTime;
+        rotation *= Time.deltaTime;
+        transform.Translate(translation,0, 0 );
+        transform.Rotate( 0,rotation, 0);
+
+        if (Input.GetButton("Fire1"))
         {
-            rb.AddForce(0, jumpspeed, 0, ForceMode.Impulse);
-            canjump = false;
-        }
-        if (Input.GetKeyUp("w") || Input.GetKeyUp("a") || Input.GetKeyUp("s") || Input.GetKeyUp("d"))
-        {
-            rb.velocity = Vector3.Scale(rb.velocity, new Vector3(0.1f, 0.1f, 0.1f));
+            rb.AddForce(0, 100, 0);
         }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (rb.velocity.magnitude < speedLimit)
-        {
-            // w and s cannot be pressed at the same time
-            // however w and a/d can be pressed at the same time
-            if (Input.GetKey("w"))
-            {
-                rb.AddForce(0, 0, speed * Time.deltaTime, ForceMode.VelocityChange);
-            }
-            else if (Input.GetKey("s"))
-            {
-                rb.AddForce(0, 0, -speed * Time.deltaTime, ForceMode.VelocityChange);
-            }
-            if (Input.GetKey("d"))
-            {
-                rb.AddForce(0.3f * speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-            }
-            else if (Input.GetKey("a"))
-            {
-                rb.AddForce(-0.3f * speed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-            }
-
-        }
 
 
         if (fast || ghost || highJump)
