@@ -22,8 +22,8 @@ public class CameraController : MonoBehaviour
     {
         offset = Quaternion.AngleAxis(Input.GetAxis("Horizontal") * rotationSpeed *Time.deltaTime, Vector3.up) * offset;
         transform.position = player.transform.position + offset;
-        transform.LookAt(player.transform.position);
-        viewObstructed();
+        transform.LookAt(player.transform.position+Vector3.up*5);
+        //viewObstructed();
     }
 
     void viewObstructed()

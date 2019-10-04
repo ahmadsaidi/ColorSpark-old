@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     public AudioSource goodpick;
-    public float jumpspeed = 500000;
+    public float jumpspeed = 700000;
     bool fast, teleport, highJump,push = false;
     public float speedLimit = 100;
     bool canjump = true;
@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour
             powerups.Createbox(transform.position, color);
         }
 
+        if (Input.GetKey("r"))
+        {
+            gm.RestartLevel();
+        }
+
  
 
 
@@ -90,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        Debug.Log(eat);
+        //Debug.Log(eat);
         if (Input.GetButtonDown("Fire3"))
         {
             eat = true;
