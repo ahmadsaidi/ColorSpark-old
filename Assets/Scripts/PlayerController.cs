@@ -11,15 +11,15 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     public AudioSource goodpick;
-    Material m_Material;
     public float jumpspeed = 10000;
-    float time = 2;
-    bool fast, ghost, highJump = false;
+    bool fast, teleport, highJump,push = false;
     public float speedLimit = 100;
     bool canjump = true;
+    public Color color = Color.white;
     PowerUps powerups;
     public AudioClip ghostAudio, fastAudio, highJumpAudio;
     public AudioSource tilePickupAudio;
+    bool eat = false;
     GameManager gm;
 
     void Start()
@@ -28,15 +28,10 @@ public class PlayerController : MonoBehaviour
         speed = 40;
         rotationSpeed = 100;
         rb.freezeRotation = true;
-        m_Material = GetComponent<Renderer>().material;
         powerups = rb.gameObject.GetComponent<PowerUps>();
         gm = FindObjectOfType<GameManager>();
     }
 
-    void reset_timer()
-    {
-        time = 2;
-    }
 
     private void Update()
     {
@@ -52,36 +47,59 @@ public class PlayerController : MonoBehaviour
         transform.Translate(translation,0, 0 );
         transform.Rotate( 0,rotation, 0);
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
-            rb.AddForce(0, 100, 0);
+            rb.AddForce(Vector3.up * 100);
         }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            powerups.Createbox(transform.position, color);
+        }
+
+ 
+
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
+        if (Input.GetButtonDown("Fire3"))
+        {
+           // eat = true;
+        }
 
-        if (fast || ghost || highJump)
-        {
-            time -= Time.fixedDeltaTime;
-        }
-        if (time <= 0)
-        {
-            fast = false;
-            ghost = false;
-            highJump = false;
-            speedLimit = 100;
-            jumpspeed = 10000;
-            powerups.ghost(true);
-            reset_timer();
-            ChangeColor(Color.white);
-        }
+
+
+
 
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
+    {
+       
+
+        canjump = true;
+        if (collision.collider.gameObject.CompareTag("sand"))
+        {
+            Destroy(collision.collider.gameObject);
+        }
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        Debug.Log(eat);
+        if (Input.GetButtonDown("Fire3"))
+        {
+            eat = true;
+        }
+        eatPower(collision);
+        eat = false;
+    }
+
+        void OnTriggerEnter(Collider other)
     {
         // if (!fast && !ghost && !highJump)
         // {
@@ -89,39 +107,11 @@ public class PlayerController : MonoBehaviour
         // no matter what state the player is in
         // the player changes state immediately after hitting the grid
         // and timer resets
-        if (other.gameObject.CompareTag("green"))
-        {
-            //other.gameObject.SetActive(false);
-            tilePickupAudio.PlayOneShot(fastAudio);
-            ChangeColor(Color.green);
-            speedLimit = 200;
-            fast = true;
-            highJump = false;
-            ghost = false;
-            powerups.ghost(true);
-        }
-        else if (other.gameObject.CompareTag("blue"))
-        {
-            //other.gameObject.SetActive(false);
-            ChangeColor(Color.blue);
-            powerups.ghost(false);
-            ghost = true;
-            tilePickupAudio.PlayOneShot(ghostAudio);
-            fast = false;
-            highJump = false;
-        }
-        else if (other.gameObject.CompareTag("red"))
-        {
-            //other.gameObject.SetActive(false);
-            ChangeColor(Color.red);
-            jumpspeed = 30000;
-            highJump = true;
-            fast = false;
-            ghost = false;
-            powerups.ghost(true);
-            tilePickupAudio.PlayOneShot(highJumpAudio);
-        }
-        else if (other.gameObject.CompareTag("trap")) {
+        Debug.Log(eat);
+        getPower(other);
+
+
+        if (other.gameObject.CompareTag("trap")) {
             gm.LoseGame();
 
         }
@@ -131,28 +121,150 @@ public class PlayerController : MonoBehaviour
             gm.WinGame();
         }
 
-        reset_timer();
+   
         // }
 
 
     }
 
-    void OnCollisionEnter(Collision collision)
+    
+
+    void redPower()
     {
-        canjump = true;
-        if (collision.collider.gameObject.CompareTag("sand")) {
-            Destroy(collision.collider.gameObject);
-        } 
+        ChangeColor(Color.red);
+        jumpspeed = 30000;
+        highJump = true;
+        fast = false;
+        push = false;
+        teleport = false;
+        tilePickupAudio.PlayOneShot(highJumpAudio);
+        color = Color.red;
+    }
+    void yellowPower()
+    {
+        ChangeColor(Color.yellow);
+        highJump = false;
+        fast = false;
+        push = false;
+        teleport = true;
+        color = Color.yellow;
+    }
+
+    void bluePower()
+    {
+        ChangeColor(Color.blue);
+        push = true;
+        tilePickupAudio.PlayOneShot(ghostAudio);
+        fast = false;
+        highJump = false;
+        teleport = false;
+        color = Color.blue;
+     }
+
+    void greenPower()
+    {
+        tilePickupAudio.PlayOneShot(fastAudio);
+        ChangeColor(Color.green);
+        speedLimit = 200;
+        fast = true;
+        highJump = false;
+        teleport = false;
+        push = false;
+        color = Color.green;
+     }
+
+    void whitePower()
+    {
+
+        ChangeColor(Color.white);
+        speedLimit = 100;
+        fast = false;
+        highJump = false;
+        teleport = false;
+        push = false;
+        color = Color.white;
     }
 
     void ChangeColor(Color color)
-    {
+     {
         Renderer[] children;
         children = GetComponentsInChildren<Renderer>();
-        foreach (Renderer rend in children)
+        for (int i = 0; i < 9; i++)
         {
-            rend.material.color = color;
-        }
-    }
+            if (i != 7)
+            {
+                children[i].material.color = color;
+             }
 
+          }
+      }
+
+    void getPower(Collider item)
+    {
+        if (item.gameObject.CompareTag("green") )
+        {
+             greenPower();
+        }
+
+        else if (item.gameObject.CompareTag("blue") )
+        {
+            bluePower();
+        }
+        else if (item.gameObject.CompareTag("red") )
+        {
+            
+             redPower();
+            
+
+        }
+        else if (item.gameObject.CompareTag("yellow") )
+        {
+            yellowPower();
+        }
+        else if (item.gameObject.CompareTag("white"))
+        {
+           whitePower();
+        }
+       
+
+     }
+
+    void eatPower(Collision item)
+    {
+        if ( item.gameObject.CompareTag("greenbox") && eat)
+        {
+             item.gameObject.SetActive(false);
+             greenPower();
+        }
+
+        else if ((item.gameObject.CompareTag("bluebox") && eat))
+        {
+             item.gameObject.SetActive(false);
+             bluePower();
+            
+        }
+        else if (item.gameObject.CompareTag("redbox") && eat)
+        {
+            
+            item.gameObject.SetActive(false);
+            redPower();
+        }
+        else if (item.gameObject.CompareTag("yellowbox") && eat)
+        {
+             item.gameObject.SetActive(false);
+             yellowPower();
+
+        }
+        else if (item.gameObject.CompareTag("whitebox") && eat)
+        {
+             item.gameObject.SetActive(false);
+             whitePower();
+        }
+
+
+    }
 }
+        
+     
+ 
+

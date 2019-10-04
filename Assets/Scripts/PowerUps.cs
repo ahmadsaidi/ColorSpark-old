@@ -5,30 +5,55 @@ using UnityEngine;
 public class PowerUps : MonoBehaviour
 {
 
-    bool fast = false;
-    float time = 100;
-    GameObject[] walls;
+    public GameObject yellowbox;
+    public GameObject bluebox;
+    public GameObject greenbox;
+    public GameObject redbox;
+    public GameObject whitebox;
+    public GameObject player;
+    PlayerController control;
+    bool fast, teleport, highJump, push = false;
 
-     void Start()
+    void Start()
     {
-        walls = GameObject.FindGameObjectsWithTag("ghost");
+  
     }
 
-
-    public void ghost(bool on)
+    public void Createbox(Vector3 position, Color color)
     {
-       
-        foreach(GameObject wall in walls)
+
+        var hitColliders = Physics.OverlapSphere(position + new Vector3(5, 4, 5), 7);
+        Debug.Log(hitColliders.Length);
+        if (hitColliders.Length  <= 2)
         {
-            wall.GetComponent<BoxCollider>().enabled = on;
-            Color c = wall.GetComponent<Renderer>().material.color;
-            c.a = 0.5f;
-            if (on)
+            if (color == Color.white)
             {
-                c.a = 1.0f;
+                Instantiate(whitebox, position + new Vector3(5, 3, 5), Quaternion.identity);
             }
-            
-            wall.GetComponent<Renderer>().material.color = c;
+            if (color == Color.yellow)
+            {
+                Instantiate(yellowbox, position + new Vector3(5, 3, 5), Quaternion.identity);
+            }
+            if (color == Color.blue)
+            {
+                Instantiate(bluebox, position + new Vector3(5, 3, 5), Quaternion.identity);
+            }
+            if (color == Color.red)
+            {
+                Instantiate(redbox, position + new Vector3(5, 3, 5), Quaternion.identity);
+            }
+            if (color == Color.green)
+            {
+                Instantiate(greenbox, position + new Vector3(5, 3, 5), Quaternion.identity);
+            }
+
         }
+
     }
+
+
+
+
+
+
 }
