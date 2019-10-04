@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     public AudioSource goodpick;
-    public float jumpspeed = 10000;
+    public float jumpspeed = 500000;
     bool fast, teleport, highJump,push = false;
     public float speedLimit = 100;
     bool canjump = true;
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            rb.AddForce(Vector3.up * 100);
+            rb.AddForce(Vector3.up * jumpspeed);
         }
 
         if (Input.GetButtonDown("Fire2"))
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
     void redPower()
     {
         ChangeColor(Color.red);
-        jumpspeed = 30000;
+        jumpspeed = 1000000;
         highJump = true;
         fast = false;
         push = false;
