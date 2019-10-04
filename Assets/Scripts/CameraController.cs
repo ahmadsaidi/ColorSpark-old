@@ -8,17 +8,21 @@ public class CameraController : MonoBehaviour
     public GameObject player;
     private Vector3 offset;
     public Transform obstruction;
+    float rotationSpeed; 
     // Start is called before the first frame update
     void Start()
     {
         offset = transform.position - player.transform.position;
         obstruction = player.transform;
+        rotationSpeed = FindObjectOfType<PlayerController>().rotationSpeed;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+        offset = Quaternion.AngleAxis(Input.GetAxis("Horizontal") * rotationSpeed *Time.deltaTime, Vector3.up) * offset;
         transform.position = player.transform.position + offset;
+        transform.LookAt(player.transform.position);
         viewObstructed();
     }
 
