@@ -11,16 +11,15 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     public AudioSource goodpick;
-    public float jumpspeed = 700000;
-    bool fast, teleport, highJump,push = false;
-    public float speedLimit = 100;
-    bool canjump = true;
+    public float jumpspeed = 7000;
     public Color color = Color.white;
     PowerUps powerups;
     public AudioClip ghostAudio, fastAudio, highJumpAudio;
     public AudioSource tilePickupAudio;
     bool eat = false;
+    bool jump = true;
     GameManager gm;
+
 
     void Start()
     {
@@ -47,9 +46,10 @@ public class PlayerController : MonoBehaviour
         transform.Translate(translation,0, 0 );
         transform.Rotate( 0,rotation, 0);
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && jump == true)
         {
             rb.AddForce(Vector3.up * jumpspeed);
+            jump = false;
         }
 
         if (Input.GetButtonDown("Fire2"))
@@ -62,7 +62,17 @@ public class PlayerController : MonoBehaviour
             gm.RestartLevel();
         }
 
- 
+        if (Input.GetButtonDown("Jump") && (color == Color.red) && jump == true)
+        {
+            float newspeed = jumpspeed * 2;
+             rb.AddForce(Vector3.up * newspeed );
+            jump = false;
+
+        }
+
+
+
+
 
 
     }
@@ -71,10 +81,16 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (Input.GetButtonDown("Fire3"))
+
+        if (Input.GetButton("Jump") && color == Color.green)
         {
-           // eat = true;
+            speed = 80;
         }
+        else
+        {
+            speed = 40;
+        }
+
 
 
 
@@ -84,27 +100,89 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-       
+        jump = true;
 
-        canjump = true;
-        if (collision.collider.gameObject.CompareTag("sand"))
-        {
-            Destroy(collision.collider.gameObject);
-        }
-    }
-
-    void OnCollisionStay(Collision collision)
-    {
-        //Debug.Log(eat);
         if (Input.GetButtonDown("Fire3"))
         {
             eat = true;
         }
         eatPower(collision);
         eat = false;
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (collision.gameObject.CompareTag("yellowbox") && powerups.count_yellow == 2)
+            {
+                float d1 = Vector3.Distance(powerups.yellow1, transform.position);
+                float d2 = Vector3.Distance(powerups.yellow2, transform.position);
+                if (d1 < d2)
+                {
+                    transform.position = powerups.yellow2 + new Vector3(0, 4, 0);
+                }
+                else
+                {
+                    transform.position = powerups.yellow1 + new Vector3(0, 4, 0);
+                }
+
+            }
+        }
+        if (Input.GetButton("Jump") && color == Color.blue)
+        {
+            if (collision.gameObject.GetComponent<Rigidbody>())
+            {
+                collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            }
+
+        }
     }
 
-        void OnTriggerEnter(Collider other)
+    void OnCollisionStay(Collision collision)
+    {
+
+        if (Input.GetButtonDown("Fire3"))
+        {
+            eat = true;
+        }
+        eatPower(collision);
+        eat = false;
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (collision.gameObject.CompareTag("yellowbox") && powerups.count_yellow == 2)
+            {
+                float d1 = Vector3.Distance(powerups.yellow1, transform.position);
+                float d2 = Vector3.Distance(powerups.yellow2, transform.position);
+                if (d1 < d2)
+                {
+                    transform.position = powerups.yellow2 + new Vector3(0, 4, 0);
+                }
+                else
+                {
+                    transform.position = powerups.yellow1 + new Vector3(0, 4, 0);
+                }
+
+            }
+        }
+        if (Input.GetButton("Jump") && color == Color.blue)
+        {
+            if (collision.gameObject.GetComponent<Rigidbody>())
+            {
+                collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            }
+
+        }
+    }
+
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Rigidbody>())
+        {
+            collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
     {
         // if (!fast && !ghost && !highJump)
         // {
@@ -137,32 +215,19 @@ public class PlayerController : MonoBehaviour
     void redPower()
     {
         ChangeColor(Color.red);
-        jumpspeed = 1000000;
-        highJump = true;
-        fast = false;
-        push = false;
-        teleport = false;
         tilePickupAudio.PlayOneShot(highJumpAudio);
         color = Color.red;
     }
     void yellowPower()
     {
         ChangeColor(Color.yellow);
-        highJump = false;
-        fast = false;
-        push = false;
-        teleport = true;
         color = Color.yellow;
     }
 
     void bluePower()
     {
         ChangeColor(Color.blue);
-        push = true;
         tilePickupAudio.PlayOneShot(ghostAudio);
-        fast = false;
-        highJump = false;
-        teleport = false;
         color = Color.blue;
      }
 
@@ -170,23 +235,12 @@ public class PlayerController : MonoBehaviour
     {
         tilePickupAudio.PlayOneShot(fastAudio);
         ChangeColor(Color.green);
-        speedLimit = 200;
-        fast = true;
-        highJump = false;
-        teleport = false;
-        push = false;
         color = Color.green;
      }
 
     void whitePower()
     {
-
         ChangeColor(Color.white);
-        speedLimit = 100;
-        fast = false;
-        highJump = false;
-        teleport = false;
-        push = false;
         color = Color.white;
     }
 
@@ -258,6 +312,7 @@ public class PlayerController : MonoBehaviour
         {
              item.gameObject.SetActive(false);
              yellowPower();
+            powerups.count_yellow--;
 
         }
         else if (item.gameObject.CompareTag("whitebox") && eat)
@@ -268,6 +323,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
+
 }
         
      
