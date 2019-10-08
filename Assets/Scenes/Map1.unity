@@ -1389,7 +1389,7 @@ GameObject:
   - component: {fileID: 722192791}
   m_Layer: 0
   m_Name: collapsing bridge
-  m_TagString: Untagged
+  m_TagString: sand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1737,6 +1737,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: piece (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3387734241991427746, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
+        type: 3}
+      propertyPath: m_TagString
+      value: sand
+      objectReference: {fileID: 0}
     - target: {fileID: 3387734241991427747, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1995,6 +2000,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: piece (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3387734241991427746, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
+        type: 3}
+      propertyPath: m_TagString
+      value: sand
+      objectReference: {fileID: 0}
     - target: {fileID: 3387734241991427747, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2074,6 +2084,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: piece (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387734241991427746, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
+        type: 3}
+      propertyPath: m_TagString
+      value: sand
       objectReference: {fileID: 0}
     - target: {fileID: 3387734241991427747, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
         type: 3}
@@ -2905,6 +2920,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: piece (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3387734241991427746, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
+        type: 3}
+      propertyPath: m_TagString
+      value: sand
+      objectReference: {fileID: 0}
     - target: {fileID: 3387734241991427747, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2978,6 +2998,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: piece (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387734241991427746, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
+        type: 3}
+      propertyPath: m_TagString
+      value: sand
       objectReference: {fileID: 0}
     - target: {fileID: 3387734241991427747, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
         type: 3}
@@ -3236,6 +3261,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: piece (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387734241991427746, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
+        type: 3}
+      propertyPath: m_TagString
+      value: sand
       objectReference: {fileID: 0}
     - target: {fileID: 3387734241991427747, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
         type: 3}
@@ -3878,6 +3908,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: piece (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3387734241991427746, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
+        type: 3}
+      propertyPath: m_TagString
+      value: sand
+      objectReference: {fileID: 0}
     - target: {fileID: 3387734241991427747, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4204,6 +4239,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: piece
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387734241991427746, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
+        type: 3}
+      propertyPath: m_TagString
+      value: sand
       objectReference: {fileID: 0}
     - target: {fileID: 3387734241991427747, guid: 6d1cea4d4cfb1434a9b53187442bab5c,
         type: 3}

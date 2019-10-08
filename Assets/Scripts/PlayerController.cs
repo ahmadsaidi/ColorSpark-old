@@ -134,6 +134,12 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+
+        if (collision.collider.gameObject.CompareTag("sand")) {
+            if (color != Color.green) {
+                Destroy(collision.collider.gameObject);
+            }
+        }
     }
 
     void OnCollisionStay(Collision collision)
