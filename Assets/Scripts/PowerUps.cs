@@ -29,10 +29,10 @@ public class PowerUps : MonoBehaviour
         Debug.Log(hitColliders);
         if (hitColliders.Length  <=2)
         {
-            if (color == Color.white)
-            {
-                Instantiate(whitebox, position , Quaternion.identity);
-            }
+            //if (color == Color.white)
+            //{
+            //    Instantiate(whitebox, position , Quaternion.identity);
+            //}
             if (color == Color.yellow && count_yellow < 2)
             {
                 Instantiate(yellowbox, position, Quaternion.identity);
@@ -46,18 +46,21 @@ public class PowerUps : MonoBehaviour
                 }
                 count_yellow++;
             }
-            if (color == Color.blue)
-            {
-                Instantiate(bluebox, position , Quaternion.identity);
+            else {
+                Instantiate(whitebox, position, Quaternion.identity);
             }
-            if (color == Color.red)
-            {
-                Instantiate(redbox, position , Quaternion.identity);
-            }
-            if (color == Color.green)
-            {
-                Instantiate(greenbox, position , Quaternion.identity);
-            }
+            //if (color == Color.blue)
+            //{
+            //    Instantiate(bluebox, position , Quaternion.identity);
+            //}
+            //if (color == Color.red)
+            //{
+            //    Instantiate(redbox, position , Quaternion.identity);
+            //}
+            //if (color == Color.green)
+            //{
+            //    Instantiate(greenbox, position , Quaternion.identity);
+            //}
 
         }
 
