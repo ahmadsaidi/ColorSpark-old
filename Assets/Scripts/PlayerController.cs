@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour
             Vector3 forward = transform.TransformDirection (Vector3.forward);
             forward = new Vector3(5*forward.z, 3, -5*forward.x);
             powerups.Createbox(transform.position + forward, color);
+            whitePower();
+
         }
 
         if (Input.GetKey("r"))
@@ -300,32 +302,32 @@ public class PlayerController : MonoBehaviour
         if ( item.gameObject.CompareTag("greenbox") && eat)
         {
              item.gameObject.SetActive(false);
-             //greenPower();
+             greenPower();
         }
 
         else if ((item.gameObject.CompareTag("bluebox") && eat))
         {
              item.gameObject.SetActive(false);
-             //bluePower();
+             bluePower();
             
         }
         else if (item.gameObject.CompareTag("redbox") && eat)
         {
             
             item.gameObject.SetActive(false);
-            //redPower();
+            redPower();
         }
         else if (item.gameObject.CompareTag("yellowbox") && eat)
         {
              item.gameObject.SetActive(false);
-             //yellowPower();
+             yellowPower();
              powerups.count_yellow--;
 
         }
         else if (item.gameObject.CompareTag("whitebox") && eat)
         {
              item.gameObject.SetActive(false);
-             //whitePower();
+             whitePower();
         }
 
 
