@@ -31,7 +31,7 @@ public class PowerUps : MonoBehaviour
         {
             if (color == Color.white)
             {
-                Instantiate(whitebox, position , Quaternion.identity);
+                Instantiate(whitebox, position, Quaternion.identity);
             }
             if (color == Color.yellow && count_yellow < 2)
             {
@@ -46,17 +46,20 @@ public class PowerUps : MonoBehaviour
                 }
                 count_yellow++;
             }
+            else {
+                //Instantiate(whitebox, position, Quaternion.identity);
+            }
             if (color == Color.blue)
             {
-                Instantiate(bluebox, position , Quaternion.identity);
+                Instantiate(bluebox, position, Quaternion.identity);
             }
             if (color == Color.red)
             {
-                Instantiate(redbox, position , Quaternion.identity);
+                Instantiate(redbox, position, Quaternion.identity);
             }
             if (color == Color.green)
             {
-                Instantiate(greenbox, position , Quaternion.identity);
+                Instantiate(greenbox, position, Quaternion.identity);
             }
 
         }
