@@ -138,10 +138,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton("Jump"))
         {
-         
+
             if (collision.gameObject.CompareTag("yellowbox") && powerups.count_yellow == 2)
             {
-              
+
                 float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
                 float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
                 if (d1 < d2 && teleport)
@@ -361,7 +361,27 @@ public class PlayerController : MonoBehaviour
         {
              item.gameObject.SetActive(false);
              yellowPower();
+            // if there are two existing box, eat one
+            if (powerups.count_yellow == 2)
+            {
+                if (item.gameObject.GetInstanceID() == powerups.yellowbox1.GetInstanceID())
+                {
+                    // if box1 is eaton, assign box2 to box1 then decrement
+                    powerups.yellowbox1 = powerups.yellowbox2;
+                    powerups.yellowbox2 = null;
+                }
+                else {
+                    // if box2 is eaton just decrement 
+                    powerups.yellowbox2 = null;
+                }
+            }
+            // eat whatever is left
+            else {
+                powerups.yellowbox1 = null;
+            }
              powerups.count_yellow--;
+
+
 
         }
         else if (item.gameObject.CompareTag("whitebox") && eat)

@@ -53,7 +53,9 @@ public class PowerUps : MonoBehaviour
                     yellowbox2 = Instantiate(yellowbox, position, Quaternion.identity);
                 }
                 count_yellow++;
-                pc.whitePower();
+                if (count_yellow == 2) {
+                    pc.whitePower();
+                }
             }
             
             if (color == Color.blue && count_blue < 3)
