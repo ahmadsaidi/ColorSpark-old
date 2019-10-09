@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && (color == Color.red) && jump == true)
         {
-            float newspeed = jumpspeed * 2;
+            float newspeed = jumpspeed * 1.3f;
              rb.AddForce(Vector3.up * newspeed );
             jump = false;
 
@@ -171,13 +171,18 @@ public class PlayerController : MonoBehaviour
         }
 
         if (collision.collider.gameObject.CompareTag("sand")) {
-            if (color != Color.green) {
+            //if (color != Color.green) {
                 jump = false;
-                Destroy(collision.collider.gameObject);
-            }
+                StartCoroutine(dekroy(collision.collider.gameObject));
+            //}
         }
     }
 
+    IEnumerator dekroy(GameObject o)
+    {
+        yield return new WaitForSeconds(0.075f);
+        Destroy(o);
+    }
     void OnCollisionStay(Collision collision)
     {
 

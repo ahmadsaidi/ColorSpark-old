@@ -62,7 +62,7 @@ public class PowerUps : MonoBehaviour
                 count_blue++;
                 pc.whitePower();
             }
-            if (color == Color.red && count_red < 1)
+            if (color == Color.red && count_red < 2)
             {
                 Instantiate(redbox, position, Quaternion.identity);
                 count_red++;
