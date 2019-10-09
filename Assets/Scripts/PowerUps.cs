@@ -14,52 +14,65 @@ public class PowerUps : MonoBehaviour
     PlayerController control;
     bool fast, teleport, highJump, push = false;
     public int count_yellow = 0;
-    public Vector3 yellow1;
-    public Vector3 yellow2;
+    public int count_white = 0;
+    public int count_blue = 0;
+    public int count_red = 0;
+    public int count_green = 0;
+    PlayerController pc;
+    public GameObject yellowbox1;
+    public GameObject yellowbox2;
+
 
     void Start()
     {
-  
+        pc  = FindObjectOfType<PlayerController>();
     }
 
     public void Createbox(Vector3 position, Color color)
     {
-
+        
         var hitColliders = Physics.OverlapSphere(position, 4);
         Debug.Log(hitColliders);
         if (hitColliders.Length  <=2)
         {
-            if (color == Color.white)
+            if (color == Color.white && count_white < 7)
             {
                 Instantiate(whitebox, position, Quaternion.identity);
+                count_white++;
             }
             if (color == Color.yellow && count_yellow < 2)
             {
-                Instantiate(yellowbox, position, Quaternion.identity);
+                
                 if (count_yellow == 0)
                 {
-                    yellow1 = position;
+                    yellowbox1 = Instantiate(yellowbox, position, Quaternion.identity);
+     
                 }
                 if (count_yellow == 1)
                 {
-                    yellow2 = position;
+                    yellowbox2 = Instantiate(yellowbox, position, Quaternion.identity);
                 }
                 count_yellow++;
+                pc.whitePower();
             }
-            else {
-                //Instantiate(whitebox, position, Quaternion.identity);
-            }
-            if (color == Color.blue)
+            
+            if (color == Color.blue && count_blue < 3)
             {
                 Instantiate(bluebox, position, Quaternion.identity);
+                count_blue++;
+                pc.whitePower();
             }
-            if (color == Color.red)
+            if (color == Color.red && count_red < 1)
             {
                 Instantiate(redbox, position, Quaternion.identity);
+                count_red++;
+                pc.whitePower();
             }
-            if (color == Color.green)
+            if (color == Color.green && count_green <4)
             {
                 Instantiate(greenbox, position, Quaternion.identity);
+                count_green++;
+                pc.whitePower();
             }
 
         }

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource tilePickupAudio;
     bool eat = false;
     bool jump = true;
+    bool teleport = true;
     GameManager gm;
 
 
@@ -44,22 +45,22 @@ public class PlayerController : MonoBehaviour
         translation *= Time.deltaTime;
         rotation *= Time.deltaTime;
         // green for speed up
-        if (color == Color.green) {
-            translation *= 2;
-        }
+        //if (color == Color.green) {
+         //   translation *= 2;
+       // }
         transform.Translate(translation,0, 0 );
         transform.Rotate( 0,rotation, 0);
 
         if (Input.GetButtonDown("Fire1") && jump == true)
         {
             // red for high jump
-            if (color == Color.red) {
-                rb.AddForce(Vector3.up * 2 * jumpspeed);
-            }
-            else
-            {
-                rb.AddForce(Vector3.up * jumpspeed);
-            }
+            //if (color == Color.red) {
+             //   rb.AddForce(Vector3.up * 2 * jumpspeed);
+           // }
+           // else
+           // {
+             rb.AddForce(Vector3.up * jumpspeed);
+          //  }
             jump = false;
         }
 
@@ -69,8 +70,13 @@ public class PlayerController : MonoBehaviour
             Vector3 forward = transform.TransformDirection (Vector3.forward);
             forward = new Vector3(5*forward.z, 3, -5*forward.x);
             powerups.Createbox(transform.position + forward, color);
-            whitePower();
+            
 
+        }
+
+        if (Input.GetButtonDown("Fire3"))
+        {
+            eat = true;
         }
 
         if (Input.GetKey("r"))
@@ -78,13 +84,32 @@ public class PlayerController : MonoBehaviour
             gm.RestartLevel();
         }
 
-        //if (Input.GetButtonDown("Jump") && (color == Color.red) && jump == true)
-        //{
-        //    float newspeed = jumpspeed * 2;
-        //     rb.AddForce(Vector3.up * newspeed );
-        //    jump = false;
+        if (Input.GetButtonDown("Jump") && (color == Color.red) && jump == true)
+        {
+            float newspeed = jumpspeed * 2;
+             rb.AddForce(Vector3.up * newspeed );
+            jump = false;
 
-        //}
+        }
+
+        if (Input.GetButton("Jump") && color == Color.green)
+        {
+            speed = 80;
+        }
+        else
+        {
+            speed = 40;
+        }
+
+        if (Input.GetButtonDown("Restart"))
+        {
+            gm.RestartLevel();
+        }
+
+        if (Input.GetButtonDown("Back"))
+        {
+            gm.MainMenu();
+        }
 
 
 
@@ -101,30 +126,38 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         jump = true;
+    
+       
 
-        if (Input.GetButtonDown("Fire3"))
+        if (Input.GetButton("Fire3"))
         {
             eat = true;
         }
         eatPower(collision);
         eat = false;
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButton("Jump"))
         {
+         
             if (collision.gameObject.CompareTag("yellowbox") && powerups.count_yellow == 2)
             {
-                float d1 = Vector3.Distance(powerups.yellow1, transform.position);
-                float d2 = Vector3.Distance(powerups.yellow2, transform.position);
-                if (d1 < d2)
+              
+                float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
+                float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
+                if (d1 < d2 && teleport)
                 {
-                    transform.position = powerups.yellow2 + new Vector3(0, 4, 0);
+                    transform.position = powerups.yellowbox2.transform.position + new Vector3(0, 4, 0);
                 }
-                else
+                else if (d1 > d2 && teleport)
                 {
-                    transform.position = powerups.yellow1 + new Vector3(0, 4, 0);
+                    transform.position = powerups.yellowbox1.transform.position + new Vector3(0, 4, 0);
                 }
-
+                teleport = false;
             }
+        }
+        else
+        {
+            teleport = true;
         }
         if (Input.GetButton("Jump") && color == Color.blue)
         {
@@ -159,18 +192,23 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("yellowbox") && powerups.count_yellow == 2)
             {
-                float d1 = Vector3.Distance(powerups.yellow1, transform.position);
-                float d2 = Vector3.Distance(powerups.yellow2, transform.position);
-                if (d1 < d2)
+                float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
+                float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
+                if (d1 < d2 && teleport)
                 {
-                    transform.position = powerups.yellow2 + new Vector3(0, 4, 0);
+                    transform.position = powerups.yellowbox2.transform.position + new Vector3(0, 4, 0);
                 }
-                else
-                {
-                    transform.position = powerups.yellow1 + new Vector3(0, 4, 0);
+                else if  (d1 > d2 && teleport)
+                    {
+                    transform.position = powerups.yellowbox1.transform.position + new Vector3(0, 4, 0);
                 }
 
             }
+            teleport = false;
+        }
+        else
+        {
+            teleport = true;
         }
         if (Input.GetButton("Jump") && color == Color.blue)
         {
@@ -193,12 +231,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // if (!fast && !ghost && !highJump)
-        // {
-        // Once a player hit a color grid
-        // no matter what state the player is in
-        // the player changes state immediately after hitting the grid
-        // and timer resets
+
         Debug.Log(eat);
         getPower(other);
 
@@ -247,7 +280,7 @@ public class PlayerController : MonoBehaviour
         color = Color.green;
      }
 
-    void whitePower()
+    public void whitePower()
     {
         ChangeColor(Color.white);
         color = Color.white;
@@ -303,19 +336,21 @@ public class PlayerController : MonoBehaviour
         {
              item.gameObject.SetActive(false);
              greenPower();
+            powerups.count_green--;
         }
 
         else if ((item.gameObject.CompareTag("bluebox") && eat))
         {
              item.gameObject.SetActive(false);
              bluePower();
-            
+             powerups.count_blue--;
         }
         else if (item.gameObject.CompareTag("redbox") && eat)
         {
             
             item.gameObject.SetActive(false);
             redPower();
+            powerups.count_red--;
         }
         else if (item.gameObject.CompareTag("yellowbox") && eat)
         {
@@ -328,6 +363,7 @@ public class PlayerController : MonoBehaviour
         {
              item.gameObject.SetActive(false);
              whitePower();
+            powerups.count_white--;
         }
 
 

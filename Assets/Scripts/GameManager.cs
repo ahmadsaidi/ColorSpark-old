@@ -34,4 +34,9 @@ public class GameManager : MonoBehaviour
     public void IntroGame() {
         SceneManager.LoadScene(4);
     }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

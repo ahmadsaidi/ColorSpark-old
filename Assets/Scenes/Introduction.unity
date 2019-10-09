@@ -445,9 +445,9 @@ MonoBehaviour:
   m_Text: "Hi, I am Robot M.A.X.02\nI am stuck on a planet\nI need to find the engine
     room to power up my space ship  to return to my mother planet\nPlease help me!\n\nIn
     this world\nI can gain powers by picking up power up at power stations \nI can
-    create power boxes containg different powers  \n \nYou can try all my skills in
-    tutorial level\n After you learn all my skills, try to reach the gate and continue
-    our journey.\n\nPress A to continue"
+    create power boxes containg different powers  \nby consuming my current power
+    up\n \nYou can try all my skills in tutorial level\n After you learn all my skills,
+    try to reach the gate and continue our journey.\n\nPress A to continue"
 --- !u!222 &1038412298
 CanvasRenderer:
   m_ObjectHideFlags: 0
