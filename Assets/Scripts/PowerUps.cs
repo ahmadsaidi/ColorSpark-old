@@ -5,12 +5,12 @@ using UnityEngine;
 public class PowerUps : MonoBehaviour
 {
 
-    public GameObject yellowbox;
-    public GameObject bluebox;
-    public GameObject greenbox;
-    public GameObject redbox;
-    public GameObject whitebox;
+    public GameObject yellowspark;
+    public GameObject bluespark;
+    public GameObject greenspark;
+    public GameObject redspark;
     public GameObject player;
+    public GameObject tele;
     PlayerController control;
     bool fast, teleport, highJump, push = false;
     public int count_yellow = 0;
@@ -21,6 +21,7 @@ public class PowerUps : MonoBehaviour
     PlayerController pc;
     public GameObject yellowbox1;
     public GameObject yellowbox2;
+    public int tele_num = 0;
 
 
     void Start()
@@ -35,44 +36,31 @@ public class PowerUps : MonoBehaviour
         Debug.Log(hitColliders);
         if (hitColliders.Length  <=2)
         {
-            if (color == Color.white && count_white < 7)
+            
+            if (color == Color.yellow && count_yellow <1)
             {
-                Instantiate(whitebox, position, Quaternion.identity);
-                count_white++;
-            }
-            if (color == Color.yellow && count_yellow < 2)
-            {
-                
-                if (count_yellow == 0)
-                {
-                    yellowbox1 = Instantiate(yellowbox, position, Quaternion.identity);
-     
-                }
-                if (count_yellow == 1)
-                {
-                    yellowbox2 = Instantiate(yellowbox, position, Quaternion.identity);
-                }
+
+                Instantiate(yellowspark, position, Quaternion.identity);
                 count_yellow++;
-                if (count_yellow == 2) {
-                    pc.whitePower();
-                }
+                pc.whitePower();
+
             }
             
-            if (color == Color.blue && count_blue < 3)
+            if (color == Color.blue && count_blue < 1)
             {
-                Instantiate(bluebox, position, Quaternion.identity);
+                Instantiate(bluespark, position, Quaternion.identity);
                 count_blue++;
                 pc.whitePower();
             }
-            if (color == Color.red && count_red < 2)
+            if (color == Color.red && count_red < 1)
             {
-                Instantiate(redbox, position, Quaternion.identity);
+                Instantiate(redspark, position, Quaternion.identity);
                 count_red++;
                 pc.whitePower();
             }
-            if (color == Color.green && count_green <4)
+            if (color == Color.green && count_green <1)
             {
-                Instantiate(greenbox, position, Quaternion.identity);
+                Instantiate(greenspark, position, Quaternion.identity);
                 count_green++;
                 pc.whitePower();
             }
@@ -81,9 +69,25 @@ public class PowerUps : MonoBehaviour
 
     }
 
+    public void Createtele(Vector3 position, Color color)
+    {
+        if (tele_num == 0)
+        {
+            yellowbox1 = Instantiate(tele, position, Quaternion.identity);
+
+        }
+        if (tele_num == 1)
+        {
+            yellowbox2 = Instantiate(tele, position, Quaternion.identity);
+        }
+        tele_num++;
+
+    }
+    
 
 
 
 
 
-}
+
+    }

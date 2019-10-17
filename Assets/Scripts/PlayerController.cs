@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         {
             // get forward direciton
             Vector3 forward = transform.TransformDirection (Vector3.forward);
-            forward = new Vector3(5*forward.z, 3, -5*forward.x);
+            forward = new Vector3(5*forward.z, 8, -5*forward.x);
             powerups.Createbox(transform.position + forward, color);
             
 
@@ -99,6 +99,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             speed = 40;
+        }
+
+        if (Input.GetButtonDown("Jump") && (color == Color.yellow) && teleport == true && powerups.tele_num < 2)
+        {
+            Vector3 forward = transform.TransformDirection(Vector3.forward);
+            forward = new Vector3(5 * forward.z, 8, -5 * forward.x);
+            powerups.Createtele(transform.position + forward, color);
+
         }
 
         if (Input.GetButtonDown("Restart"))
@@ -139,18 +147,18 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Jump"))
         {
 
-            if (collision.gameObject.CompareTag("yellowbox") && powerups.count_yellow == 2)
+            if (collision.gameObject.CompareTag("tele") && powerups.tele_num == 2)
             {
 
                 float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
                 float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
                 if (d1 < d2 && teleport)
                 {
-                    transform.position = powerups.yellowbox2.transform.position + new Vector3(0, 4, 0);
+                    transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
                 }
                 else if (d1 > d2 && teleport)
                 {
-                    transform.position = powerups.yellowbox1.transform.position + new Vector3(0, 4, 0);
+                    transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
                 }
                 teleport = false;
             }
@@ -195,21 +203,21 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (collision.gameObject.CompareTag("yellowbox") && powerups.count_yellow == 2)
+            if (collision.gameObject.CompareTag("tele") && powerups.tele_num == 2)
             {
+
                 float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
                 float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
                 if (d1 < d2 && teleport)
                 {
-                    transform.position = powerups.yellowbox2.transform.position + new Vector3(0, 4, 0);
+                    transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
                 }
-                else if  (d1 > d2 && teleport)
-                    {
-                    transform.position = powerups.yellowbox1.transform.position + new Vector3(0, 4, 0);
+                else if (d1 > d2 && teleport)
+                {
+                    transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
                 }
-
+                teleport = false;
             }
-            teleport = false;
         }
         else
         {
@@ -238,10 +246,10 @@ public class PlayerController : MonoBehaviour
     {
 
         Debug.Log(eat);
-        getPower(other);
 
 
-        if (other.gameObject.CompareTag("trap")) {
+
+        if (other.gameObject.CompareTag("hole")) {
             gm.LoseGame();
 
         }
@@ -264,6 +272,7 @@ public class PlayerController : MonoBehaviour
         ChangeColor(Color.red);
         tilePickupAudio.PlayOneShot(highJumpAudio);
         color = Color.red;
+        
     }
     void yellowPower()
     {
@@ -305,59 +314,31 @@ public class PlayerController : MonoBehaviour
           }
       }
 
-    void getPower(Collider item)
-    {
-        if (item.gameObject.CompareTag("green") )
-        {
-             greenPower();
-        }
 
-        else if (item.gameObject.CompareTag("blue") )
-        {
-            bluePower();
-        }
-        else if (item.gameObject.CompareTag("red") )
-        {
-            
-             redPower();
-            
-
-        }
-        else if (item.gameObject.CompareTag("yellow") )
-        {
-            yellowPower();
-        }
-        else if (item.gameObject.CompareTag("white"))
-        {
-           whitePower();
-        }
-       
-
-     }
 
     void eatPower(Collision item)
     {
-        if ( item.gameObject.CompareTag("greenbox") && eat)
+        if ( item.gameObject.CompareTag("green") && eat)
         {
              item.gameObject.SetActive(false);
              greenPower();
             powerups.count_green--;
         }
 
-        else if ((item.gameObject.CompareTag("bluebox") && eat))
+        else if ((item.gameObject.CompareTag("blue") && eat))
         {
              item.gameObject.SetActive(false);
              bluePower();
              powerups.count_blue--;
         }
-        else if (item.gameObject.CompareTag("redbox") && eat)
+        else if (item.gameObject.CompareTag("red") && eat)
         {
             
             item.gameObject.SetActive(false);
             redPower();
             powerups.count_red--;
         }
-        else if (item.gameObject.CompareTag("yellowbox") && eat)
+        else if (item.gameObject.CompareTag("yellow") && eat)
         {
              item.gameObject.SetActive(false);
              yellowPower();
@@ -384,12 +365,7 @@ public class PlayerController : MonoBehaviour
 
 
         }
-        else if (item.gameObject.CompareTag("whitebox") && eat)
-        {
-             item.gameObject.SetActive(false);
-             whitePower();
-            powerups.count_white--;
-        }
+
 
 
     }

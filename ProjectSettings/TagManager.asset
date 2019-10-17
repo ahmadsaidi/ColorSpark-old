@@ -17,10 +17,10 @@ TagManager:
   - yellow
   - white
   - whitebox
-  - greenbox
-  - redbox
-  - bluebox
-  - yellowbox
+  - tele
+  - engine
+  - hole
+  - Door
   layers:
   - Default
   - TransparentFX
