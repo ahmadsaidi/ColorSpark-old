@@ -22,6 +22,7 @@ public class PowerUps : MonoBehaviour
     public GameObject yellowbox1;
     public GameObject yellowbox2;
     public int tele_num = 0;
+   // public Color engine_color;
 
 
     void Start()
@@ -32,9 +33,8 @@ public class PowerUps : MonoBehaviour
     public void Createbox(Vector3 position, Color color)
     {
         
-        var hitColliders = Physics.OverlapSphere(position, 4);
-        Debug.Log(hitColliders);
-        if (hitColliders.Length  <=2)
+        var hitColliders = Physics.OverlapSphere(position, 6);
+        if (hitColliders.Length  <=1)
         {
             
             if (color == Color.yellow && count_yellow <1)
@@ -66,6 +66,60 @@ public class PowerUps : MonoBehaviour
             }
 
         }
+        else
+        {
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+
+                if (hitColliders[i].tag == "engine")
+                {
+                    Vector3 newpos = hitColliders[i].transform.position + new Vector3(0, 10, 0);
+                    engineController gc = hitColliders[i].GetComponent<engineController>();
+                    if (color == Color.yellow && count_yellow < 1)
+                    {
+
+                        Instantiate(yellowspark, newpos, Quaternion.identity);
+                        //  engine_color = Color.yellow;
+                        count_yellow++;
+                        pc.whitePower();
+                        gc.color = Color.yellow;
+                        gc.yellow();
+
+                    }
+
+                    if (color == Color.blue && count_blue < 1)
+                    {
+                        Instantiate(bluespark, newpos, Quaternion.identity);
+                        count_blue++;
+                        //  engine_color = Color.blue;
+                        pc.whitePower();
+                        gc.color = Color.blue;
+                        gc.blue();
+
+                    }
+                    if (color == Color.red && count_red < 1)
+                    {
+                        Instantiate(redspark, newpos, Quaternion.identity);
+                        count_red++;
+                        //engine_color = Color.red;
+                        pc.whitePower();
+                        gc.color = Color.red;
+                        gc.red();
+
+                    }
+                    if (color == Color.green && count_green < 1)
+                    {
+                        Instantiate(greenspark, newpos, Quaternion.identity);
+                        count_green++;
+                        //engine_color = Color.green;
+                        pc.whitePower();
+                        gc.color = Color.green;
+                        gc.green();
+
+                    }
+                }
+            }
+        }
 
     }
 
@@ -83,11 +137,87 @@ public class PowerUps : MonoBehaviour
         tele_num++;
 
     }
-    
+
+
+    public void GetEnginePower(Vector3 position)
+    {
+        var hitColliders = Physics.OverlapSphere(position, 6);
+        Vector3 newpos;
+        Collider[] intersecting;
+
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+            if (hitColliders[i].tag == "engine")
+            {
+                newpos = hitColliders[i].transform.position + new Vector3(0, 10, 0);
+                intersecting = Physics.OverlapSphere(newpos, 3);
+                engineController gc = hitColliders[i].GetComponent<engineController>();
+
+
+                if (intersecting.Length < 1)
+                {
+                    return;
+                }
+
+                for (int j = 0; j < intersecting.Length; j++)
+                {
+                    if (intersecting[j].tag == "yellow")
+                    {
+                        intersecting[j].gameObject.SetActive(false);
+                        pc.yellowPower();
+                        yellowbox1 = null;
+                        yellowbox2 = null;
+                        gc.white();
+                        count_yellow--;
+                    }
+
+                    if (intersecting[j].tag == "green")
+                    {
+                        intersecting[0].gameObject.SetActive(false);
+                        pc.greenPower();
+                        gc.white();
+                        count_green--;
+                    }
+
+
+                    if (intersecting[j].tag == "red")
+                    {
+                        intersecting[0].gameObject.SetActive(false);
+                        pc.redPower();
+                        gc.white(); 
+                        count_red--;
+                    }
+
+
+                    if (intersecting[j].tag == "blue")
+                    {
+                        intersecting[0].gameObject.SetActive(false);
+                        pc.bluePower();
+                        GameObject Boxes = gc.boxes;
+                        gc.white();
+                        gc.Fall(Boxes);
+   
+                        count_blue--;
+                    }
 
 
 
 
+                }
+
+            }
+        }
+        
 
 
+                
     }
+
+
+
+
+
+
+
+
+}

@@ -77,6 +77,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire3"))
         {
             eat = true;
+            powerups.GetEnginePower(transform.position);
+            eat = false;
         }
 
         if (Input.GetKey("r"))
@@ -188,7 +190,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator dekroy(GameObject o)
     {
-        yield return new WaitForSeconds(0.075f);
+        yield return new WaitForSeconds(0.15f);
         Destroy(o);
     }
     void OnCollisionStay(Collision collision)
@@ -267,27 +269,27 @@ public class PlayerController : MonoBehaviour
 
     
 
-    void redPower()
+    public void redPower()
     {
         ChangeColor(Color.red);
         tilePickupAudio.PlayOneShot(highJumpAudio);
         color = Color.red;
         
     }
-    void yellowPower()
+   public  void yellowPower()
     {
         ChangeColor(Color.yellow);
         color = Color.yellow;
     }
 
-    void bluePower()
+    public void bluePower()
     {
         ChangeColor(Color.blue);
         tilePickupAudio.PlayOneShot(ghostAudio);
         color = Color.blue;
      }
 
-    void greenPower()
+    public  void greenPower()
     {
         tilePickupAudio.PlayOneShot(fastAudio);
         ChangeColor(Color.green);
@@ -322,7 +324,7 @@ public class PlayerController : MonoBehaviour
         {
              item.gameObject.SetActive(false);
              greenPower();
-            powerups.count_green--;
+             powerups.count_green--;
         }
 
         else if ((item.gameObject.CompareTag("blue") && eat))
@@ -361,10 +363,9 @@ public class PlayerController : MonoBehaviour
                 powerups.yellowbox1 = null;
             }
              powerups.count_yellow--;
-
-
-
         }
+
+
 
 
 
