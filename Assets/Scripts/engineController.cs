@@ -33,19 +33,6 @@ public class engineController : MonoBehaviour
     {
         if (color == Color.yellow && door)
         {
-            if (trap)
-            {
-                trap.SetActive(true);
-            }
-            if (bridge)
-            {
-                bridge.SetActive(false);
-            }
-            if (boxes)
-            {
-                Fall(boxes);
-            }
-
             door.SetActive(false);
         }
 
@@ -55,18 +42,6 @@ public class engineController : MonoBehaviour
     {
         if (color == Color.red && bridge)
         {
-            if (door)
-            {
-                door.SetActive(true);
-            }
-            if (trap)
-            {
-                trap.SetActive(true);
-            }
-            if (boxes)
-            {
-                Fall(boxes);
-            }
             bridge.SetActive(true);
         }
     }
@@ -75,18 +50,6 @@ public class engineController : MonoBehaviour
     {
         if (color == Color.blue && boxes)
         {
-            if (door)
-            {
-                door.SetActive(true);
-            }
-            if (trap)
-            {
-                trap.SetActive(true);
-            }
-            if (bridge)
-            {
-                bridge.SetActive(false);
-            };
             Float(boxes);
         }
 
@@ -96,18 +59,8 @@ public class engineController : MonoBehaviour
     {
         if (color == Color.green && trap)
         {
-            if (door)
-            {
-                door.SetActive(true);
-            }
-            if (bridge)
-            {
-                bridge.SetActive(false);
-            };
-            if (boxes)
-            {
-                Fall(boxes);
-            }
+
+
             trap.SetActive(false);
         }
     }
