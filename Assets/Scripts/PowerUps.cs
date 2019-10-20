@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PowerUps : MonoBehaviour
 {
 
@@ -28,6 +29,8 @@ public class PowerUps : MonoBehaviour
     void Start()
     {
         pc  = FindObjectOfType<PlayerController>();
+       
+
     }
 
     public void Createbox(Vector3 position, Color color)
@@ -80,10 +83,19 @@ public class PowerUps : MonoBehaviour
 
                         Instantiate(yellowspark, newpos, Quaternion.identity);
                         //  engine_color = Color.yellow;
-                        count_yellow++;
+                        count_yellow++;                 
                         pc.whitePower();
                         gc.color = Color.yellow;
                         gc.yellow();
+                        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("tele");
+
+                        for (var index = 0; index < gameObjects.Length; index++)
+                        {
+                            Destroy(gameObjects[index]);
+                        }
+                        yellowbox1 = null;
+                        yellowbox2 = null;
+                        tele_num = 0;
 
                     }
 
@@ -165,10 +177,9 @@ public class PowerUps : MonoBehaviour
                     {
                         intersecting[j].gameObject.SetActive(false);
                         pc.yellowPower();
-                        yellowbox1 = null;
-                        yellowbox2 = null;
                         gc.white();
                         count_yellow--;
+           
                     }
 
                     if (intersecting[j].tag == "green")
@@ -195,7 +206,8 @@ public class PowerUps : MonoBehaviour
                         pc.bluePower();
                         GameObject Boxes = gc.boxes;
                         gc.white();
-                        gc.Fall(Boxes);
+                        gc.flo = false;
+                        gc.fall = true;
    
                         count_blue--;
                     }

@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource tilePickupAudio;
     bool eat = false;
     bool jump = true;
-    bool teleport = true;
+    bool teleport = false;
     GameManager gm;
 
 
@@ -103,11 +103,14 @@ public class PlayerController : MonoBehaviour
             speed = 40;
         }
 
-        if (Input.GetButtonDown("Jump") && (color == Color.yellow) && teleport == true && powerups.tele_num < 2)
+        if (Input.GetButtonDown("Jump") && (color == Color.yellow)  && powerups.tele_num < 2)
         {
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             forward = new Vector3(5 * forward.z, 8, -5 * forward.x);
             powerups.Createtele(transform.position + forward, color);
+            teleport = false;
+
+            
 
         }
 
@@ -146,10 +149,10 @@ public class PlayerController : MonoBehaviour
         eatPower(collision);
         eat = false;
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump") && powerups.tele_num == 2)
         {
 
-            if (collision.gameObject.CompareTag("tele") && powerups.tele_num == 2)
+            if (collision.gameObject.CompareTag("tele"))
             {
 
                 float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
@@ -165,7 +168,7 @@ public class PlayerController : MonoBehaviour
                 teleport = false;
             }
         }
-        else
+        else if (powerups.tele_num == 2)
         {
             teleport = true;
         }
@@ -203,9 +206,9 @@ public class PlayerController : MonoBehaviour
         eatPower(collision);
         eat = false;
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && powerups.tele_num == 2)
         {
-            if (collision.gameObject.CompareTag("tele") && powerups.tele_num == 2)
+            if (collision.gameObject.CompareTag("tele") )
             {
 
                 float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
@@ -221,7 +224,7 @@ public class PlayerController : MonoBehaviour
                 teleport = false;
             }
         }
-        else
+        else if (powerups.tele_num == 2)
         {
             teleport = true;
         }
