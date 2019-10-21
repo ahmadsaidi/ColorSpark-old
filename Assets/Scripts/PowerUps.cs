@@ -130,6 +130,18 @@ public class PowerUps : MonoBehaviour
 
                     }
                 }
+
+                // scripts for TUT1 
+                if (hitColliders[i].tag == "TUT1_mission")
+                {
+                    Vector3 newpos = hitColliders[i].transform.position + new Vector3(0, 10, 0);
+                    if (color == Color.blue){
+                        Instantiate(bluespark, newpos, Quaternion.identity);
+                        pc.whitePower();
+                        GameManager gm = FindObjectOfType<GameManager>();
+                        gm.WinGame();
+                    }
+                }
             }
         }
 

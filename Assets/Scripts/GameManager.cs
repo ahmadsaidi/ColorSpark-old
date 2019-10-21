@@ -8,22 +8,22 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Map1");
     }
 
     public void LoseGame()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Lose");
     }
 
     public void WinGame()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Win");
     }
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void QuitGame()
@@ -32,11 +32,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void IntroGame() {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("Introduction");
     }
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("StartMenu");
     }
 }
