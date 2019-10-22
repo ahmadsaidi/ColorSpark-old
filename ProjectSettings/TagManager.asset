@@ -21,6 +21,7 @@ TagManager:
   - engine
   - hole
   - Door
+  - TUT1_mission
   layers:
   - Default
   - TransparentFX
