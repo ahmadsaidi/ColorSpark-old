@@ -54,13 +54,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && jump == true)
         {
             // red for high jump
-            //if (color == Color.red) {
-             //   rb.AddForce(Vector3.up * 2 * jumpspeed);
-           // }
-           // else
-           // {
-             rb.AddForce(Vector3.up * jumpspeed);
-          //  }
+            if (color == Color.red) {
+               rb.AddForce(Vector3.up * 1.3f * jumpspeed);
+            }
+            else
+            {
+               rb.AddForce(Vector3.up * jumpspeed);
+            }
             jump = false;
         }
 
