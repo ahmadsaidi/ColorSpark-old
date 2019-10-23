@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton("Jump") && color == Color.green)
         {
-            speed = 80;
+            speed = 120;
         }
         else
         {
