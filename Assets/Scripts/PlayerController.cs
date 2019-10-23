@@ -323,27 +323,27 @@ public class PlayerController : MonoBehaviour
 
     void eatPower(Collision item)
     {
-        if ( item.gameObject.CompareTag("green") && eat)
+        if ( item.gameObject.CompareTag("green") && eat && color == Color.white)
         {
              item.gameObject.SetActive(false);
              greenPower();
              powerups.count_green--;
         }
 
-        else if ((item.gameObject.CompareTag("blue") && eat))
+        else if ((item.gameObject.CompareTag("blue") && eat && color == Color.white))
         {
              item.gameObject.SetActive(false);
              bluePower();
              powerups.count_blue--;
         }
-        else if (item.gameObject.CompareTag("red") && eat)
+        else if (item.gameObject.CompareTag("red") && eat && color == Color.white)
         {
             
             item.gameObject.SetActive(false);
             redPower();
             powerups.count_red--;
         }
-        else if (item.gameObject.CompareTag("yellow") && eat)
+        else if (item.gameObject.CompareTag("yellow") && eat && color == Color.white)
         {
              item.gameObject.SetActive(false);
              yellowPower();

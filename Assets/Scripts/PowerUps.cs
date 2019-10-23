@@ -44,6 +44,14 @@ public class PowerUps : MonoBehaviour
             {
 
                 Instantiate(yellowspark, position, Quaternion.identity);
+                GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("tele");
+                for (var index = 0; index < gameObjects.Length; index++)
+                {
+                    Destroy(gameObjects[index]);
+                }
+                yellowbox1 = null;
+                yellowbox2 = null;
+                tele_num = 0;
                 count_yellow++;
                 pc.whitePower();
 
@@ -88,7 +96,6 @@ public class PowerUps : MonoBehaviour
                         gc.color = Color.yellow;
                         gc.yellow();
                         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("tele");
-
                         for (var index = 0; index < gameObjects.Length; index++)
                         {
                             Destroy(gameObjects[index]);
@@ -171,7 +178,7 @@ public class PowerUps : MonoBehaviour
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
-            if (hitColliders[i].tag == "engine")
+            if (hitColliders[i].tag == "engine" && pc.color == Color.white)
             {
                 newpos = hitColliders[i].transform.position + new Vector3(0, 10, 0);
                 intersecting = Physics.OverlapSphere(newpos, 3);
