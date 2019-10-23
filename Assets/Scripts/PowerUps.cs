@@ -137,7 +137,7 @@ public class PowerUps : MonoBehaviour
                     Vector3 newpos = hitColliders[i].transform.position + new Vector3(0, 10, 0);
                     if (color == Color.blue){
                         GameManager gm = FindObjectOfType<GameManager>();
-                        gm.WinGame();
+                        gm.WinLevel();
                     }
                 }
             }

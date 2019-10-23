@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
+        PlayerData.Level = 2;
         SceneManager.LoadScene("Win");
     }
 
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void WinLevel()
     {
-        PlayerData.Level = SceneManager.GetActiveScene().buildIndex;
+        PlayerData.Level = SceneManager.GetActiveScene().buildIndex + 1;
         if (SceneManager.GetActiveScene().name == "Level1")
         {
             WinGame();
@@ -60,7 +61,6 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        PlayerData.Level += 1;
         SceneManager.LoadScene(PlayerData.Level);
     }
 }

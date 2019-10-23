@@ -12,8 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Introduction.unity
     guid: f0f09efcdfa814840a403551a130755a
   - enabled: 1
-    path: Assets/Scenes/Map1.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/TUTgreemPU.unity
+    guid: e1891a351b4813c45998414efc751049
+  - enabled: 1
+    path: Assets/Scenes/TUTredPU.unity
+    guid: 99169594b52c6874fbd7866e61fa892e
+  - enabled: 1
+    path: Assets/Scenes/TUTbluePU.unity
+    guid: 8974d6c0265a46c4b80208189c734338
+  - enabled: 1
+    path: Assets/Scenes/TUTyellowPU.unity
+    guid: 8959fa972a4e95641853443ff4b7739f
   - enabled: 1
     path: Assets/Scenes/powerEngineTut.unity
     guid: 82e02e5fd63aa4f42ac8275695a0c045
