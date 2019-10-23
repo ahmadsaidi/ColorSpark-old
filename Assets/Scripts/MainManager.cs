@@ -17,15 +17,29 @@ public class MainManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().buildIndex == 0)
         {
-            gm.IntroGame();
-        } else if (Input.GetButtonDown("Fire1"))
+            if (PlayerData.Level == 2)
+            {
+                gm.IntroGame();
+            }
+            else
+            {
+                gm.StartGame();
+            }
+        } else if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().name == "Introduction")
         {
             gm.StartGame();
         }
-
-        if (Input.GetButtonDown("Fire2") && SceneManager.GetActiveScene().buildIndex != 4)
+        else if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().name == "LevelComplete")
         {
-            gm.QuitGame();
+            gm.NextLevel();
+        } else if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().name == "Lose")
+        {
+            gm.RetryLevel();
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            gm.MainMenu();
         }
 
     }

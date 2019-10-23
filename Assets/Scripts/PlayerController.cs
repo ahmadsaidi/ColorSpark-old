@@ -261,7 +261,7 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("finish"))
         {
             Debug.Log("win");
-            gm.WinGame();
+            gm.WinLevel();
         }
 
    

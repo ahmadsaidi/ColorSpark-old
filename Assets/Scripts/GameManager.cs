@@ -8,11 +8,12 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Map1");
+        SceneManager.LoadScene(PlayerData.Level);
     }
 
     public void LoseGame()
     {
+        PlayerData.Level = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene("Lose");
     }
 
@@ -24,6 +25,11 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void RetryLevel()
+    {
+        SceneManager.LoadScene(PlayerData.Level);
     }
 
     public void QuitGame()
@@ -38,5 +44,23 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("StartMenu");
+    }
+
+    public void WinLevel()
+    {
+        PlayerData.Level = SceneManager.GetActiveScene().buildIndex;
+        if (SceneManager.GetActiveScene().name == "Level1")
+        {
+            WinGame();
+        } else
+        {
+            SceneManager.LoadScene("LevelComplete");
+        }
+    }
+
+    public void NextLevel()
+    {
+        PlayerData.Level += 1;
+        SceneManager.LoadScene(PlayerData.Level);
     }
 }
