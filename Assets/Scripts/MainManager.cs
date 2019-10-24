@@ -29,6 +29,10 @@ public class MainManager : MonoBehaviour
         {
             gm.StartGame();
         }
+         else if (Input.GetButtonDown("Fire2") && SceneManager.GetActiveScene().name == "Introduction")
+        {
+            gm.MainMenu();
+        }
         else if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().name == "LevelComplete")
         {
             gm.NextLevel();

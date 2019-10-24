@@ -86,10 +86,16 @@ public class PowerUps : MonoBehaviour
                 {
                     Vector3 newpos = hitColliders[i].transform.position + new Vector3(0, 10, 0);
                     engineController gc = hitColliders[i].GetComponent<engineController>();
+                    if (gc.color != Color.white)
+                    {
+                        return;
+                    }
                     if (color == Color.yellow && count_yellow < 1)
                     {
 
-                        Instantiate(yellowspark, newpos, Quaternion.identity);
+                        GameObject spark = Instantiate(yellowspark, newpos, Quaternion.identity);
+                        spark.GetComponent<SparkController>().eat = false;
+                        
                         //  engine_color = Color.yellow;
                         count_yellow++;                 
                         pc.whitePower();
@@ -108,7 +114,8 @@ public class PowerUps : MonoBehaviour
 
                     if (color == Color.blue && count_blue < 1)
                     {
-                        Instantiate(bluespark, newpos, Quaternion.identity);
+                        GameObject spark = Instantiate(bluespark, newpos, Quaternion.identity);
+                        spark.GetComponent<SparkController>().eat = false;
                         count_blue++;
                         //  engine_color = Color.blue;
                         pc.whitePower();
@@ -118,7 +125,8 @@ public class PowerUps : MonoBehaviour
                     }
                     if (color == Color.red && count_red < 1)
                     {
-                        Instantiate(redspark, newpos, Quaternion.identity);
+                        GameObject spark = Instantiate(redspark, newpos, Quaternion.identity);
+                        spark.GetComponent<SparkController>().eat = false;
                         count_red++;
                         //engine_color = Color.red;
                         pc.whitePower();
@@ -128,7 +136,8 @@ public class PowerUps : MonoBehaviour
                     }
                     if (color == Color.green && count_green < 1)
                     {
-                        Instantiate(greenspark, newpos, Quaternion.identity);
+                        GameObject spark = Instantiate(greenspark, newpos, Quaternion.identity);
+                        spark.GetComponent<SparkController>().eat = false;
                         count_green++;
                         //engine_color = Color.green;
                         pc.whitePower();

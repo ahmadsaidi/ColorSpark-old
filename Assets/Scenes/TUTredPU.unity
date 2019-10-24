@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.042741917, g: 0.039367538, b: 0.045250498, a: 1}
+  m_IndirectSpecularColor: {r: 0.041885167, g: 0.039319653, b: 0.044377856, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -339,9 +339,14 @@ MonoBehaviour:
   goodpick: {fileID: 0}
   jumpspeed: 700000
   color: {r: 1, g: 1, b: 1, a: 1}
-  ghostAudio: {fileID: 8300000, guid: e5d2f43059145f74e9c686b3d7ecf59e, type: 3}
-  fastAudio: {fileID: 8300000, guid: 56c6483058b60ca49a0d265a7a409e33, type: 3}
-  highJumpAudio: {fileID: 8300000, guid: 76377d85033a2dc47b0896cbdfc292a9, type: 3}
+  blueAduio: {fileID: 8300000, guid: 236a11effbeb7d24383b974b03f4da35, type: 3}
+  greenAudio: {fileID: 8300000, guid: bf13e1f9b480eb742be62c8f6cac0f5d, type: 3}
+  redAudio: {fileID: 8300000, guid: ee01c3d6e0e690848a639275392de1d1, type: 3}
+  yellowAudio: {fileID: 8300000, guid: 65e2068faf42ded448ad29de19a206eb, type: 3}
+  pushboxAudio: {fileID: 8300000, guid: 9fc33062985384f49903252d5e35fc3d, type: 3}
+  runfasterAudio: {fileID: 8300000, guid: f7e80387025177e4ab6cf708b439ba94, type: 3}
+  teleportAudio: {fileID: 8300000, guid: 029cab137a7d2354db2caf0b7fedb252, type: 3}
+  jumphigherAudio: {fileID: 8300000, guid: a6309e9fdf74abc4fbc0bd1594b9bfd2, type: 3}
   tilePickupAudio: {fileID: 453661022}
 --- !u!23 &453661021
 MeshRenderer:
@@ -516,7 +521,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fafbe546f869122418005dd602ae117a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 83d2f962cc2768f4f8658250efa3ed48, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.26
   m_Pitch: 1
@@ -767,7 +772,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.506e-42, y: 1.05e-43, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -950,7 +955,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.417e-42, y: 1.05e-43, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 7.2e-43, y: -1.0166541e-28, z: 7.2e-43, w: -0.0390625}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1211,7 +1216,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.131e-42, y: 1.02e-43, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 4.56e-42, y: 1.02e-43, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1391,7 +1396,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.24e-43, y: NaN, z: 6.24e-43, w: -4.741256e-10}
+  m_BoundingSphereOverride: {x: 4.56e-42, y: 1.02e-43, z: 2.881e-42, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1657,7 +1662,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.824e-42, y: 1.05e-43, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 4.708e-42, y: 1.02e-43, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1848,7 +1853,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.24e-43, y: NaN, z: 6.24e-43, w: -4.741256e-10}
+  m_BoundingSphereOverride: {x: 4.708e-42, y: 1.02e-43, z: -2.3059837e+18, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2073,7 +2078,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 7.6550656e-17, z: 6.24e-43, w: 5.76e-43}
+  m_BoundingSphereOverride: {x: 3.4e-44, y: 2.73e-43, z: 4.5905e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

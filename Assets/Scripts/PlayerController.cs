@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     public float jumpspeed = 7000;
     public Color color = Color.white;
     PowerUps powerups;
-    public AudioClip ghostAudio, fastAudio, highJumpAudio;
+    public AudioClip blueAduio, greenAudio, redAudio, yellowAudio;
+    public AudioClip pushboxAudio, runfasterAudio, teleportAudio, jumphigherAudio;
     public AudioSource tilePickupAudio;
     bool eat = false;
     bool jump = true;
@@ -76,9 +77,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire3"))
         {
-            eat = true;
             powerups.GetEnginePower(transform.position);
-            eat = false;
         }
 
         if (Input.GetKey("r"))
@@ -91,11 +90,14 @@ public class PlayerController : MonoBehaviour
             float newspeed = jumpspeed * 1.3f;
              rb.AddForce(Vector3.up * newspeed );
             jump = false;
+            tilePickupAudio.PlayOneShot(jumphigherAudio);
+
 
         }
 
         if (Input.GetButton("Jump") && color == Color.green)
         {
+            tilePickupAudio.PlayOneShot(runfasterAudio);
             speed = 120;
         }
         else
@@ -140,31 +142,28 @@ public class PlayerController : MonoBehaviour
     {
         jump = true;
     
-       
-
-        if (Input.GetButton("Fire3"))
-        {
-            eat = true;
-        }
         eatPower(collision);
-        eat = false;
 
         if (Input.GetButton("Jump") && powerups.tele_num == 2)
         {
 
             if (collision.gameObject.CompareTag("tele"))
             {
-
+                
                 float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
                 float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
                 if (d1 < d2 && teleport)
                 {
+                    tilePickupAudio.PlayOneShot(teleportAudio);
+
                     transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
                 }
                 else if (d1 > d2 && teleport)
                 {
+                    tilePickupAudio.PlayOneShot(teleportAudio);
                     transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
                 }
+                
                 teleport = false;
             }
         }
@@ -178,6 +177,7 @@ public class PlayerController : MonoBehaviour
             if (collision.gameObject.GetComponent<Rigidbody>())
             {
                 Debug.Log("get there");
+                tilePickupAudio.PlayOneShot(pushboxAudio);
                 collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             }
 
@@ -199,26 +199,21 @@ public class PlayerController : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
 
-        if (Input.GetButtonDown("Fire3"))
-        {
-            eat = true;
-        }
-        eatPower(collision);
-        eat = false;
 
         if (Input.GetButtonDown("Jump") && powerups.tele_num == 2)
         {
             if (collision.gameObject.CompareTag("tele") )
             {
-
                 float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
                 float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
                 if (d1 < d2 && teleport)
                 {
+                    tilePickupAudio.PlayOneShot(teleportAudio);
                     transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
                 }
                 else if (d1 > d2 && teleport)
                 {
+                    tilePickupAudio.PlayOneShot(teleportAudio);
                     transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
                 }
                 teleport = false;
@@ -232,6 +227,7 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Rigidbody>())
             {
+                tilePickupAudio.PlayOneShot(pushboxAudio);
                 collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             }
 
@@ -250,7 +246,6 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log(eat);
 
 
 
@@ -275,26 +270,27 @@ public class PlayerController : MonoBehaviour
     public void redPower()
     {
         ChangeColor(Color.red);
-        tilePickupAudio.PlayOneShot(highJumpAudio);
         color = Color.red;
-        
+        tilePickupAudio.PlayOneShot(redAudio);
+
     }
    public  void yellowPower()
     {
         ChangeColor(Color.yellow);
         color = Color.yellow;
+        tilePickupAudio.PlayOneShot(yellowAudio);
     }
 
     public void bluePower()
     {
         ChangeColor(Color.blue);
-        tilePickupAudio.PlayOneShot(ghostAudio);
+        tilePickupAudio.PlayOneShot(blueAduio);
         color = Color.blue;
      }
 
     public  void greenPower()
     {
-        tilePickupAudio.PlayOneShot(fastAudio);
+        tilePickupAudio.PlayOneShot(greenAudio);
         ChangeColor(Color.green);
         color = Color.green;
      }
@@ -323,27 +319,41 @@ public class PlayerController : MonoBehaviour
 
     void eatPower(Collision item)
     {
-        if ( item.gameObject.CompareTag("green") && eat && color == Color.white)
+        if ((item.gameObject.CompareTag("green")) || (item.gameObject.CompareTag("blue"))|| 
+            (item.gameObject.CompareTag("red")) || (item.gameObject.CompareTag("yellow")))
+        {
+            bool check = item.gameObject.GetComponent<SparkController>().eat;
+            if (!check)
+            {
+                return;
+            }
+        }
+
+
+        if ( item.gameObject.CompareTag("green")  && color == Color.white)
         {
              item.gameObject.SetActive(false);
              greenPower();
              powerups.count_green--;
+
         }
 
-        else if ((item.gameObject.CompareTag("blue") && eat && color == Color.white))
+        else if ((item.gameObject.CompareTag("blue")  && color == Color.white))
         {
              item.gameObject.SetActive(false);
              bluePower();
              powerups.count_blue--;
+ 
         }
-        else if (item.gameObject.CompareTag("red") && eat && color == Color.white)
+        else if (item.gameObject.CompareTag("red")  && color == Color.white)
         {
             
             item.gameObject.SetActive(false);
             redPower();
             powerups.count_red--;
+
         }
-        else if (item.gameObject.CompareTag("yellow") && eat && color == Color.white)
+        else if (item.gameObject.CompareTag("yellow") && color == Color.white)
         {
              item.gameObject.SetActive(false);
              yellowPower();

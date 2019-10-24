@@ -18,12 +18,8 @@ public class engineController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //if (door)
-        //{
-        //    left =  door.transform.GetChild(0).GetComponent<Animator>();
-        //    right = door.transform.GetChild(1).GetComponent<Animator>()
+        color = Color.white;
 
-        //}
         
     }
 
