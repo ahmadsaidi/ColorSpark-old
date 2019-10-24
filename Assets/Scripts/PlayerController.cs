@@ -41,15 +41,17 @@ public class PlayerController : MonoBehaviour
             gm.LoseGame();
 
         }
-        float translation = Input.GetAxis("Vertical") * speed;
-        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-        translation *= Time.deltaTime;
+        float translationx = Input.GetAxis("Vertical") * speed;
+        float translationz = Input.GetAxis("Horizontal") * speed;
+        float rotation = Input.GetAxis("Horizontal camera") * rotationSpeed;
+        translationx *= Time.deltaTime;
+        translationz *= Time.deltaTime;
         rotation *= Time.deltaTime;
         // green for speed up
         //if (color == Color.green) {
          //   translation *= 2;
        // }
-        transform.Translate(translation,0, 0 );
+        transform.Translate(translationx,0, -translationz );
         transform.Rotate( 0,rotation, 0);
 
         if (Input.GetButtonDown("Fire1") && jump == true)
