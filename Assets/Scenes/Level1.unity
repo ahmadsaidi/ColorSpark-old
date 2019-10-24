@@ -2903,7 +2903,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 83d2f962cc2768f4f8658250efa3ed48, type: 3}
+      objectReference: {fileID: 8300000, guid: 85b6713aaf50a9940bd6499810dcf9b0, type: 3}
     - target: {fileID: 8431181558119064633, guid: 1f4f15524506164418919b98c5658872,
         type: 3}
       propertyPath: blueAduio
