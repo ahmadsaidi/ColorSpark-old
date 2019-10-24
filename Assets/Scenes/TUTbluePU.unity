@@ -460,8 +460,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.7748326e+28, y: 1.7409433e+25, z: 4.0706433e+31,
-    w: 9.315733e-39}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1.3614972e-33}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -644,7 +643,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 96, y: 1, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: NaN, y: 5.274114e-31, z: 4.5904e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -731,7 +730,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "Mission: Try to reach the destination\non the opposite side of the wall\n\nHint\uFF1A\nX:
-    pick up a color spark:\nY: move heavy things while\n carrying blue spark"
+    pick up a color spark:\nRB: move heavy things while\n carrying blue spark"
 --- !u!222 &681934197
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -813,8 +812,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.671115e+34, y: 4.3604443e+27, z: 1.7077761e+19,
-    w: 1.693046e+22}
+  m_BoundingSphereOverride: {x: 0.0390625, y: 0.041015625, z: 0.015625, w: -0.021484375}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -905,7 +903,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.382e-42, y: 1.05e-43, z: 1.7582455e+22, w: 0}
+  m_BoundingSphereOverride: {x: 3.072e-42, y: 0, z: -4.5918e-41, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1079,7 +1077,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: NaN, y: 0, z: 4.5918e-41, w: -1.3187593e-28}
+  m_BoundingSphereOverride: {x: 1.365e-42, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1239,7 +1237,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 7.6e-44, z: 3.315e-42, w: 1.05e-43}
+  m_BoundingSphereOverride: {x: 7.34e-43, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1460,7 +1458,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.131488e+28, y: 9.596064e+11, z: 1.8464882e+25, w: 7.138753e+31}
+  m_BoundingSphereOverride: {x: 0, y: 1.3e-44, z: 4.013e-42, w: 1.05e-43}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

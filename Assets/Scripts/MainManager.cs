@@ -41,7 +41,11 @@ public class MainManager : MonoBehaviour
             gm.RetryLevel();
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && SceneManager.GetActiveScene().name == "StartMenu")
+        {
+            gm.QuitGame();
+        }
+        else
         {
             gm.MainMenu();
         }

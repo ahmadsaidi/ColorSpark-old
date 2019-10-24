@@ -35,8 +35,8 @@ public class engineController : MonoBehaviour
                 Debug.Log(boxes.transform);
                 Transform box = boxes.transform.GetChild(i);
                 float velocity = 60f;
-                Vector3 targetposition = box.transform.position + new Vector3(0, 1, 0);
-                float newPosition = Mathf.SmoothDamp(box.transform.position.y, targetposition.y, ref velocity, 3f);
+                Vector3 targetposition = box.transform.position + new Vector3(0, 30, 0);
+                float newPosition = Mathf.SmoothDamp(box.transform.position.y, targetposition.y, ref velocity, 12f);
                 box.transform.position = new Vector3(box.transform.position.x, newPosition, box.transform.position.z);
             }
             count++;
@@ -55,8 +55,8 @@ public class engineController : MonoBehaviour
                 Debug.Log(boxes.transform);
                 Transform box = boxes.transform.GetChild(i);
                 float velocity = -60f;
-                Vector3 targetposition = box.transform.position - new Vector3(0, 1, 0);
-                float newPosition = Mathf.SmoothDamp(box.transform.position.y, targetposition.y, ref velocity, 3f);
+                Vector3 targetposition = box.transform.position - new Vector3(0, 30, 0);
+                float newPosition = Mathf.SmoothDamp(box.transform.position.y, targetposition.y, ref velocity, 12f);
                 box.transform.position = new Vector3(box.transform.position.x, newPosition, box.transform.position.z);
             }
             count--;

@@ -115,6 +115,35 @@ public class PlayerController : MonoBehaviour
             
 
         }
+        else if (Input.GetButtonDown("Jump")  && powerups.tele_num == 2)
+        {
+            var hitColliders = Physics.OverlapSphere(transform.position, 6);
+            Vector3 newpos;
+
+
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                if (hitColliders[i].tag == "tele" )
+                {
+                    float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
+                    float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
+                    if (d1 < d2 )
+                    {
+                        tilePickupAudio.PlayOneShot(teleportAudio);
+
+                        transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
+                    }
+                    else if (d1 > d2 )
+                    {
+                        tilePickupAudio.PlayOneShot(teleportAudio);
+                        transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
+                    }
+
+
+                }
+            }
+        }
+
 
         if (Input.GetButtonDown("Restart"))
         {
@@ -144,44 +173,44 @@ public class PlayerController : MonoBehaviour
     
         eatPower(collision);
 
-        if (Input.GetButton("Jump") && powerups.tele_num == 2)
-        {
+        //if (Input.GetButton("Jump") && powerups.tele_num == 2)
+        //{
 
-            if (collision.gameObject.CompareTag("tele"))
-            {
+        //    if (collision.gameObject.CompareTag("tele"))
+        //    {
                 
-                float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
-                float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
-                if (d1 < d2 && teleport)
-                {
-                    tilePickupAudio.PlayOneShot(teleportAudio);
+        //        float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
+        //        float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
+        //        if (d1 < d2 && teleport)
+        //        {
+        //            tilePickupAudio.PlayOneShot(teleportAudio);
 
-                    transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
-                }
-                else if (d1 > d2 && teleport)
-                {
-                    tilePickupAudio.PlayOneShot(teleportAudio);
-                    transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
-                }
+        //            transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
+        //        }
+        //        else if (d1 > d2 && teleport)
+        //        {
+        //            tilePickupAudio.PlayOneShot(teleportAudio);
+        //            transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
+        //        }
                 
-                teleport = false;
-            }
-        }
-        else if (powerups.tele_num == 2)
-        {
-            teleport = true;
-        }
-        if (Input.GetButton("Jump") && color == Color.blue)
-        {
-            Debug.Log("get here");
-            if (collision.gameObject.GetComponent<Rigidbody>())
-            {
-                Debug.Log("get there");
-                tilePickupAudio.PlayOneShot(pushboxAudio);
-                collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            }
+        //        teleport = false;
+        //    }
+        //}
+        //else if (powerups.tele_num == 2)
+        //{
+        //    teleport = true;
+        //}
+        //if (Input.GetButton("Jump") && color == Color.blue)
+        //{
+        //    Debug.Log("get here");
+        //    if (collision.gameObject.GetComponent<Rigidbody>())
+        //    {
+        //        Debug.Log("get there");
+        //        tilePickupAudio.PlayOneShot(pushboxAudio);
+        //        collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        //    }
 
-        }
+        //}
 
         if (collision.collider.gameObject.CompareTag("sand")) {
             //if (color != Color.green) {
@@ -200,29 +229,29 @@ public class PlayerController : MonoBehaviour
     {
 
 
-        if (Input.GetButtonDown("Jump") && powerups.tele_num == 2)
-        {
-            if (collision.gameObject.CompareTag("tele") )
-            {
-                float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
-                float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
-                if (d1 < d2 && teleport)
-                {
-                    tilePickupAudio.PlayOneShot(teleportAudio);
-                    transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
-                }
-                else if (d1 > d2 && teleport)
-                {
-                    tilePickupAudio.PlayOneShot(teleportAudio);
-                    transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
-                }
-                teleport = false;
-            }
-        }
-        else if (powerups.tele_num == 2)
-        {
-            teleport = true;
-        }
+        //if (Input.GetButtonDown("Jump") && powerups.tele_num == 2)
+        //{
+        //    if (collision.gameObject.CompareTag("tele") )
+        //    {
+        //        float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
+        //        float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
+        //        if (d1 < d2 && teleport)
+        //        {
+        //            tilePickupAudio.PlayOneShot(teleportAudio);
+        //            transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
+        //        }
+        //        else if (d1 > d2 && teleport)
+        //        {
+        //            tilePickupAudio.PlayOneShot(teleportAudio);
+        //            transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
+        //        }
+        //        teleport = false;
+        //    }
+        //}
+        //else if (powerups.tele_num == 2)
+        //{
+        //    teleport = true;
+        //}
         if (Input.GetButton("Jump") && color == Color.blue)
         {
             if (collision.gameObject.GetComponent<Rigidbody>())
