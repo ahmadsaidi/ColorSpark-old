@@ -17,7 +17,14 @@ public class MainManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().buildIndex == 0)
         {
-            gm.StartGame();
+            if (PlayerData.Level == 2)
+            {
+                gm.IntroGame();
+            }
+            else
+            {
+                gm.StartGame();
+            }
         } else if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().name == "Introduction")
         {
             gm.StartGame();
