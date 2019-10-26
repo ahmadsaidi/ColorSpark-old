@@ -171,7 +171,6 @@ public class PowerUps : MonoBehaviour
         if (tele_num == 1)
         {
             yellowbox2 = Instantiate(tele, position, Quaternion.identity);
-            pc.whitePower(); 
         }
         tele_num++;
         
@@ -232,7 +231,7 @@ public class PowerUps : MonoBehaviour
                     {
                         intersecting[0].gameObject.SetActive(false);
                         pc.bluePower();
-                        GameObject Boxes = gc.boxes;
+                        GameObject Boxes = gc.objectToFloat;
                         gc.white();
                         gc.flo = false;
                         gc.fall = true;
