@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(PlayerData.Level);
     }
 
+    public void StartPuzzle()
+    {
+        SceneManager.LoadScene("Level1");
+    }
+
     public void LoseGame()
     {
         PlayerData.Level = SceneManager.GetActiveScene().buildIndex;

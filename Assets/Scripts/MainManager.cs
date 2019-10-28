@@ -38,7 +38,7 @@ public class MainManager : MonoBehaviour
             }
             else if (Input.GetButtonDown("Fire2"))
             {
-                gm.MainMenu();
+                gm.StartPuzzle();
             }
         }
         else
