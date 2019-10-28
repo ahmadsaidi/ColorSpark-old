@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        PlayerData.Level = 2;
+        SceneManager.LoadScene(2);
+    }
+
+    public void ContinueGame()
+    {
         SceneManager.LoadScene(PlayerData.Level);
     }
 
@@ -55,7 +61,13 @@ public class GameManager : MonoBehaviour
             WinGame();
         } else
         {
-            SceneManager.LoadScene("LevelComplete");
+            if (PlayerData.Level >= 7)
+            {
+                SceneManager.LoadScene("LevelComplete");
+            } else
+            {
+                SceneManager.LoadScene(PlayerData.Level);
+            }
         }
     }
 
