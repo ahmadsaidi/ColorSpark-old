@@ -452,7 +452,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.365e-42, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0.0625, y: 0.07421875, z: 0.02734375, w: -0.03125}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -635,7 +635,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.34e-43, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 2.45e-43, y: 1.02e-43, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -823,6 +823,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681934194}
   m_CullTransparentMesh: 0
+--- !u!1001 &771986796
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3930155862367397747, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_Name
+      value: MusicManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -147.9527
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.6665993
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -39.28264
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8f67bf215937bbe438bdb412791a4b2b, type: 3}
 --- !u!1 &835982555
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,7 +965,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5904e-41, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 5.07e-43, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -987,7 +1056,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.34e-43, y: 2.678874e+9, z: 7.34e-43, w: 7.3e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1253,7 +1322,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.1, y: 0, z: NaN, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1350,7 +1419,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
+  m_BoundingSphereOverride: {x: 2.559e-42, y: 1.02e-43, z: 0.02734375, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1450,11 +1519,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 8431181558119064630, guid: 1f4f15524506164418919b98c5658872,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 83d2f962cc2768f4f8658250efa3ed48, type: 3}
     - target: {fileID: 8431181558119064633, guid: 1f4f15524506164418919b98c5658872,
         type: 3}
       propertyPath: m_Enabled
@@ -1495,6 +1559,11 @@ PrefabInstance:
       propertyPath: jumphigherAudio
       value: 
       objectReference: {fileID: 8300000, guid: a6309e9fdf74abc4fbc0bd1594b9bfd2, type: 3}
+    - target: {fileID: 8431181558119064630, guid: 1f4f15524506164418919b98c5658872,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 83d2f962cc2768f4f8658250efa3ed48, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f4f15524506164418919b98c5658872, type: 3}
 --- !u!1 &1747066503
@@ -1704,7 +1773,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 2.559e-42, y: 1.02e-43, z: 4.5904e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
