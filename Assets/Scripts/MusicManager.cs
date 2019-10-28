@@ -40,6 +40,12 @@ public class MusicManager : MonoBehaviour
             music.Play();
         }
 
+        if (SceneManager.GetActiveScene().name == "Map1" )
+        {
+            music.clip = puzzle1;
+            music.Play();
+        }
+
 
     }
 

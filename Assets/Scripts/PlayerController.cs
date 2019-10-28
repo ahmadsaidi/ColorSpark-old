@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     public float rotationSpeed;
-    public AudioSource goodpick;
     public float jumpspeed = 7000;
     public Color color = Color.white;
     PowerUps powerups;
@@ -31,7 +30,8 @@ public class PlayerController : MonoBehaviour
         powerups = rb.gameObject.GetComponent<PowerUps>();
         gm = FindObjectOfType<GameManager>();
         mm = FindObjectOfType<MusicManager>();
-    }
+        tilePickupAudio = GetComponent<AudioSource>();
+}
 
 
     private void Update()
@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
             //else
             //{
                rb.AddForce(Vector3.up * jumpspeed);
+               tilePickupAudio.PlayOneShot(mm.jump);
             //}
             jump = false;
         }
@@ -100,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
 
                 }
-                tilePickupAudio.PlayOneShot(mm.blastAudio);
+                //tilePickupAudio.PlayOneShot(mm.blastAudio);
             }
 
 
