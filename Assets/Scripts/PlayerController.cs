@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         speed = 40;
-        rotationSpeed = 100;
+        rotationSpeed = 75;
         rb.freezeRotation = true;
         powerups = rb.gameObject.GetComponent<PowerUps>();
         gm = FindObjectOfType<GameManager>();
@@ -41,27 +41,27 @@ public class PlayerController : MonoBehaviour
             gm.LoseGame();
 
         }
-        float translation = Input.GetAxis("Vertical") * speed;
+        float translationx = Input.GetAxis("Vertical") * speed;
+        //float translationz = Input.GetAxis("Horizontal") * speed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-        translation *= Time.deltaTime;
+        translationx *= Time.deltaTime;
+        //translationz *= Time.deltaTime;
         rotation *= Time.deltaTime;
-        // green for speed up
-        //if (color == Color.green) {
-         //   translation *= 2;
-       // }
-        transform.Translate(translation,0, 0 );
+
+
+        transform.Translate(translationx,0, 0 );
         transform.Rotate( 0,rotation, 0);
 
         if (Input.GetButtonDown("Fire1") && jump == true)
         {
             // red for high jump
-            if (color == Color.red) {
-               rb.AddForce(Vector3.up * 1.3f * jumpspeed);
-            }
-            else
-            {
+            //if (color == Color.red) {
+            //   rb.AddForce(Vector3.up * 1.3f * jumpspeed);
+            //}
+            //else
+            //{
                rb.AddForce(Vector3.up * jumpspeed);
-            }
+            //}
             jump = false;
         }
 
@@ -85,12 +85,23 @@ public class PlayerController : MonoBehaviour
             gm.RestartLevel();
         }
 
-        if (Input.GetButtonDown("Jump") && (color == Color.red) && jump == true)
+        if (Input.GetButtonDown("Jump") && (color == Color.red) )
         {
-            float newspeed = jumpspeed * 1.3f;
-             rb.AddForce(Vector3.up * newspeed );
-            jump = false;
-            tilePickupAudio.PlayOneShot(jumphigherAudio);
+            var hitColliders = Physics.OverlapSphere(transform.position, 6);
+
+
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                Debug.Log(hitColliders[i]);
+                if (hitColliders[i].tag == "blast" || hitColliders[i].tag == "move")
+                {
+                    
+                    Destroy(hitColliders[i].gameObject);
+
+
+                }
+                tilePickupAudio.PlayOneShot(jumphigherAudio);
+            }
 
 
         }
@@ -115,6 +126,47 @@ public class PlayerController : MonoBehaviour
             
 
         }
+        else if (Input.GetButtonDown("Jump") )
+        {
+            var hitColliders = Physics.OverlapSphere(transform.position, 6);
+
+
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                if (hitColliders[i].tag == "tele" && powerups.tele_num == 2)
+                {
+                    float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
+                    float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
+                    if (d1 < d2 )
+                    {
+                        tilePickupAudio.PlayOneShot(teleportAudio);
+
+                        transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
+                    }
+                    else if (d1 > d2 )
+                    {
+                        tilePickupAudio.PlayOneShot(teleportAudio);
+                        transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
+                    }
+
+
+                }
+
+                if (hitColliders[i].tag == "Fixedtele")
+                {
+                    teleController tc = hitColliders[i].GetComponent<teleController>();
+                    GameObject other = tc.teleport_other;
+
+                    tilePickupAudio.PlayOneShot(teleportAudio);
+
+                    transform.position = other.transform.position + new Vector3(-2, 0, 0);
+                   
+
+
+                }
+            }
+        }
+
 
         if (Input.GetButtonDown("Restart"))
         {
@@ -144,44 +196,6 @@ public class PlayerController : MonoBehaviour
     
         eatPower(collision);
 
-        if (Input.GetButton("Jump") && powerups.tele_num == 2)
-        {
-
-            if (collision.gameObject.CompareTag("tele"))
-            {
-                
-                float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
-                float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
-                if (d1 < d2 && teleport)
-                {
-                    tilePickupAudio.PlayOneShot(teleportAudio);
-
-                    transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
-                }
-                else if (d1 > d2 && teleport)
-                {
-                    tilePickupAudio.PlayOneShot(teleportAudio);
-                    transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
-                }
-                
-                teleport = false;
-            }
-        }
-        else if (powerups.tele_num == 2)
-        {
-            teleport = true;
-        }
-        if (Input.GetButton("Jump") && color == Color.blue)
-        {
-            Debug.Log("get here");
-            if (collision.gameObject.GetComponent<Rigidbody>())
-            {
-                Debug.Log("get there");
-                tilePickupAudio.PlayOneShot(pushboxAudio);
-                collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            }
-
-        }
 
         if (collision.collider.gameObject.CompareTag("sand")) {
             //if (color != Color.green) {
@@ -199,33 +213,9 @@ public class PlayerController : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
 
-
-        if (Input.GetButtonDown("Jump") && powerups.tele_num == 2)
-        {
-            if (collision.gameObject.CompareTag("tele") )
-            {
-                float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
-                float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
-                if (d1 < d2 && teleport)
-                {
-                    tilePickupAudio.PlayOneShot(teleportAudio);
-                    transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
-                }
-                else if (d1 > d2 && teleport)
-                {
-                    tilePickupAudio.PlayOneShot(teleportAudio);
-                    transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
-                }
-                teleport = false;
-            }
-        }
-        else if (powerups.tele_num == 2)
-        {
-            teleport = true;
-        }
         if (Input.GetButton("Jump") && color == Color.blue)
         {
-            if (collision.gameObject.GetComponent<Rigidbody>())
+            if (collision.gameObject.GetComponent<Rigidbody>() && collision.gameObject.tag == "move")
             {
                 tilePickupAudio.PlayOneShot(pushboxAudio);
                 collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
@@ -357,24 +347,8 @@ public class PlayerController : MonoBehaviour
         {
              item.gameObject.SetActive(false);
              yellowPower();
-            // if there are two existing box, eat one
-            if (powerups.count_yellow == 2)
-            {
-                if (item.gameObject.GetInstanceID() == powerups.yellowbox1.GetInstanceID())
-                {
-                    // if box1 is eaton, assign box2 to box1 then decrement
-                    powerups.yellowbox1 = powerups.yellowbox2;
-                    powerups.yellowbox2 = null;
-                }
-                else {
-                    // if box2 is eaton just decrement 
-                    powerups.yellowbox2 = null;
-                }
-            }
-            // eat whatever is left
-            else {
-                powerups.yellowbox1 = null;
-            }
+            
+       
              powerups.count_yellow--;
         }
 

@@ -4,66 +4,117 @@ using UnityEngine;
 
 public class engineController : MonoBehaviour
 {
-    public GameObject trap;
-    public GameObject door;
+
+    public GameObject yellowbox1;
+    public GameObject yellowbox2;
+    public GameObject wall;
     public GameObject bridge;
+    public GameObject objectToFloat;
+    public int floatHeight;
     public Color color;
-    public GameObject boxes;
+    Vector3 begining ;
+    Vector3 ending;
+    public bool trigger = false;
+
+    PowerUps pu;
     public bool flo = false;
     public bool fall = false;
     int count = 0;
 
     Animator left;
     Animator right;
+
+
     // Start is called before the first frame update
     void Start()
     {
         color = Color.white;
+        pu = FindObjectOfType<PowerUps>();
+        if (objectToFloat)
+        {
+            Debug.Log(objectToFloat.transform.childCount);
 
-        
+
+            Transform box = objectToFloat.transform.GetChild(0);
+            begining = (box.transform.position);
+            Vector3 targetposition = box.transform.position + new Vector3(0, floatHeight, 0);
+            ending = targetposition;
+
+
+            Debug.Log(begining);
+
+            Debug.Log(ending);
+
+
+        }
+
     }
-
     // Update is called once per frame
     void Update()
     {
-
-        if (flo && count < 30)
+        //Dont delete  this! tis is building version
+        if (flo && trigger)
+        //if (flo && count < 2000 && trigger)
         {
 
-            for (int i = 0; i < boxes.transform.childCount; i++)
+
+            for (int i = 0; i < objectToFloat.transform.childCount; i++)
             {
-                Debug.Log(boxes.transform);
-                Transform box = boxes.transform.GetChild(i);
-                float velocity = 60f;
+                Transform box = objectToFloat.transform.GetChild(i);
+                float velocity = 6f;
                 Vector3 targetposition = box.transform.position + new Vector3(0, 1, 0);
-                float newPosition = Mathf.SmoothDamp(box.transform.position.y, targetposition.y, ref velocity, 3f);
+                float newPosition = Mathf.SmoothDamp(box.transform.position.y, targetposition.y, ref velocity, 6f);
                 box.transform.position = new Vector3(box.transform.position.x, newPosition, box.transform.position.z);
             }
-            count++;
-            if (count == 30)
+
+            Debug.Log(objectToFloat.transform.GetChild(0).transform.position);
+            Debug.Log(ending);
+            if (objectToFloat.transform.GetChild(0).transform.position.y > ending.y)
             {
                 flo = false;
+                fall = true;
+
             }
+            //count++;
+            ////if (count == 200)
+            ////{
+            ////    flo = false;
+            ////    fall = true;
+            ////}
+
+            //////if (count == 2000)
+            //////{
+            //////    flo = false;
+            //////    fall = true;
+            //////}
         }
 
-        if(fall && count > 0)
+        if(fall && trigger)
         {
-            Transform[] ts = boxes.GetComponentsInChildren<Transform>();
+            Transform[] ts = objectToFloat.GetComponentsInChildren<Transform>();
 
-            for (int i = 0; i < boxes.transform.childCount; i++)
+            for (int i = 0; i < objectToFloat.transform.childCount; i++)
             {
-                Debug.Log(boxes.transform);
-                Transform box = boxes.transform.GetChild(i);
-                float velocity = -60f;
+                Debug.Log(objectToFloat.transform);
+                Transform box = objectToFloat.transform.GetChild(i);
+                float velocity = -6f;
                 Vector3 targetposition = box.transform.position - new Vector3(0, 1, 0);
-                float newPosition = Mathf.SmoothDamp(box.transform.position.y, targetposition.y, ref velocity, 3f);
+                float newPosition = Mathf.SmoothDamp(box.transform.position.y, targetposition.y, ref velocity, 6f);
                 box.transform.position = new Vector3(box.transform.position.x, newPosition, box.transform.position.z);
             }
-            count--;
-            if (count == 0)
+
+            if (objectToFloat.transform.GetChild(0).transform.position.y < begining.y)
             {
                 fall = false;
+                flo = true;
+
             }
+            //count--;
+            //if (count == 0)
+            //{
+            //    fall = false;
+            //    flo = true;
+            //}
         }
 
 
@@ -74,76 +125,86 @@ public class engineController : MonoBehaviour
 
    public  void yellow()
     {
-        if (color == Color.yellow && door)
+        if (color == Color.yellow)
         {
             //slideDoors(true);
-            door.SetActive(false);
+              yellowbox1.SetActive(true);
+              yellowbox2.SetActive(true);
+    
+              
         }
 
     }
 
     public void red()
     {
-        if (color == Color.red && bridge)
+        if (color == Color.red && wall)
         {
-            StartCoroutine(buildBridge());
-        }
+            
+        MeshRenderer rend = wall.GetComponent<MeshRenderer>(); ;
+        Debug.Log(rend);
 
-        IEnumerator buildBridge()
+        StartCoroutine(FadeOut());
+
+        IEnumerator FadeOut()
         {
-            for (int i = 0; i < bridge.transform.childCount; i++)
+            for (float f = 1f; f >= -0.05f; f -= 0.05f)
             {
-                GameObject piece = bridge.transform.GetChild(i).gameObject;
-                piece.SetActive(true);
-                yield return new WaitForSeconds(0.1f);
-
+                Color c = rend.material.color;
+                c.a = f;
+                rend.material.color = c;
+                yield return new WaitForSeconds(0.05f);
             }
+            wall.SetActive(false);
 
         }
+
     }
+}
 
     public void blue()
     {
-        if (color == Color.blue && boxes)
+        if (color == Color.blue && objectToFloat)
         {
             fall = false;
             flo = true;
+            trigger = true;
         }
 
     }
 
     public void green()
     {
-        if (color == Color.green && trap)
+        if (color == Color.green && bridge)
         {
-           MeshRenderer rend = trap.GetComponent<MeshRenderer>(); ;
-           Debug.Log(rend);
+           
+            StartCoroutine(buildBridge());
+            
 
-           StartCoroutine(FadeOut());
-
-            IEnumerator FadeOut()
+            IEnumerator buildBridge()
             {
-                for ( float f = 1f; f >= -0.05f; f-= 0.05f)
+                for (int i = 0; i < bridge.transform.childCount; i++)
                 {
-                    Color c = rend.material.color;
-                    c.a = f;
-                    rend.material.color = c;
-                    yield return new WaitForSeconds(0.05f);
+                    GameObject piece = bridge.transform.GetChild(i).gameObject;
+                    piece.SetActive(true);
+                    yield return new WaitForSeconds(0.1f);
+
                 }
-                trap.SetActive(false);
 
             }
-        
         }
     }
 
     public void white()
     {
-        if (door)
+        if (yellowbox1 || yellowbox2)
         {
-            //slideDoors(false);
-            door.SetActive(true);
+            yellowbox1.SetActive(false);
+            yellowbox2.SetActive(false);
         }
+
+        trigger = false;
+
         if (bridge)
         {
             StartCoroutine(collapseBridge());
@@ -161,9 +222,9 @@ public class engineController : MonoBehaviour
             }
         };
 
-        if (trap)
+        if (wall)
         {
-            MeshRenderer rend = trap.GetComponent<MeshRenderer>(); ;
+            MeshRenderer rend = wall.GetComponent<MeshRenderer>(); ;
             Color c = rend.material.color;
             c.a = 0f;
             rend.material.color = c;
@@ -171,7 +232,7 @@ public class engineController : MonoBehaviour
 
             IEnumerator FadeIn()
             {
-                trap.SetActive(true);
+                wall.SetActive(true);
                 for (float f = 0.05f; f <=  1f; f += 0.05f)
                 {
                     Color color = rend.material.color;
@@ -183,6 +244,8 @@ public class engineController : MonoBehaviour
 
             }
         }
+
+        
         color = Color.white;
     }
 

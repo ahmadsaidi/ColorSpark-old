@@ -22,6 +22,9 @@ TagManager:
   - hole
   - Door
   - TUT1_mission
+  - Fixedtele
+  - blast
+  - move
   layers:
   - Default
   - TransparentFX

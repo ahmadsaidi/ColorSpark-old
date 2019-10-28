@@ -15,35 +15,46 @@ public class MainManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            if (PlayerData.Level == 2)
+
+            if (Input.GetButtonDown("Fire1"))
             {
                 gm.IntroGame();
             }
-            else
+            else if (Input.GetButtonDown("Fire2"))
+            {
+                gm.QuitGame();
+            } else if (Input.GetButtonDown("Fire3") && PlayerData.Level > 2)
+            {
+                gm.ContinueGame();
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "Introduction")
+        {
+            if (Input.GetButtonDown("Fire1"))
             {
                 gm.StartGame();
             }
-        } else if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().name == "Introduction")
-        {
-            gm.StartGame();
+            else if (Input.GetButtonDown("Fire2"))
+            {
+                gm.StartPuzzle();
+            }
         }
-         else if (Input.GetButtonDown("Fire2") && SceneManager.GetActiveScene().name == "Introduction")
+        else
         {
-            gm.MainMenu();
-        }
-        else if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().name == "LevelComplete")
-        {
-            gm.NextLevel();
-        } else if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().name == "Lose")
-        {
-            gm.RetryLevel();
-        }
-
-        if (Input.GetButtonDown("Fire2"))
-        {
-            gm.MainMenu();
+            if (Input.GetButtonDown("Fire2"))
+            {
+                gm.MainMenu();
+            }
+            else if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().name == "LevelComplete")
+            {
+                gm.NextLevel();
+            }
+            else if (Input.GetButtonDown("Fire1") && SceneManager.GetActiveScene().name == "Lose")
+            {
+                gm.RetryLevel();
+            }
         }
 
     }
