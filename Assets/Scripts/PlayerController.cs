@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         speed = 40;
-        rotationSpeed = 100;
+        rotationSpeed = 75;
         rb.freezeRotation = true;
         powerups = rb.gameObject.GetComponent<PowerUps>();
         gm = FindObjectOfType<GameManager>();
@@ -42,14 +42,14 @@ public class PlayerController : MonoBehaviour
 
         }
         float translationx = Input.GetAxis("Vertical") * speed;
-        float translationz = Input.GetAxis("Horizontal") * speed;
-        float rotation = Input.GetAxis("Horizontal camera") * rotationSpeed;
+        //float translationz = Input.GetAxis("Horizontal") * speed;
+        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
         translationx *= Time.deltaTime;
-        translationz *= Time.deltaTime;
+        //translationz *= Time.deltaTime;
         rotation *= Time.deltaTime;
 
 
-        transform.Translate(translationx,0, -translationz );
+        transform.Translate(translationx,0, 0 );
         transform.Rotate( 0,rotation, 0);
 
         if (Input.GetButtonDown("Fire1") && jump == true)
