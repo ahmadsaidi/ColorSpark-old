@@ -171,9 +171,9 @@ public class PowerUps : MonoBehaviour
         if (tele_num == 1)
         {
             yellowbox2 = Instantiate(tele, position, Quaternion.identity);
+            pc.whitePower();
         }
         tele_num++;
-        
 
     }
 
