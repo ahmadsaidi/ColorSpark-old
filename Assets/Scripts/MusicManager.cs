@@ -39,6 +39,7 @@ public class MusicManager : MonoBehaviour
         {
             music.clip = tut;
             music.Play();
+
         }
 
         if (SceneManager.GetActiveScene().name == "Map1" )

@@ -36,7 +36,7 @@ public class powerengine_tut : MonoBehaviour
         cs2  = greenEngine.GetComponent<engineController>();
         cs3  = blueEngine.GetComponent<engineController>();
         robot = GameObject.Find("Robot_UV");
-    stage = 0;
+        stage = 0;
     }
 
     // Update is called once per frame
@@ -45,7 +45,8 @@ public class powerengine_tut : MonoBehaviour
 
         if (cs0.color != Color.white && stage != 1) {
             stage = 1;
-            instruction.color = Color.yellow;
+            GetComponent<Text>().color = Color.yellow;
+
         };
 
 
@@ -54,11 +55,10 @@ public class powerengine_tut : MonoBehaviour
             stage = 2;
         }
 
-        Debug.Log(robot.transform.position.y);
         if (robot.transform.position.y > 30 && stage < 3)
         {
             stage = 3;
-            instruction.color = Color.green;
+            GetComponent<Text>().color = Color.green;
         }
 
         if (cs2.color != Color.white && stage != 4) {
