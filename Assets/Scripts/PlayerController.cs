@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float jumpspeed = 7000;
     public Color color = Color.white;
     PowerUps powerups;
+    public Light led;
     public AudioSource tilePickupAudio;
     bool eat = false;
     bool jump = true;
@@ -310,7 +311,7 @@ public class PlayerController : MonoBehaviour
     }
    public  void yellowPower()
     {
-        ChangeColor(Color.yellow);
+        ChangeColor(new Color(1,1,0,1));
         color = Color.yellow;
         tilePickupAudio.PlayOneShot(mm.yellowAudio);
     }
@@ -337,16 +338,7 @@ public class PlayerController : MonoBehaviour
 
     void ChangeColor(Color color)
      {
-        Renderer[] children;
-        children = GetComponentsInChildren<Renderer>();
-        for (int i = 0; i < 9; i++)
-        {
-            if (i != 7)
-            {
-                children[i].material.color = color;
-             }
-
-          }
+        led.color = color;
       }
 
 
