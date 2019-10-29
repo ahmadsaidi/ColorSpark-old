@@ -13,6 +13,7 @@ public class PowerUps : MonoBehaviour
     public GameObject player;
     public GameObject tele;
     PlayerController control;
+    public AudioSource tilePickupAudio;
     bool fast, teleport, highJump, push = false;
     public int count_yellow = 0;
     public int count_white = 0;
@@ -23,13 +24,16 @@ public class PowerUps : MonoBehaviour
     public GameObject yellowbox1;
     public GameObject yellowbox2;
     public int tele_num = 0;
+    MusicManager mm;
    // public Color engine_color;
 
 
     void Start()
     {
         pc  = FindObjectOfType<PlayerController>();
-       
+        mm = FindObjectOfType<MusicManager>();
+        tilePickupAudio = mm.GetComponent<AudioSource>();
+
 
     }
 
@@ -44,14 +48,6 @@ public class PowerUps : MonoBehaviour
             {
 
                 Instantiate(yellowspark, position, Quaternion.identity);
-                GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("tele");
-                for (var index = 0; index < gameObjects.Length; index++)
-                {
-                    Destroy(gameObjects[index]);
-                }
-                yellowbox1 = null;
-                yellowbox2 = null;
-                tele_num = 0;
                 count_yellow++;
                 pc.whitePower();
 
@@ -109,6 +105,7 @@ public class PowerUps : MonoBehaviour
                         yellowbox1 = null;
                         yellowbox2 = null;
                         tele_num = 0;
+                        tilePickupAudio.PlayOneShot(mm.spark_to_engine);
 
                     }
 
@@ -121,6 +118,7 @@ public class PowerUps : MonoBehaviour
                         pc.whitePower();
                         gc.color = Color.blue;
                         gc.blue();
+                        tilePickupAudio.PlayOneShot(mm.spark_to_engine);
 
                     }
                     if (color == Color.red && count_red < 1)
@@ -132,6 +130,7 @@ public class PowerUps : MonoBehaviour
                         pc.whitePower();
                         gc.color = Color.red;
                         gc.red();
+                        tilePickupAudio.PlayOneShot(mm.spark_to_engine);
 
                     }
                     if (color == Color.green && count_green < 1)
@@ -143,8 +142,10 @@ public class PowerUps : MonoBehaviour
                         pc.whitePower();
                         gc.color = Color.green;
                         gc.green();
-
+                        tilePickupAudio.PlayOneShot(mm.spark_to_engine);
                     }
+
+                   
                 }
 
                 // scripts for TUT1 
@@ -206,7 +207,8 @@ public class PowerUps : MonoBehaviour
                         pc.yellowPower();
                         gc.white();
                         count_yellow--;
-           
+                        tilePickupAudio.PlayOneShot(mm.yellowAudio);
+
                     }
 
                     if (intersecting[j].tag == "green")
@@ -215,6 +217,7 @@ public class PowerUps : MonoBehaviour
                         pc.greenPower();
                         gc.white();
                         count_green--;
+                        tilePickupAudio.PlayOneShot(mm.greenAudio);
                     }
 
 
@@ -224,6 +227,7 @@ public class PowerUps : MonoBehaviour
                         pc.redPower();
                         gc.white(); 
                         count_red--;
+                        tilePickupAudio.PlayOneShot(mm.redAudio);
                     }
 
 
@@ -235,7 +239,8 @@ public class PowerUps : MonoBehaviour
                         gc.white();
                         gc.flo = false;
                         gc.fall = true;
-   
+                        tilePickupAudio.PlayOneShot(mm.blueAudio);
+
                         count_blue--;
                     }
 
