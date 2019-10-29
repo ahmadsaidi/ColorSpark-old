@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public class tut_green : MonoBehaviour
+public class tut_red : MonoBehaviour
 {
     public GameObject player;
     Text txt;
@@ -15,24 +15,11 @@ public class tut_green : MonoBehaviour
     void Start()
     {
         txt = gameObject.GetComponent<Text>();
+        player.GetComponent<PlayerController>().greenPower();
     }
     private void Update()
     {
-        if (stage == 0 && Input.GetAxis("Vertical") != 0)
-        {
-            txt.text = "Push your left handle left & right to change direction";
-            stage = 1;
-        }
-        if (stage == 1 && Input.GetAxis("Horizontal") != 0)
-        {
-            txt.text = "Press 'fire1' to Jump!";
-            stage = 2;
-        }
-        if (stage == 2 && Input.GetButtonDown("Fire1"))
-        {
-            txt.text = "Now walk through the green spark";
-            stage = 3;
-        }
+        
         if (player.GetComponent<PlayerController>().color == Color.green)
         {
             txt.text = "Walking through spark gives you power up\nGreen park increases your speed\nTry to hold down 'jump' key to activate speed up";
