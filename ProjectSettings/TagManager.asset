@@ -26,6 +26,7 @@ TagManager:
   - blast
   - move
   - wall
+  - robot_light
   layers:
   - Default
   - TransparentFX
