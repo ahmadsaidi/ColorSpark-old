@@ -20,7 +20,7 @@ public class tut_red : MonoBehaviour
         
         if (player.GetComponent<PlayerController>().color == Color.green)
         {
-            txt.text = "You can only carry use only one power up each time\nPress 'fire2' to expell your current power up";
+            txt.text = "You can only carry use only one power up each time\nPress 'B' to expell your current power up";
         }
         if (player.GetComponent<PlayerController>().color == Color.white){
             txt.text = "Walk through the Red spark";
@@ -31,7 +31,7 @@ public class tut_red : MonoBehaviour
         }
         if (player.GetComponent<PlayerController>().color == Color.red && player.transform.position.x > -464)
         {   
-            txt.text = "Press 'Jump' to destroy it!";
+            txt.text = "Press 'RB' to destroy it!";
         }
         if (player.GetComponent<PlayerController>().color == Color.red && player.transform.position.x > -450)
         {   

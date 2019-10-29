@@ -24,11 +24,11 @@ public class tut_blue : MonoBehaviour
         
         if (player.GetComponent<PlayerController>().color == Color.blue)
         {
-            txt.text = "Blue spark increases your force to move light, unstable (semi-transparent) objects \nHold 'jump' key to activate speed up \nNow walk toward the transparent cube";
+            txt.text = "Blue spark increases your force to move light, unstable (semi-transparent) objects \nHold 'RB' key while you are blue to push them \nNow walk toward the transparent cube";
         }
         if (Vector3.Distance(player.transform.position, cube.transform.position)<15 && player.GetComponent<PlayerController>().color == Color.blue)
         {   
-            txt.text = "The destination is too high that you cannot approach.\nHold 'jump' key and push the cube toward the destination to make a stair";
+            txt.text = "The destination is too high that you cannot approach.\nHold 'RB' key and push the cube toward the destination to make a stair";
         }
         if(cube.transform.position.x>-70){
             txt.text = "Jump onto the box to reach the destination";
