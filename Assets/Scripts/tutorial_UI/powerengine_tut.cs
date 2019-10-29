@@ -45,7 +45,7 @@ public class powerengine_tut : MonoBehaviour
 
         if (cs0.color != Color.white && stage != 1) {
             stage = 1;
-            GetComponent<Text>().color = Color.yellow;
+            //GetComponent<Text>().color = Color.yellow;
 
         };
 
@@ -58,12 +58,12 @@ public class powerengine_tut : MonoBehaviour
         if (robot.transform.position.y > 30 && stage < 3)
         {
             stage = 3;
-            GetComponent<Text>().color = Color.green;
+           // GetComponent<Text>().color = Color.green;
         }
 
         if (cs2.color != Color.white && stage != 4) {
             stage = 4;
-            instruction.color = Color.blue;
+           // instruction.color = Color.blue;
         }
         if (instruction != null && instruction.text != null){
             instruction.text = stageInstructions[stage];

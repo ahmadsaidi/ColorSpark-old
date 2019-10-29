@@ -56,3 +56,10 @@ MonoBehaviour:
   height: 11
   xoffset: -213
   zoffset: -124
+  yoffset: 0
+  have_wall: 1
+  has_floor: 0
+  westoffset: 0
+  eastoffset: 0
+  southoffset: 0
+  northoffset: 0

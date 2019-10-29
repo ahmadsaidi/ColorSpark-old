@@ -14,30 +14,52 @@ public class MapBuilder : MonoBehaviour
     public float height;
     public float xoffset;
     public float zoffset;
+    public float yoffset;
 
-   // public GameObject eastsouthCorner;
-   // public GameObject westsouthCorner;
+
+    public bool have_wall;
+    public bool has_floor;
+
+    public float westoffsetz;
+    public float eastoffsetz;
+    public float southoffsetx;
+    public float northoffsetx;
+
+    public float westoffsetx;
+    public float eastoffsetx;
+    public float southoffsetz;
+    public float northoffsetz;
+
+    //public GameObject eastsouthCorner;
+    // public GameObject westsouthCorner;
 
 
 
     void Start()
     {
-        FloorGenerator();
-        EastGenerator();
-        WestGenerator();
-        SouthGenerator();
-        NorthGenerator();
+        if (has_floor)
+        {
+            FloorGenerator();
+        }
+
+        if (have_wall){
+            EastGenerator();
+            WestGenerator();
+            SouthGenerator();
+            NorthGenerator();
+        }
+
     }
 
     void FloorGenerator()
     {
 
-        for (int x = 0; x < width *2; x++)
+        for (int x = 0; x < height *2; x++)
         {
-            for (int z = 0; z < height *2; z++)
+            for (int z = 0; z < width *2; z++)
             {
                 GameObject temp = Instantiate(floor);
-                temp.transform.position = new Vector3(xoffset +  x * 50, 0,zoffset + z * 50);
+                temp.transform.position = new Vector3(xoffset +  x * 50, yoffset, zoffset + z * 50);
             }
         }
     }
@@ -48,47 +70,59 @@ public class MapBuilder : MonoBehaviour
        // GameObject corner = Instantiate(westsouthCorner);
      ///  corner.transform.position = new Vector3(xoffset + 15, 61, -zoffset );
 
-        for (int x = 0; x < height; x++)
+        if (westwall)
         {
-            GameObject temp = Instantiate(westwall);
-            temp.transform.position = new Vector3(xoffset + x * 40 ,0, -zoffset + 2);
-            temp.transform.position = new Vector3(xoffset + x * 40, 0, -zoffset + 2);
+            for (int x = 0; x < height; x++)
+            {
+                GameObject temp = Instantiate(westwall);
+                temp.transform.position = new Vector3(xoffset + x * 40 + westoffsetx, yoffset, -zoffset + westoffsetz );
+   
+            }
         }
 
     }
 
     void EastGenerator()
     {
-
-
-       // GameObject corner = Instantiate(eastsouthCorner);
-        //corner.transform.position = new Vector3(xoffset + 15, 61, zoffset);
-
-        for (int x = 0; x < height; x++)
+        if (eastwall)
         {
-            GameObject temp = Instantiate(eastwall);
-            temp.transform.position = new Vector3(xoffset + x * 40, 0, zoffset  - 5);
+            for (int x = 0; x < height ; x++)
+            {
+                GameObject temp = Instantiate(eastwall);
+                temp.transform.position = new Vector3(xoffset + x * 40 + eastoffsetx, yoffset, zoffset + eastoffsetz );
+            }
         }
+
+        //GameObject corner = Instantiate(eastsouthCorner);
+       // corner.transform.position = new Vector3(xoffset , 0, zoffset);
+
 
     }
 
     void SouthGenerator()
     {
-        for (int x = 0; x < width; x++)
-        {
-            GameObject temp = Instantiate(southwall);
-            temp.transform.position = new Vector3(xoffset +10 , 0, zoffset + x * 40);
+        if (southwall){
+            for (int x = 0; x < width ; x++)
+            {
+                GameObject temp = Instantiate(southwall);
+                temp.transform.position = new Vector3(xoffset + southoffsetx, yoffset, zoffset + x * 40 + southoffsetz);
+            }
         }
+
 
     }
 
     void NorthGenerator()
     {
-        for (int x = 0; x < width; x++)
+        if (northwall)
         {
-            GameObject temp = Instantiate(northwall);
-            temp.transform.position = new Vector3(-xoffset  - 25, 0, zoffset + x * 40 + 40);
+            for (int x = 0; x < width; x++)
+            {
+                GameObject temp = Instantiate(northwall);
+                temp.transform.position = new Vector3(-xoffset + northoffsetx, yoffset, zoffset + x * 40 + northoffsetz);
+            }
         }
+
 
     }
 
