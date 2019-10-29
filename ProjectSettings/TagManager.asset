@@ -25,6 +25,7 @@ TagManager:
   - Fixedtele
   - blast
   - move
+  - wall
   layers:
   - Default
   - TransparentFX
