@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     public AudioSource tilePickupAudio;
     bool eat = false;
     bool jump = true;
-    bool teleport = false;
     GameManager gm;
     MusicManager mm;
 
@@ -122,12 +121,13 @@ public class PlayerController : MonoBehaviour
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             forward = new Vector3(5 * forward.z, 8, -5 * forward.x);
             powerups.Createtele(transform.position + forward, color);
-            teleport = false;
 
-            
+
+
+
 
         }
-        else if (Input.GetButtonDown("Jump") )
+        else if (Input.GetButtonDown("Jump"))
         {
             var hitColliders = Physics.OverlapSphere(transform.position, 6);
 
@@ -138,13 +138,13 @@ public class PlayerController : MonoBehaviour
                 {
                     float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
                     float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
-                    if (d1 < d2 )
+                    if (d1 < d2)
                     {
                         tilePickupAudio.PlayOneShot(mm.teleportAudio);
 
                         transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
                     }
-                    else if (d1 > d2 )
+                    else if (d1 > d2)
                     {
                         tilePickupAudio.PlayOneShot(mm.teleportAudio);
                         transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour
                     tilePickupAudio.PlayOneShot(mm.teleportAudio);
 
                     transform.position = other.transform.position + new Vector3(-2, 0, 0);
-                   
+
 
 
                 }
@@ -198,6 +198,45 @@ public class PlayerController : MonoBehaviour
         eatPower(collision);
 
 
+
+
+        //if (collision.collider.gameObject.CompareTag("tele") && powerups.tele_num == 2 )
+        //{
+        //    float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
+        //    float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
+        //    if (d1 < d2)
+        //    {
+        //        tilePickupAudio.PlayOneShot(mm.teleportAudio);
+
+        //        transform.position = powerups.yellowbox2.transform.position + new Vector3(-5, 0, 0);
+        //    }
+        //    else if (d1 > d2)
+        //    {
+        //        tilePickupAudio.PlayOneShot(mm.teleportAudio);
+        //        transform.position = powerups.yellowbox1.transform.position + new Vector3(-5, 0, 0);
+        //    }
+
+  
+
+
+        //}
+
+        //if (collision.collider.gameObject.CompareTag("Fixedtele"))
+        //{
+        //    teleController tc = collision.collider.gameObject.GetComponent<teleController>();
+        //    GameObject other = tc.teleport_other;
+
+        //    tilePickupAudio.PlayOneShot(mm.teleportAudio);
+
+        //    transform.position = other.transform.position + new Vector3(-5, 0, 0);
+
+
+
+
+        //}
+    
+
+
         if (collision.collider.gameObject.CompareTag("sand")) {
             //if (color != Color.green) {
                 jump = false;
@@ -223,6 +262,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+
     }
 
 
@@ -232,6 +272,9 @@ public class PlayerController : MonoBehaviour
         {
             collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         }
+
+
+            
     }
 
     void OnTriggerEnter(Collider other)
@@ -275,7 +318,7 @@ public class PlayerController : MonoBehaviour
     public void bluePower()
     {
         ChangeColor(Color.blue);
-        tilePickupAudio.PlayOneShot(mm.blueAduio);
+        tilePickupAudio.PlayOneShot(mm.blueAudio);
         color = Color.blue;
      }
 
