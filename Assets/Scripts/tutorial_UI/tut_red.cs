@@ -9,8 +9,6 @@ public class tut_red : MonoBehaviour
 {
     public GameObject player;
     Text txt;
-    // keeps track of which step the tut is going at now
-    int stage = 0;
 
     void Start()
     {
@@ -22,12 +20,22 @@ public class tut_red : MonoBehaviour
         
         if (player.GetComponent<PlayerController>().color == Color.green)
         {
-            txt.text = "Walking through spark gives you power up\nGreen park increases your speed\nTry to hold down 'jump' key to activate speed up";
-            stage = 4;
+            txt.text = "You can only carry use only one power up each time\nPress 'fire2' to expell your current power up";
         }
-        if (stage == 4 && Input.GetButton("Jump") && player.GetComponent<PlayerController>().color == Color.green && Input.GetAxis("Vertical") != 0)
+        if (player.GetComponent<PlayerController>().color == Color.white){
+            txt.text = "Walk through the Red spark";
+        }
+        if (player.GetComponent<PlayerController>().color == Color.red){
+            txt.text = "Red spark allows you to destroy \n unstable, light (semi-transparent) materials"+
+            "\nNow walk toward the unstable wall infront of you";
+        }
+        if (player.GetComponent<PlayerController>().color == Color.red && player.transform.position.x > -464)
         {   
-            txt.text = "Now rush toward the other side of the trench and JUMP!";
+            txt.text = "Press 'Jump' to destroy it!";
+        }
+        if (player.GetComponent<PlayerController>().color == Color.red && player.transform.position.x > -450)
+        {   
+            txt.text = "Walk forward for the next tutorial";
         }
     }
 }

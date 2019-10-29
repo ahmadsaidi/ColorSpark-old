@@ -244,17 +244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   rotationSpeed: 0
-  goodpick: {fileID: 0}
   jumpspeed: 700000
   color: {r: 1, g: 1, b: 1, a: 1}
-  blueAduio: {fileID: 8300000, guid: 236a11effbeb7d24383b974b03f4da35, type: 3}
-  greenAudio: {fileID: 8300000, guid: bf13e1f9b480eb742be62c8f6cac0f5d, type: 3}
-  redAudio: {fileID: 8300000, guid: ee01c3d6e0e690848a639275392de1d1, type: 3}
-  yellowAudio: {fileID: 8300000, guid: 65e2068faf42ded448ad29de19a206eb, type: 3}
-  pushboxAudio: {fileID: 8300000, guid: 9fc33062985384f49903252d5e35fc3d, type: 3}
-  runfasterAudio: {fileID: 8300000, guid: f7e80387025177e4ab6cf708b439ba94, type: 3}
-  teleportAudio: {fileID: 8300000, guid: 029cab137a7d2354db2caf0b7fedb252, type: 3}
-  jumphigherAudio: {fileID: 8300000, guid: a6309e9fdf74abc4fbc0bd1594b9bfd2, type: 3}
   tilePickupAudio: {fileID: 453661022}
 --- !u!23 &453661021
 MeshRenderer:
@@ -411,6 +402,7 @@ MonoBehaviour:
   redspark: {fileID: 430683382829112059, guid: 7afe0db9ffcd0a74ba075f62eec7e2a5, type: 3}
   player: {fileID: 453661016}
   tele: {fileID: 849100523558762540, guid: 5ce1a5201ce80a14d81f8e9e4e8c8242, type: 3}
+  tilePickupAudio: {fileID: 0}
   count_yellow: 0
   count_white: 0
   count_blue: 0
@@ -680,7 +672,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -5.6689175e-22}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -727,7 +719,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -336, y: 40.8, z: 48}
   m_LocalScale: {x: 5, y: 25, z: 63.914356}
-  m_Children: []
+  m_Children:
+  - {fileID: 1102289949}
   m_Father: {fileID: 1867229356}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -863,7 +856,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -4.9167325e-22}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 7.4382315e+35}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -939,19 +932,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 10
+    m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 111
+    m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Mission: Try to reach the destination\nabove the cliff \n\nHint: \nX: pick
-    up a color spark\nRB: high jump when carrying red spark"
+  m_Text: 
 --- !u!222 &681934197
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1046,7 +1038,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -5.3787904e-22}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 939718.56, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1226,7 +1218,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.017e-42, y: 1.39e-43, z: 0, w: -4.6635336e-22}
+  m_BoundingSphereOverride: {x: 4.04e-43, y: 8.492e-42, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1244,6 +1236,100 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1102289948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102289949}
+  - component: {fileID: 1102289951}
+  - component: {fileID: 1102289950}
+  m_Layer: 0
+  m_Name: New Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1102289949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102289948}
+  m_LocalRotation: {x: -0, y: 0.71025294, z: -0, w: 0.70394653}
+  m_LocalPosition: {x: 0, y: 0.144, z: 0.3}
+  m_LocalScale: {x: 0.0894858, y: 0.2, z: 1.0012842}
+  m_Children: []
+  m_Father: {fileID: 533198035}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90.511, z: 0}
+--- !u!102 &1102289950
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102289948}
+  m_Text: 'Destination
+
+'
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 0
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278252287
+--- !u!23 &1102289951
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102289948}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &1114109474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,7 +1578,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.786e-42, y: 1.05e-43, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.986e-42, y: 1.05e-43, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1762,7 +1848,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.017e-42, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 4.5905e-41, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1780,6 +1866,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1732940944
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3930155862367397747, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_Name
+      value: MusicManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -147.9527
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.6665993
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -39.28264
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930155862367397749, guid: 8f67bf215937bbe438bdb412791a4b2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8f67bf215937bbe438bdb412791a4b2b, type: 3}
 --- !u!1 &1745136625
 GameObject:
   m_ObjectHideFlags: 0
@@ -2178,7 +2333,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 4e-45, z: 0, w: 8e-45}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: -4.5918e-41, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

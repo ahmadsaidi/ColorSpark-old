@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class tut_blue : MonoBehaviour
 {
     public GameObject player;
+    public GameObject cube;
     Text txt;
     // keeps track of which step the tut is going at now
     int stage = 0;
@@ -20,14 +21,18 @@ public class tut_blue : MonoBehaviour
     private void Update()
     {
         
-        if (player.GetComponent<PlayerController>().color == Color.green)
+        
+        if (player.GetComponent<PlayerController>().color == Color.blue)
         {
-            txt.text = "Walking through spark gives you power up\nGreen park increases your speed\nTry to hold down 'jump' key to activate speed up";
-            stage = 4;
+            txt.text = "Blue spark increases your force to move light, unstable (semi-transparent) objects \nHold 'jump' key to activate speed up \nNow walk toward the transparent cube";
         }
-        if (stage == 4 && Input.GetButton("Jump") && player.GetComponent<PlayerController>().color == Color.green && Input.GetAxis("Vertical") != 0)
+        if (Vector3.Distance(player.transform.position, cube.transform.position)<15 && player.GetComponent<PlayerController>().color == Color.blue)
         {   
-            txt.text = "Now rush toward the other side of the trench and JUMP!";
+            txt.text = "The destination is too high that you cannot approach.\nHold 'jump' key and push the cube toward the destination to make a stair";
         }
+        if(cube.transform.position.x>-70){
+            txt.text = "Jump onto the box to reach the destination";
+        }
+        
     }
 }

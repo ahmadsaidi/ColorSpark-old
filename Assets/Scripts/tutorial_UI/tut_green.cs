@@ -35,7 +35,7 @@ public class tut_green : MonoBehaviour
         }
         if (player.GetComponent<PlayerController>().color == Color.green)
         {
-            txt.text = "Walking through spark gives you power up\nGreen park increases your speed\nTry to hold down 'jump' key to activate speed up";
+            txt.text = "Walking through spark gives you power up\nGreen spark increases your speed\nTry to hold down 'jump' key to activate speed up";
             stage = 4;
         }
         if (stage == 4 && Input.GetButton("Jump") && player.GetComponent<PlayerController>().color == Color.green && Input.GetAxis("Vertical") != 0)
