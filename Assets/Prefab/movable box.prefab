@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3664435624692147811}
   - component: {fileID: 3664435624692147810}
   m_Layer: 0
-  m_Name: 'blocking wall '
-  m_TagString: Untagged
+  m_Name: movable box
+  m_TagString: move
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
