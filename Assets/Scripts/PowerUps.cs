@@ -48,14 +48,6 @@ public class PowerUps : MonoBehaviour
             {
 
                 Instantiate(yellowspark, position, Quaternion.identity);
-                GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("tele");
-                for (var index = 0; index < gameObjects.Length; index++)
-                {
-                    Destroy(gameObjects[index]);
-                }
-                yellowbox1 = null;
-                yellowbox2 = null;
-                tele_num = 0;
                 count_yellow++;
                 pc.whitePower();
 
@@ -215,7 +207,8 @@ public class PowerUps : MonoBehaviour
                         pc.yellowPower();
                         gc.white();
                         count_yellow--;
-           
+                        tilePickupAudio.PlayOneShot(mm.yellowAudio);
+
                     }
 
                     if (intersecting[j].tag == "green")
@@ -224,6 +217,7 @@ public class PowerUps : MonoBehaviour
                         pc.greenPower();
                         gc.white();
                         count_green--;
+                        tilePickupAudio.PlayOneShot(mm.greenAudio);
                     }
 
 
@@ -233,6 +227,7 @@ public class PowerUps : MonoBehaviour
                         pc.redPower();
                         gc.white(); 
                         count_red--;
+                        tilePickupAudio.PlayOneShot(mm.redAudio);
                     }
 
 
@@ -244,7 +239,8 @@ public class PowerUps : MonoBehaviour
                         gc.white();
                         gc.flo = false;
                         gc.fall = true;
-   
+                        tilePickupAudio.PlayOneShot(mm.blueAudio);
+
                         count_blue--;
                     }
 
