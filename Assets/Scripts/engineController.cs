@@ -32,18 +32,17 @@ public class engineController : MonoBehaviour
         pu = FindObjectOfType<PowerUps>();
         if (objectToFloat)
         {
-            Debug.Log(objectToFloat.transform.childCount);
 
 
-            Transform box = objectToFloat.transform.GetChild(0);
-            begining = (box.transform.position);
-            Vector3 targetposition = box.transform.position + new Vector3(0, floatHeight, 0);
-            ending = targetposition;
+                Transform box = objectToFloat.transform.GetChild(0);
+                begining = (box.transform.position);
+                Vector3 targetposition = box.transform.position + new Vector3(0, floatHeight, 0);
+                ending = targetposition;
+
+   
+  
 
 
-            Debug.Log(begining);
-
-            Debug.Log(ending);
 
 
         }

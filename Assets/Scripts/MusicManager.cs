@@ -8,7 +8,7 @@ public class MusicManager : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public AudioClip blueAduio, greenAudio, redAudio, yellowAudio;
+    public AudioClip blueAudio, greenAudio, redAudio, yellowAudio;
     public AudioClip pushboxAudio, runfasterAudio, teleportAudio, blastAudio;
     public AudioClip create_teleport, door_blast, build_bridge, float_objects;
     public AudioClip spark_to_engine, jump;
@@ -34,7 +34,7 @@ public class MusicManager : MonoBehaviour
             music.Play();
         }
         if (SceneManager.GetActiveScene().name == "TUTbluePU" || SceneManager.GetActiveScene().name == "TUTredPU" || 
-            SceneManager.GetActiveScene().name == "TUTgreenPU" || SceneManager.GetActiveScene().name == "TUTyellowPU")
+            SceneManager.GetActiveScene().name == "TUTgreemPU" || SceneManager.GetActiveScene().name == "TUTyellowPU")
         {
             music.clip = tut;
             music.Play();
