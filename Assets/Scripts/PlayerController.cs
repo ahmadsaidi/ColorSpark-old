@@ -10,28 +10,28 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     public float rotationSpeed;
-    public AudioSource goodpick;
     public float jumpspeed = 7000;
     public Color color = Color.white;
     PowerUps powerups;
-    public AudioClip blueAduio, greenAudio, redAudio, yellowAudio;
-    public AudioClip pushboxAudio, runfasterAudio, teleportAudio, jumphigherAudio;
     public AudioSource tilePickupAudio;
     bool eat = false;
     bool jump = true;
     bool teleport = false;
     GameManager gm;
+    MusicManager mm;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         speed = 40;
-        rotationSpeed = 100;
+        rotationSpeed = 75;
         rb.freezeRotation = true;
         powerups = rb.gameObject.GetComponent<PowerUps>();
         gm = FindObjectOfType<GameManager>();
-    }
+        mm = FindObjectOfType<MusicManager>();
+        tilePickupAudio = GetComponent<AudioSource>();
+}
 
 
     private void Update()
@@ -42,14 +42,14 @@ public class PlayerController : MonoBehaviour
 
         }
         float translationx = Input.GetAxis("Vertical") * speed;
-        float translationz = Input.GetAxis("Horizontal") * speed;
-        float rotation = Input.GetAxis("Horizontal camera") * rotationSpeed;
+        //float translationz = Input.GetAxis("Horizontal") * speed;
+        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
         translationx *= Time.deltaTime;
-        translationz *= Time.deltaTime;
+        //translationz *= Time.deltaTime;
         rotation *= Time.deltaTime;
 
 
-        transform.Translate(translationx,0, -translationz );
+        transform.Translate(translationx,0, 0 );
         transform.Rotate( 0,rotation, 0);
 
         if (Input.GetButtonDown("Fire1") && jump == true)
@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
             //else
             //{
                rb.AddForce(Vector3.up * jumpspeed);
+               tilePickupAudio.PlayOneShot(mm.jump);
             //}
             jump = false;
         }
@@ -100,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
 
                 }
-                tilePickupAudio.PlayOneShot(jumphigherAudio);
+                //tilePickupAudio.PlayOneShot(mm.blastAudio);
             }
 
 
@@ -108,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton("Jump") && color == Color.green)
         {
-            tilePickupAudio.PlayOneShot(runfasterAudio);
+            tilePickupAudio.PlayOneShot(mm.runfasterAudio);
             speed = 120;
         }
         else
@@ -139,13 +140,13 @@ public class PlayerController : MonoBehaviour
                     float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
                     if (d1 < d2 )
                     {
-                        tilePickupAudio.PlayOneShot(teleportAudio);
+                        tilePickupAudio.PlayOneShot(mm.teleportAudio);
 
                         transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
                     }
                     else if (d1 > d2 )
                     {
-                        tilePickupAudio.PlayOneShot(teleportAudio);
+                        tilePickupAudio.PlayOneShot(mm.teleportAudio);
                         transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
                     }
 
@@ -157,7 +158,7 @@ public class PlayerController : MonoBehaviour
                     teleController tc = hitColliders[i].GetComponent<teleController>();
                     GameObject other = tc.teleport_other;
 
-                    tilePickupAudio.PlayOneShot(teleportAudio);
+                    tilePickupAudio.PlayOneShot(mm.teleportAudio);
 
                     transform.position = other.transform.position + new Vector3(-2, 0, 0);
                    
@@ -217,7 +218,7 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Rigidbody>() && collision.gameObject.tag == "move")
             {
-                tilePickupAudio.PlayOneShot(pushboxAudio);
+                tilePickupAudio.PlayOneShot(mm.pushboxAudio);
                 collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             }
 
@@ -261,26 +262,26 @@ public class PlayerController : MonoBehaviour
     {
         ChangeColor(Color.red);
         color = Color.red;
-        tilePickupAudio.PlayOneShot(redAudio);
+        tilePickupAudio.PlayOneShot(mm.redAudio);
 
     }
    public  void yellowPower()
     {
         ChangeColor(Color.yellow);
         color = Color.yellow;
-        tilePickupAudio.PlayOneShot(yellowAudio);
+        tilePickupAudio.PlayOneShot(mm.yellowAudio);
     }
 
     public void bluePower()
     {
         ChangeColor(Color.blue);
-        tilePickupAudio.PlayOneShot(blueAduio);
+        tilePickupAudio.PlayOneShot(mm.blueAduio);
         color = Color.blue;
      }
 
     public  void greenPower()
     {
-        tilePickupAudio.PlayOneShot(greenAudio);
+        tilePickupAudio.PlayOneShot(mm.greenAudio);
         ChangeColor(Color.green);
         color = Color.green;
      }
