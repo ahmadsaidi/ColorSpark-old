@@ -30,7 +30,7 @@ public class tut_blue : MonoBehaviour
         {   
             txt.text = "The destination is too high that you cannot approach.\nHold 'RB' key and push the cube toward the destination to make a stair";
         }
-        if(cube.transform.position.x>-70){
+        if(cube.transform.position.x>-95 && cube.transform.position.z<104 && cube.transform.position.z>78){
             txt.text = "Jump onto the box to reach the destination";
         }
         
