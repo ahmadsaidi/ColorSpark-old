@@ -18,29 +18,29 @@ public class tut_green : MonoBehaviour
     }
     private void Update()
     {
-        if (stage == 0 && Input.GetAxis("Vertical") != 0)
+        if (stage == 0 && Input.GetAxis("Horizontal") != 0)
         {
-            txt.text = "Use left joystick to change direction";
+            txt.text = "If you get on the black trap on the floor you will die. \n Try Avoid it \nPush your left handle forward & backward to move";
             stage = 1;
         }
-        if (stage == 1 && Input.GetAxis("Horizontal") != 0)
+        if (stage == 1 && Input.GetAxis("Vertical") != 0)
         {
-            txt.text = "Press 'A' to Jump!";
+            txt.text = "Press 'A' to Jump across the barrier!";
             stage = 2;
         }
-        if (stage == 2 && Input.GetButtonDown("Fire1"))
+        if (stage == 2 &&  player.transform.position.x > -491)
         {
-            txt.text = "Now walk through the green spark";
+            txt.text = "Now walk through the green spark to get color spark";
             stage = 3;
         }
         if (player.GetComponent<PlayerController>().color == Color.green)
         {
-            txt.text = "Walking through spark gives you power to speed up\nTry to hold down 'RB' key to activate speed up";
+            txt.text = "Green spark gives you power to speed up\nTry to hold down 'RB' key to activate";
             stage = 4;
         }
         if (stage == 4 && Input.GetButton("Jump") && player.GetComponent<PlayerController>().color == Color.green && Input.GetAxis("Vertical") != 0)
         {   
-            txt.text = "Now rush toward the other side of the trench and JUMP!";
+            txt.text = "Now rush toward the other side of trench!";
         }
     }
 }
