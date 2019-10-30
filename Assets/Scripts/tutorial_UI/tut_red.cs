@@ -13,6 +13,8 @@ public class tut_red : MonoBehaviour
     void Start()
     {
         txt = gameObject.GetComponent<Text>();
+        player.GetComponent<PlayerController>().greenPower();
+
     }
     private void Update()
     {

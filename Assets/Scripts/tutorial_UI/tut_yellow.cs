@@ -46,7 +46,7 @@ public class tut_yellow : MonoBehaviour
             }else if(player.GetComponent<PlayerController>().color == Color.blue){
                 txt.text = "walk toward the portal you just created, press 'RB' to teleport";
             }else{
-                txt.text = "go pick up the blue spark";
+                txt.text = "Press B to  expell the yellow power \n Then go pick up the blue spark";
             }
 
         }
