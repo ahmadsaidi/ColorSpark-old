@@ -6575,7 +6575,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198748914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -115.7, y: 50, z: -75}
+  m_LocalPosition: {x: -115.7, y: 34.3, z: -75}
   m_LocalScale: {x: 30, y: 100, z: 450}
   m_Children: []
   m_Father: {fileID: 1275879755}
@@ -8979,7 +8979,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280253892}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 4, y: 50, z: -131.4}
+  m_LocalPosition: {x: 4, y: 34.3, z: -131.4}
   m_LocalScale: {x: 38, y: 100, z: 300}
   m_Children: []
   m_Father: {fileID: 1486363970}
@@ -23622,7 +23622,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999220420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 50, z: -206.4}
+  m_LocalPosition: {x: 10, y: 34.3, z: -206.4}
   m_LocalScale: {x: 30, y: 100, z: 190}
   m_Children: []
   m_Father: {fileID: 1275879755}
@@ -26025,7 +26025,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088502170}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 93, y: 50, z: -289.9}
+  m_LocalPosition: {x: 93, y: 34.3, z: -289.9}
   m_LocalScale: {x: 30.000015, y: 100, z: 480.00024}
   m_Children: []
   m_Father: {fileID: 1275879755}
@@ -35270,7 +35270,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568932749}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 93, y: 50, z: 135}
+  m_LocalPosition: {x: 93, y: 34.3, z: 135}
   m_LocalScale: {x: 30, y: 100, z: 480}
   m_Children: []
   m_Father: {fileID: 1486363970}
@@ -44511,7 +44511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968378328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 313.6, y: 50, z: -75.6}
+  m_LocalPosition: {x: 313.6, y: 34.3, z: -75.6}
   m_LocalScale: {x: 30, y: 100, z: 450}
   m_Children: []
   m_Father: {fileID: 1486363970}
