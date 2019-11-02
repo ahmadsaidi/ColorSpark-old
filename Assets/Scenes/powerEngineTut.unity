@@ -4222,6 +4222,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.12851383, y: 0.34144205, z: 0.01322832}
   m_Center: {x: 0, y: 0, z: 0.006614279}
+--- !u!1 &2087242166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5064771960724353187, guid: e124488edffc28f46ad71683709b3024,
+    type: 3}
+  m_PrefabInstance: {fileID: 1675144581520155719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2087242167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087242166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eced6aebe155c84da40073f4826e8f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistance: 0.01
+  maxDistance: 200
+  smooth: 10
 --- !u!1 &2141585641
 GameObject:
   m_ObjectHideFlags: 0
@@ -4421,7 +4442,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 38c01d3728058784483c4da59ca3cb23, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 7006576137088161712, guid: e124488edffc28f46ad71683709b3024,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -207
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006576137088161712, guid: e124488edffc28f46ad71683709b3024,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9110557974542192543, guid: e124488edffc28f46ad71683709b3024, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e124488edffc28f46ad71683709b3024, type: 3}
 --- !u!1001 &3311337600028563862
 PrefabInstance:
