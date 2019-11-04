@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     public void WinLevel()
     {
         PlayerData.Level = SceneManager.GetActiveScene().buildIndex + 1;
-        if (SceneManager.GetActiveScene().name == "Level1")
+        if (SceneManager.GetActiveScene().name == "EngineLevel1")
         {
             WinGame();
         } else
