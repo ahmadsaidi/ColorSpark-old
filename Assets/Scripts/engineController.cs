@@ -7,7 +7,6 @@ public class engineController : MonoBehaviour
 
     public GameObject yellowbox1;
     public GameObject yellowbox2;
-    public GameObject wall;
     public GameObject bridge;
     public GameObject objectToFloat;
     public int floatHeight;
@@ -51,7 +50,6 @@ public class engineController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Dont delete  this! tis is building version
         if (flo && trigger)
         //if (flo && count < 2000 && trigger)
         {
@@ -122,52 +120,30 @@ public class engineController : MonoBehaviour
 
     }
 
-   public  void yellow()
-    {
-        if (color == Color.yellow)
-        {
-            //slideDoors(true);
-              yellowbox1.SetActive(true);
-              yellowbox2.SetActive(true);
-    
-              
-        }
 
-    }
+    
 
     public void red()
     {
-        if (color == Color.red && wall)
-        {
-            
-        MeshRenderer rend = wall.GetComponent<MeshRenderer>(); ;
-        Debug.Log(rend);
 
-        StartCoroutine(FadeOut());
-
-        IEnumerator FadeOut()
-        {
-            for (float f = 1f; f >= -0.05f; f -= 0.05f)
-            {
-                Color c = rend.material.color;
-                c.a = f;
-                rend.material.color = c;
-                yield return new WaitForSeconds(0.05f);
-            }
-            wall.SetActive(false);
-
-        }
-
-    }
-}
-
-    public void blue()
-    {
-        if (color == Color.blue && objectToFloat)
+        if (color == Color.red && objectToFloat)
         {
             fall = false;
             flo = true;
             trigger = true;
+        }
+    }
+
+
+    public void blue()
+    {
+        if (color == Color.blue)
+        {
+            //slideDoors(true);
+            yellowbox1.SetActive(true);
+            yellowbox2.SetActive(true);
+
+
         }
 
     }
@@ -221,28 +197,8 @@ public class engineController : MonoBehaviour
             }
         };
 
-        if (wall)
-        {
-            MeshRenderer rend = wall.GetComponent<MeshRenderer>(); ;
-            Color c = rend.material.color;
-            c.a = 0f;
-            rend.material.color = c;
-            StartCoroutine(FadeIn());
 
-            IEnumerator FadeIn()
-            {
-                wall.SetActive(true);
-                for (float f = 0.05f; f <=  1f; f += 0.05f)
-                {
-                    Color color = rend.material.color;
-                    Debug.Log(color);
-                    color.a = f;
-                    rend.material.color = color;
-                    yield return new WaitForSeconds(0.05f);
-                }
-
-            }
-        }
+        
 
         
         color = Color.white;

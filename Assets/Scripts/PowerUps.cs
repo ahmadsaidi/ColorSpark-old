@@ -6,7 +6,6 @@ using UnityEngine;
 public class PowerUps : MonoBehaviour
 {
 
-    public GameObject yellowspark;
     public GameObject bluespark;
     public GameObject greenspark;
     public GameObject redspark;
@@ -44,14 +43,7 @@ public class PowerUps : MonoBehaviour
         if (hitColliders.Length  <=1)
         {
             
-            if (color == Color.yellow && count_yellow <1)
-            {
 
-                Instantiate(yellowspark, position, Quaternion.identity);
-                count_yellow++;
-                pc.whitePower();
-
-            }
             
             if (color == Color.blue && count_blue < 1)
             {
@@ -86,17 +78,19 @@ public class PowerUps : MonoBehaviour
                     {
                         return;
                     }
-                    if (color == Color.yellow && count_yellow < 1)
-                    {
 
-                        GameObject spark = Instantiate(yellowspark, newpos, Quaternion.identity);
+                    
+
+                    if (color == Color.blue && count_blue < 1)
+                    {
+                        GameObject spark = Instantiate(bluespark, newpos, Quaternion.identity);
                         spark.GetComponent<SparkController>().eat = false;
-                        
+
                         //  engine_color = Color.yellow;
-                        count_yellow++;                 
+                        count_blue++;
                         pc.whitePower();
-                        gc.color = Color.yellow;
-                        gc.yellow();
+                        gc.color = Color.blue;
+                        gc.blue();
                         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("tele");
                         for (var index = 0; index < gameObjects.Length; index++)
                         {
@@ -105,19 +99,6 @@ public class PowerUps : MonoBehaviour
                         yellowbox1 = null;
                         yellowbox2 = null;
                         tele_num = 0;
-                        tilePickupAudio.PlayOneShot(mm.spark_to_engine);
-
-                    }
-
-                    if (color == Color.blue && count_blue < 1)
-                    {
-                        GameObject spark = Instantiate(bluespark, newpos, Quaternion.identity);
-                        spark.GetComponent<SparkController>().eat = false;
-                        count_blue++;
-                        //  engine_color = Color.blue;
-                        pc.whitePower();
-                        gc.color = Color.blue;
-                        gc.blue();
                         tilePickupAudio.PlayOneShot(mm.spark_to_engine);
 
                     }
@@ -200,15 +181,7 @@ public class PowerUps : MonoBehaviour
 
                 for (int j = 0; j < intersecting.Length; j++)
                 {
-                    if (intersecting[j].tag == "yellow")
-                    {
-                        intersecting[j].gameObject.SetActive(false);
-                        pc.yellowPower();
-                        gc.white();
-                        count_yellow--;
-                        tilePickupAudio.PlayOneShot(mm.yellowAudio);
 
-                    }
 
                     if (intersecting[j].tag == "green")
                     {

@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource tilePickupAudio;
     bool eat = false;
     bool jump = true;
+    bool carry = false;
+    GameObject carryThing;
     GameManager gm;
     MusicManager mm;
 
@@ -81,6 +83,46 @@ public class PlayerController : MonoBehaviour
             powerups.GetEnginePower(transform.position);
         }
 
+        if (Input.GetButtonDown("Fire3") && carry == false)
+        {
+            var hitColliders = Physics.OverlapSphere(transform.position, 6);
+
+
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+
+                if (hitColliders[i].tag == "move")
+                {
+
+                    carryThing = (hitColliders[i].gameObject);
+                    carry = true;
+
+
+                }
+                //tilePickupAudio.PlayOneShot(mm.blastAudio);
+            }
+        }
+
+        if (carry && carryThing)
+        {
+            carryThing.transform.position = transform.position + new Vector3(0, 15, 0);
+        }
+
+        if (Input.GetButtonDown("Fire3") && carry )
+        {
+            var hitColliders = Physics.OverlapSphere(transform.position, 7);
+            Debug.Log(hitColliders.Length);
+            if ( hitColliders.Length  < 3)
+            {
+                Vector3 forward = transform.TransformDirection(Vector3.forward);
+                forward = new Vector3(3 * forward.z, 2, -3 * forward.x);
+                carryThing.transform.position = transform.position + forward;
+                carry = false;
+            }
+
+            
+        }
+
         if (Input.GetKey("r"))
         {
             gm.RestartLevel();
@@ -117,7 +159,7 @@ public class PlayerController : MonoBehaviour
             speed = 40;
         }
 
-        if (Input.GetButtonDown("Jump") && (color == Color.yellow)  && powerups.tele_num < 2)
+        if (Input.GetButtonDown("Jump") && (color == Color.blue)  && powerups.tele_num < 2)
         {
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             forward = new Vector3(5 * forward.z, 8, -5 * forward.x);
@@ -201,42 +243,6 @@ public class PlayerController : MonoBehaviour
 
 
 
-        //if (collision.collider.gameObject.CompareTag("tele") && powerups.tele_num == 2 )
-        //{
-        //    float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
-        //    float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
-        //    if (d1 < d2)
-        //    {
-        //        tilePickupAudio.PlayOneShot(mm.teleportAudio);
-
-        //        transform.position = powerups.yellowbox2.transform.position + new Vector3(-5, 0, 0);
-        //    }
-        //    else if (d1 > d2)
-        //    {
-        //        tilePickupAudio.PlayOneShot(mm.teleportAudio);
-        //        transform.position = powerups.yellowbox1.transform.position + new Vector3(-5, 0, 0);
-        //    }
-
-  
-
-
-        //}
-
-        //if (collision.collider.gameObject.CompareTag("Fixedtele"))
-        //{
-        //    teleController tc = collision.collider.gameObject.GetComponent<teleController>();
-        //    GameObject other = tc.teleport_other;
-
-        //    tilePickupAudio.PlayOneShot(mm.teleportAudio);
-
-        //    transform.position = other.transform.position + new Vector3(-5, 0, 0);
-
-
-
-
-        //}
-    
-
 
         if (collision.collider.gameObject.CompareTag("sand")) {
             //if (color != Color.green) {
@@ -309,12 +315,7 @@ public class PlayerController : MonoBehaviour
         tilePickupAudio.PlayOneShot(mm.redAudio);
 
     }
-   public  void yellowPower()
-    {
-        ChangeColor(new Color(1,1,0,1));
-        color = Color.yellow;
-        tilePickupAudio.PlayOneShot(mm.yellowAudio);
-    }
+
 
     public void bluePower()
     {
@@ -379,14 +380,7 @@ public class PlayerController : MonoBehaviour
             powerups.count_red--;
 
         }
-        else if (item.gameObject.CompareTag("yellow") && color == Color.white)
-        {
-             item.gameObject.SetActive(false);
-             yellowPower();
-            
-       
-             powerups.count_yellow--;
-        }
+
 
 
 
