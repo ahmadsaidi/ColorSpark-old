@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     GameObject carryThing;
     GameManager gm;
     MusicManager mm;
+    float currVerRot = 0;
 
 
     void Start()
@@ -46,17 +47,32 @@ public class PlayerController : MonoBehaviour
 
         }
         float translationx = Input.GetAxis("Vertical") * speed;
-        //float translationz = Input.GetAxis("Horizontal") * speed;
+        float rotationv = Input.GetAxis("Camera Vertical") * rotationSpeed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
         translationx *= Time.deltaTime;
-        //translationz *= Time.deltaTime;
+        rotationv *= Time.deltaTime;
         rotation *= Time.deltaTime;
 
 
         transform.Translate(translationx,0, 0 );
         transform.Rotate( 0,rotation, 0);
 
-        if (Input.GetButtonDown("Fire1") && jump == true && paused == false)
+        if (rotationv != 0 && (currVerRot < 10 && currVerRot > -10))
+        {
+            currVerRot += rotationv;
+            led.transform.Rotate(rotationv, 0, 0);
+        } else if (rotationv == 0 && (currVerRot > 0.01 || currVerRot < -0.01))
+        {
+            led.transform.Rotate(-currVerRot/10, 0, 0);
+            currVerRot -= currVerRot / 10;
+        } else if (rotationv == 0 && currVerRot < 0.01 && currVerRot > -0.01)
+        {
+            led.transform.Rotate(-currVerRot, 0, 0);
+            currVerRot = 0;
+        }
+
+
+            if (Input.GetButtonDown("Fire1") && jump == true && paused == false)
         {
             // red for high jump
             //if (color == Color.red) {
