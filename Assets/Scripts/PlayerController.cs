@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     bool jump = true;
     bool carry = false;
     public GameObject pauseMenu;
+    public RobotIcon Icon;
     bool paused = false;
     GameObject carryThing;
     GameManager gm;
@@ -36,7 +37,9 @@ public class PlayerController : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         mm = FindObjectOfType<MusicManager>();
         tilePickupAudio = GetComponent<AudioSource>();
-}
+        Icon = FindObjectOfType<RobotIcon>();
+  
+    }
 
 
     private void Update()
@@ -359,6 +362,8 @@ public class PlayerController : MonoBehaviour
         ChangeColor(Color.red);
         color = Color.red;
         tilePickupAudio.PlayOneShot(mm.redAudio);
+        Icon.GetComponent<Image>().color = Color.white;
+        Icon.GetComponent<Image>().sprite = Icon.Drill;
 
     }
 
@@ -368,19 +373,25 @@ public class PlayerController : MonoBehaviour
         ChangeColor(Color.blue);
         tilePickupAudio.PlayOneShot(mm.blueAudio);
         color = Color.blue;
-     }
+        Icon.GetComponent<Image>().color = Color.white;
+        Icon.GetComponent<Image>().sprite = Icon.Teleport;
+    }
 
     public  void greenPower()
     {
         tilePickupAudio.PlayOneShot(mm.greenAudio);
         ChangeColor(Color.green);
         color = Color.green;
-     }
+        Icon.GetComponent<Image>().color = Color.white;
+        Icon.GetComponent<Image>().sprite = Icon.Rocket;
+    }
 
     public void whitePower()
     {
         ChangeColor(Color.white);
         color = Color.white;
+        Icon.GetComponent<Image>().color = Color.black;
+        Icon.GetComponent<Image>().sprite = null;
     }
 
     void ChangeColor(Color color)

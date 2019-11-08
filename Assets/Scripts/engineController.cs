@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class engineController : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class engineController : MonoBehaviour
     public bool flo = false;
     public bool fall = false;
     int count = 0;
-
+    EngineIcon Icon;
     Animator left;
     Animator right;
 
@@ -45,6 +46,7 @@ public class engineController : MonoBehaviour
 
 
         }
+        Icon = FindObjectOfType<EngineIcon>();
 
     }
     // Update is called once per frame
@@ -132,6 +134,9 @@ public class engineController : MonoBehaviour
             flo = true;
             trigger = true;
         }
+        Icon.GetComponent<Image>().color = Color.white;
+        Icon.GetComponent<Image>().sprite = Icon.Float;
+
     }
 
 
@@ -145,6 +150,8 @@ public class engineController : MonoBehaviour
 
 
         }
+        Icon.GetComponent<Image>().color = Color.white;
+        Icon.GetComponent<Image>().sprite = Icon.Teleport;
 
     }
 
@@ -168,6 +175,8 @@ public class engineController : MonoBehaviour
 
             }
         }
+        Icon.GetComponent<Image>().color = Color.white;
+        Icon.GetComponent<Image>().sprite = Icon.plateform;
     }
 
     public void white()
@@ -195,6 +204,9 @@ public class engineController : MonoBehaviour
                 }
 
             }
+
+            Icon.GetComponent<Image>().color = Color.black;
+            Icon.GetComponent<Image>().sprite = null;
         };
 
 
