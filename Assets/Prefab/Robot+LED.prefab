@@ -106,8 +106,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7006576137088161712}
+  m_Children: []
   m_Father: {fileID: 5928421363395776633}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -324,6 +323,7 @@ GameObject:
   - component: {fileID: 7006576137088161712}
   - component: {fileID: 5036936021754669800}
   - component: {fileID: 9110557974542192543}
+  - component: {fileID: 1048073792810363255}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -338,11 +338,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5064771960724353187}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -207.00008, y: 77, z: -10.999972}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -1.3599825, y: 0.4499989, z: 29.31005}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 313395583017267919}
+  m_Father: {fileID: 63974738262984756}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!20 &5036936021754669800
@@ -402,6 +402,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   obstruction: {fileID: 0}
+--- !u!114 &1048073792810363255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5064771960724353187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eced6aebe155c84da40073f4826e8f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistance: 0.01
+  maxDistance: 32
+  smooth: 10
 --- !u!1 &5647038609132348356
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +444,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -11.599986, y: 74, z: -1.9333917}
   m_LocalScale: {x: 6.666668, y: 6.666666, z: 6.666668}
-  m_Children: []
+  m_Children:
+  - {fileID: 7006576137088161712}
   m_Father: {fileID: 5928421363395776633}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -587,7 +603,7 @@ GameObject:
   - component: {fileID: 1675144581134009932}
   m_Layer: 0
   m_Name: Robot+LED
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -759,6 +775,7 @@ MonoBehaviour:
   color: {r: 1, g: 1, b: 1, a: 1}
   led: {fileID: 4637717785774424525}
   tilePickupAudio: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!114 &1675144581134009932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,8 +788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec31fd3e1ded3854fbd0e7c41c4fd80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yellowspark: {fileID: 1867194920867168198, guid: 0432f3ce11e20464385a376c5d251bbf,
-    type: 3}
   bluespark: {fileID: 6665723356765159654, guid: 88c22a4f8d8f33c4c8eaf94da0cb21b1,
     type: 3}
   greenspark: {fileID: 2555653172586502232, guid: 11e9d89ef1905fe43bfe89008755a203,
