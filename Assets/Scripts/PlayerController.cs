@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     bool eat = false;
     bool jump = true;
     bool carry = false;
+    public GameObject pauseMenu;
+    bool paused = false;
     GameObject carryThing;
     GameManager gm;
     MusicManager mm;
@@ -54,7 +56,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(translationx,0, 0 );
         transform.Rotate( 0,rotation, 0);
 
-        if (Input.GetButtonDown("Fire1") && jump == true)
+        if (Input.GetButtonDown("Fire1") && jump == true && paused == false)
         {
             // red for high jump
             //if (color == Color.red) {
@@ -212,15 +214,43 @@ public class PlayerController : MonoBehaviour
         }
 
 
+
         if (Input.GetButtonDown("Restart"))
         {
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+            paused = true;
+        }
+
+        if (Input.GetButtonDown("Fire1") && paused)
+        {
+            pauseMenu.SetActive(false);
+            jump = true;
+            Time.timeScale = 1;
+            paused = false;
+
+        }
+
+        if (Input.GetButtonDown("Fire2") && paused)
+        {
+            Time.timeScale = 1;
+            paused = false;
+            pauseMenu.SetActive(false);
             gm.RestartLevel();
         }
 
-        if (Input.GetButtonDown("Back"))
+        if (Input.GetButtonDown("Fire3") && paused)
         {
+            Time.timeScale = 1;
+            paused = false;
+            pauseMenu.SetActive(false);
             gm.MainMenu();
         }
+
+
+
+
+
 
 
 
