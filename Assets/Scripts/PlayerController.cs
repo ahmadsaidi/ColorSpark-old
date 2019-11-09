@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     public float speed;
     public float rotationSpeed;
@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     GameManager gm;
     MusicManager mm;
     float currVerRot = 0;
+    //public WheelCollider leftwheel;
+    //public WheelCollider rightwheel;
 
 
     void Start()
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour
         mm = FindObjectOfType<MusicManager>();
         tilePickupAudio = GetComponent<AudioSource>();
         Icon = FindObjectOfType<RobotIcon>();
-  
+
     }
 
 
@@ -52,13 +54,31 @@ public class PlayerController : MonoBehaviour
         float translationx = Input.GetAxis("Vertical") * speed;
         float rotationv = Input.GetAxis("Camera Vertical") * rotationSpeed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
+        //float motor = translationx*100;
         translationx *= Time.deltaTime;
         rotationv *= Time.deltaTime;
         rotation *= Time.deltaTime;
 
 
         transform.Translate(translationx,0, 0 );
-        transform.Rotate( 0,rotation, 0);
+        //float angle = Mathf.PI * transform.rotation.eulerAngles.y / 180;
+        //if (rb.velocity.magnitude < speed)
+        //{
+        //    rb.AddForce( 10 * translationx * Mathf.Cos(angle),0, -10 * translationx * Mathf.Sin(angle), ForceMode.VelocityChange);
+        //}
+        //if (translationx < 0.1 && translationx > -0.1)
+        //{
+        //    rb.velocity = Vector3.Scale(rb.velocity, new Vector3(0.01f, 1, 0.01f));
+        //}        //Debug.Log(angle);
+        //float steering = rotation;
+
+        //leftwheel.steerAngle = steering;
+        //rightwheel.steerAngle = steering;
+        //leftwheel.motorTorque = motor;
+        //rightwheel.motorTorque = motor;
+        
+        transform.Rotate(0, rotation, 0);
+        
 
         if (rotationv != 0 && (currVerRot < 10 && currVerRot > -10))
         {
@@ -173,7 +193,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Jump") && color == Color.green)
         {
             tilePickupAudio.PlayOneShot(mm.runfasterAudio);
-            speed = 120;
+            speed = 80;
         }
         else
         {
