@@ -23,6 +23,8 @@ public class engineController : MonoBehaviour
     EngineIcon Icon;
     Animator left;
     Animator right;
+    GameObject main;
+    GameObject player;
 
 
     // Start is called before the first frame update
@@ -47,6 +49,9 @@ public class engineController : MonoBehaviour
 
         }
         Icon = FindObjectOfType<EngineIcon>();
+        main = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+        player = GameObject.FindGameObjectsWithTag("Player")[0];
+
 
     }
     // Update is called once per frame
@@ -74,18 +79,7 @@ public class engineController : MonoBehaviour
                 fall = true;
 
             }
-            //count++;
-            ////if (count == 200)
-            ////{
-            ////    flo = false;
-            ////    fall = true;
-            ////}
 
-            //////if (count == 2000)
-            //////{
-            //////    flo = false;
-            //////    fall = true;
-            //////}
         }
 
         if(fall && trigger)
@@ -108,12 +102,7 @@ public class engineController : MonoBehaviour
                 flo = true;
 
             }
-            //count--;
-            //if (count == 0)
-            //{
-            //    fall = false;
-            //    flo = true;
-            //}
+
         }
 
 
@@ -127,13 +116,31 @@ public class engineController : MonoBehaviour
 
     public void red()
     {
-
-        if (color == Color.red && objectToFloat)
+        StartCoroutine(startFloat());
+        IEnumerator startFloat()
         {
-            fall = false;
-            flo = true;
-            trigger = true;
+            float backup = player.GetComponent<PlayerController>().speed;
+            float backup2 = player.GetComponent<PlayerController>().rotationSpeed;
+            main.GetComponent<cameraCollision>().focus = true;
+            player.GetComponent<PlayerController>().speed = 0;
+            player.GetComponent<PlayerController>().rotationSpeed = 0;
+            Transform box = objectToFloat.transform.GetChild(0);
+            main.transform.position = box.position + new Vector3(20, 3, 0); ;
+            if (color == Color.red && objectToFloat)
+            {
+                fall = false;
+                flo = true;
+                trigger = true;
+            }
+            yield return new WaitForSeconds(3f);
+            main.GetComponent<cameraCollision>().focus = false;
+            player.GetComponent<PlayerController>().speed  = backup;
+            player.GetComponent<PlayerController>().rotationSpeed = backup2;
+
+
+
         }
+
         Icon.GetComponent<Image>().color = Color.white;
         Icon.GetComponent<Image>().sprite = Icon.Float;
 
@@ -145,8 +152,22 @@ public class engineController : MonoBehaviour
         if (color == Color.blue)
         {
             //slideDoors(true);
-            yellowbox1.SetActive(true);
-            yellowbox2.SetActive(true);
+            StartCoroutine(buildTele());
+            IEnumerator buildTele()
+            {
+                main.GetComponent<cameraCollision>().focus = true;
+                main.transform.position = yellowbox1.transform.position + new Vector3(15, 0, -5); ;
+                yellowbox1.SetActive(true);    
+                yield return new WaitForSeconds(1.5f);
+ 
+                main.transform.position = yellowbox2.transform.position + new Vector3(15,0,-5);
+                yellowbox2.SetActive(true);
+                yield return new WaitForSeconds(1.5f);
+                main.GetComponent<cameraCollision>().focus = false;
+               
+
+            }
+
 
 
         }
@@ -159,24 +180,30 @@ public class engineController : MonoBehaviour
     {
         if (color == Color.green && bridge)
         {
-           
+
             StartCoroutine(buildBridge());
-            
 
             IEnumerator buildBridge()
             {
+                main.GetComponent<cameraCollision>().focus = true;
+                main.transform.position = bridge.transform.position;
                 for (int i = 0; i < bridge.transform.childCount; i++)
                 {
                     GameObject piece = bridge.transform.GetChild(i).gameObject;
                     piece.SetActive(true);
-                    yield return new WaitForSeconds(0.1f);
+                    yield return new WaitForSeconds(1f);
 
                 }
+                main.GetComponent<cameraCollision>().focus = false;
 
             }
+
+
+
         }
         Icon.GetComponent<Image>().color = Color.white;
         Icon.GetComponent<Image>().sprite = Icon.plateform;
+
     }
 
     public void white()

@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     float currVerRot = 0;
 
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -132,7 +133,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire3") && carry )
         {
             var hitColliders = Physics.OverlapSphere(transform.position, 7);
-            Debug.Log(hitColliders.Length);
             if ( hitColliders.Length  < 3)
             {
                 Vector3 forward = transform.TransformDirection(Vector3.forward);
