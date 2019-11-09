@@ -119,13 +119,15 @@ public class engineController : MonoBehaviour
         StartCoroutine(startFloat());
         IEnumerator startFloat()
         {
-            float backup = player.GetComponent<PlayerController>().speed;
-            float backup2 = player.GetComponent<PlayerController>().rotationSpeed;
+
+            player.GetComponent<PlayerController>().enabled = false;
+
             main.GetComponent<cameraCollision>().focus = true;
-            player.GetComponent<PlayerController>().speed = 0;
-            player.GetComponent<PlayerController>().rotationSpeed = 0;
+            Quaternion torobot = main.transform.rotation;
+
             Transform box = objectToFloat.transform.GetChild(0);
-            main.transform.position = box.position + new Vector3(20, 3, 0); ;
+            main.transform.position = box.position + new Vector3(20, 3, 0);
+            main.transform.LookAt(box.position);
             if (color == Color.red && objectToFloat)
             {
                 fall = false;
@@ -133,12 +135,10 @@ public class engineController : MonoBehaviour
                 trigger = true;
             }
             yield return new WaitForSeconds(3f);
+
             main.GetComponent<cameraCollision>().focus = false;
-            player.GetComponent<PlayerController>().speed  = backup;
-            player.GetComponent<PlayerController>().rotationSpeed = backup2;
-
-
-
+            main.transform.rotation = torobot;
+            player.GetComponent<PlayerController>().enabled = true;
         }
 
         Icon.GetComponent<Image>().color = Color.white;
@@ -155,16 +155,24 @@ public class engineController : MonoBehaviour
             StartCoroutine(buildTele());
             IEnumerator buildTele()
             {
+                player.GetComponent<PlayerController>().enabled = false;
+
                 main.GetComponent<cameraCollision>().focus = true;
-                main.transform.position = yellowbox1.transform.position + new Vector3(15, 0, -5); ;
+                Quaternion torobot = main.transform.rotation;
+
+                main.transform.position = yellowbox1.transform.position + new Vector3(15, 0, -5);
+                main.transform.LookAt(yellowbox1.transform.position);
                 yellowbox1.SetActive(true);    
                 yield return new WaitForSeconds(1.5f);
  
                 main.transform.position = yellowbox2.transform.position + new Vector3(15,0,-5);
+                main.transform.LookAt(yellowbox2.transform.position);
                 yellowbox2.SetActive(true);
                 yield return new WaitForSeconds(1.5f);
+
                 main.GetComponent<cameraCollision>().focus = false;
-               
+                main.transform.rotation = torobot;
+                player.GetComponent<PlayerController>().enabled = true;
 
             }
 
@@ -185,8 +193,13 @@ public class engineController : MonoBehaviour
 
             IEnumerator buildBridge()
             {
+                player.GetComponent<PlayerController>().enabled = false;
+
                 main.GetComponent<cameraCollision>().focus = true;
-                main.transform.position = bridge.transform.position;
+                Quaternion torobot = main.transform.rotation;
+
+                main.transform.position = bridge.transform.position + new Vector3(10,2,0);
+                main.transform.LookAt(bridge.transform.position);
                 for (int i = 0; i < bridge.transform.childCount; i++)
                 {
                     GameObject piece = bridge.transform.GetChild(i).gameObject;
@@ -195,6 +208,8 @@ public class engineController : MonoBehaviour
 
                 }
                 main.GetComponent<cameraCollision>().focus = false;
+                main.transform.rotation = torobot;
+                player.GetComponent<PlayerController>().enabled = true;
 
             }
 
