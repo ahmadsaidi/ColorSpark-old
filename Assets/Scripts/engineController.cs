@@ -20,7 +20,7 @@ public class engineController : MonoBehaviour
     public bool flo = false;
     public bool fall = false;
     int count = 0;
-    EngineIcon Icon;
+    public EngineIcon Icon;
     Animator left;
     Animator right;
     GameObject main;
@@ -48,7 +48,6 @@ public class engineController : MonoBehaviour
 
 
         }
-        Icon = FindObjectOfType<EngineIcon>();
         main = GameObject.FindGameObjectsWithTag("MainCamera")[0];
         player = GameObject.FindGameObjectsWithTag("Player")[0];
 
@@ -198,10 +197,11 @@ public class engineController : MonoBehaviour
                 main.GetComponent<cameraCollision>().focus = true;
                 Quaternion torobot = main.transform.rotation;
 
-                main.transform.position = bridge.transform.position + new Vector3(10,2,0);
+                main.transform.position = bridge.transform.position + new Vector3(10, 2, 0);
                 main.transform.LookAt(bridge.transform.position);
                 for (int i = 0; i < bridge.transform.childCount; i++)
                 {
+
                     GameObject piece = bridge.transform.GetChild(i).gameObject;
                     piece.SetActive(true);
                     yield return new WaitForSeconds(1f);

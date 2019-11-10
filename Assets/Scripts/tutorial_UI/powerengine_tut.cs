@@ -12,13 +12,17 @@ public class powerengine_tut : MonoBehaviour
     public GameObject greenEngine;
     public GameObject blueEngine;
     private GameObject robot;
-    public string[] stageInstructions = {"Activate the portal",
-                                         "Build the bridge",
-                                         "Turn on the elevator" };
+    public string[] stageInstructions = {"Get Blue Spark," +
+                                          "Put spark on engine(Press B )",
+                                         "Use Predefiend Teleports(RB)",
+                                         "Put Green Spark on Engine " + "Build the bridge",
+                                         "Get Back to engine1 and Get Spark Again(Press A)" ,
+                                          "Put Red Spark on Engine1"};
 
     private engineController cs0;
     private engineController cs1;
     private engineController cs2;
+    PlayerController pc;
 
     void Start()
     {
@@ -28,22 +32,46 @@ public class powerengine_tut : MonoBehaviour
         redEngine = GameObject.Find("engine2");
         cs0  = blueEngine.GetComponent<engineController>();
         cs1  = greenEngine.GetComponent<engineController>();
-        cs2  = redEngine.GetComponent<engineController>();
+        //cs2  = redEngine.GetComponent<engineController>();
         robot = GameObject.Find("Robot+LED");
         stage = 0;
+        pc = robot.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    {
 
-        if (cs0.color != Color.white && stage != 1) {
+
+        if (pc.color == Color.blue && stage < 1)
+        {
             stage = 1;
         }
 
-        if (cs1.color != Color.white && stage != 2) {
+        if (cs0.color != Color.white && stage < 2) {
             stage = 2;
-            
+        }
+
+        if (robot.transform.position.z < ( -150) && stage <3)
+        {
+            stage = 3;
+
+        }
+
+        if (cs1.color != Color.white && stage < 4)
+        {
+            stage = 4;
+
+        }
+        if (pc.color == Color.blue &&  stage == 4)
+        {
+            stage = 5;
+
+        }
+        if (cs0.color == Color.red && stage  == 5)
+        {
+            stage = 6;
+
         }
         if (instruction != null)instruction.text = stageInstructions[stage];
     }
