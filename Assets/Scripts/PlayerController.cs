@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     GameManager gm;
     MusicManager mm;
     float currVerRot = 0;
+    public Transform axel;
     //public WheelCollider leftwheel;
     //public WheelCollider rightwheel;
 
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
         float rotationv = Input.GetAxis("Camera Vertical") * rotationSpeed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
         //float motor = translationx*100;
+        axel.Rotate(0,0, -0.1f * translationx);
         translationx *= Time.deltaTime;
         rotationv *= Time.deltaTime;
         rotation *= Time.deltaTime;
@@ -79,7 +81,6 @@ public class PlayerController : MonoBehaviour
         //rightwheel.motorTorque = motor;
         
         transform.Rotate(0, rotation, 0);
-        
 
         if (rotationv != 0 && (currVerRot < 10 && currVerRot > -10))
         {
