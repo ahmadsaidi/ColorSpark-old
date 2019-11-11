@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire3") && carry == false)
         {
-            var hitColliders = Physics.OverlapSphere(transform.position, 6);
+            var hitColliders = Physics.OverlapSphere(transform.position , 4);
 
 
             for (int i = 0; i < hitColliders.Length; i++)
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire3") && carry )
         {
-            var hitColliders = Physics.OverlapSphere(transform.position, 7);
+            var hitColliders = Physics.OverlapSphere(transform.position, 3);
             if ( hitColliders.Length  < 3)
             {
                 Vector3 forward = transform.TransformDirection(Vector3.forward);
