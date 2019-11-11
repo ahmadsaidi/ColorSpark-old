@@ -115,33 +115,42 @@ public class engineController : MonoBehaviour
 
     public void red()
     {
-        StartCoroutine(startFloat());
-        IEnumerator startFloat()
+        if (color == Color.red && objectToFloat)
         {
-
-            player.GetComponent<PlayerController>().enabled = false;
-
-            main.GetComponent<cameraCollision>().focus = true;
-            Quaternion torobot = main.transform.rotation;
-
-            Transform box = objectToFloat.transform.GetChild(0);
-            main.transform.position = box.position + new Vector3(20, 3, 0);
-            main.transform.LookAt(box.position);
-            if (color == Color.red && objectToFloat)
+            if (objectToFloat.transform.childCount <= 0)
             {
-                fall = false;
-                flo = true;
-                trigger = true;
+                return;
             }
-            yield return new WaitForSeconds(3f);
+            StartCoroutine(startFloat());
+            IEnumerator startFloat()
+            {
 
-            main.GetComponent<cameraCollision>().focus = false;
-            main.transform.rotation = torobot;
-            player.GetComponent<PlayerController>().enabled = true;
+                player.GetComponent<PlayerController>().enabled = false;
+
+                main.GetComponent<cameraCollision>().focus = true;
+                Quaternion torobot = main.transform.rotation;
+
+                Transform box = objectToFloat.transform.GetChild(0);
+                main.transform.position = box.position + new Vector3(20, 3, 0);
+                main.transform.LookAt(box.position);
+                if (color == Color.red && objectToFloat)
+                {
+                    fall = false;
+                    flo = true;
+                    trigger = true;
+                }
+                yield return new WaitForSeconds(3f);
+
+                main.GetComponent<cameraCollision>().focus = false;
+                main.transform.rotation = torobot;
+                player.GetComponent<PlayerController>().enabled = true;
+            }
+
+            Icon.GetComponent<Image>().color = Color.white;
+            Icon.GetComponent<Image>().sprite = Icon.Float;
         }
 
-        Icon.GetComponent<Image>().color = Color.white;
-        Icon.GetComponent<Image>().sprite = Icon.Float;
+
 
     }
 
