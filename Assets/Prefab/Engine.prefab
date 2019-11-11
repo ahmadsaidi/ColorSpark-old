@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2233047380646462983}
   m_Layer: 0
   m_Name: Engine
-  m_TagString: Untagged
+  m_TagString: engine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,3 +106,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6cf2c316766ed409d91c291d882753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  yellowbox1: {fileID: 0}
+  yellowbox2: {fileID: 0}
+  bridge: {fileID: 0}
+  objectToFloat: {fileID: 0}
+  floatHeight: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  trigger: 0
+  flo: 1
+  fall: 0
+  Icon: {fileID: 0}

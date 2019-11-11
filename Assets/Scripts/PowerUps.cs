@@ -109,6 +109,7 @@ public class PowerUps : MonoBehaviour
                     if (color == Color.red && count_red < 1)
                     {
                         GameObject spark = Instantiate(redspark, newpos, Quaternion.identity);
+                        spark.transform.parent = hitColliders[i].gameObject.transform;
                         spark.GetComponent<SparkController>().eat = false;
                         count_red++;
                         //engine_color = Color.red;

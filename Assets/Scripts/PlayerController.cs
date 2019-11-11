@@ -339,6 +339,16 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+        //This is to make sure the colliders update
+        if (collision.gameObject.CompareTag("float"))
+        {
+            transform.Translate(0, 0.01f, 0);
+        }
+        // stop people from going through walls hopefully
+        if (collision.gameObject.CompareTag("wall"))
+        {
+            transform.Translate(-0.1f, 0, -0.1f);
+        }
 
     }
 

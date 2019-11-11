@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 5036936021754669800}
   - component: {fileID: 9110557974542192543}
   - component: {fileID: 1048073792810363255}
+  - component: {fileID: 4308459916860904352}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -451,6 +452,14 @@ MonoBehaviour:
   maxDistance: 32
   smooth: 10
   focus: 0
+--- !u!81 &4308459916860904352
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5064771960724353187}
+  m_Enabled: 1
 --- !u!1 &5647038609132348356
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,7 +938,6 @@ GameObject:
   m_Component:
   - component: {fileID: 112551077507479828}
   - component: {fileID: 691458104649184411}
-  - component: {fileID: 8050616516671352555}
   m_Layer: 8
   m_Name: Backgournd Camera
   m_TagString: Untagged
@@ -994,14 +1002,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8050616516671352555
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8161997897580997639}
-  m_Enabled: 1
 --- !u!1 &8833454466640541587
 GameObject:
   m_ObjectHideFlags: 0

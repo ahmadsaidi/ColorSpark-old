@@ -27,6 +27,7 @@ TagManager:
   - move
   - wall
   - robot_light
+  - float
   layers:
   - Default
   - TransparentFX

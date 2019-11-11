@@ -17,7 +17,7 @@ public class engineController : MonoBehaviour
     public bool trigger = false;
 
     PowerUps pu;
-    public bool flo = false;
+    public bool flo = true;
     public bool fall = false;
     int count = 0;
     public EngineIcon Icon;
@@ -70,8 +70,8 @@ public class engineController : MonoBehaviour
                 box.transform.position = new Vector3(box.transform.position.x, newPosition, box.transform.position.z);
             }
 
-            Debug.Log(objectToFloat.transform.GetChild(0).transform.position);
-            Debug.Log(ending);
+            //Debug.Log(objectToFloat.transform.GetChild(0).transform.position);
+            //Debug.Log(ending);
             if (objectToFloat.transform.GetChild(0).transform.position.y > ending.y)
             {
                 flo = false;
@@ -125,25 +125,25 @@ public class engineController : MonoBehaviour
             IEnumerator startFloat()
             {
 
-                player.GetComponent<PlayerController>().enabled = false;
+                //player.GetComponent<PlayerController>().enabled = false;
 
-                main.GetComponent<cameraCollision>().focus = true;
-                Quaternion torobot = main.transform.rotation;
+                //main.GetComponent<cameraCollision>().focus = true;
+                //Quaternion torobot = main.transform.rotation;
 
                 Transform box = objectToFloat.transform.GetChild(0);
-                main.transform.position = box.position + new Vector3(20, 3, 0);
-                main.transform.LookAt(box.position);
+                //main.transform.position = box.position + new Vector3(20, 3, 0);
+                //main.transform.LookAt(box.position);
                 if (color == Color.red && objectToFloat)
                 {
-                    fall = false;
-                    flo = true;
+                    //fall = false;
+                    //flo = true;
                     trigger = true;
                 }
                 yield return new WaitForSeconds(3f);
 
-                main.GetComponent<cameraCollision>().focus = false;
-                main.transform.rotation = torobot;
-                player.GetComponent<PlayerController>().enabled = true;
+                //main.GetComponent<cameraCollision>().focus = false;
+                //main.transform.rotation = torobot;
+                //player.GetComponent<PlayerController>().enabled = true;
             }
 
             Icon.GetComponent<Image>().color = Color.white;
