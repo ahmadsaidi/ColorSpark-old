@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource tilePickupAudio;
     bool eat = false;
     bool jump = true;
-    bool carry = false;
+    public bool carry = false;
     public GameObject pauseMenu;
     public RobotIcon Icon;
     bool paused = false;

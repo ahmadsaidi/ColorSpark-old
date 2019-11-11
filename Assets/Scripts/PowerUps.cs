@@ -38,6 +38,10 @@ public class PowerUps : MonoBehaviour
 
     public void Createbox(Vector3 position, Color color)
     {
+        if (pc.carry)
+        {
+            return;
+        }
         
         var hitColliders = Physics.OverlapSphere(position, 6);
         if (hitColliders.Length  <=1)
