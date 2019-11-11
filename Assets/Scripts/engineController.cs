@@ -157,7 +157,7 @@ public class engineController : MonoBehaviour
 
     public void blue()
     {
-        if (color == Color.blue)
+        if (color == Color.blue && yellowbox1 && yellowbox2)
         {
             //slideDoors(true);
             StartCoroutine(buildTele());
