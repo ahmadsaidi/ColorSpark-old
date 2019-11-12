@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     MusicManager mm;
     float currVerRot = 0;
     public Transform axel;
+    Animator animator;
+    bool stationary = true;
     //public WheelCollider leftwheel;
     //public WheelCollider rightwheel;
 
@@ -42,7 +44,7 @@ public class PlayerController : MonoBehaviour
         mm = FindObjectOfType<MusicManager>();
         tilePickupAudio = GetComponent<AudioSource>();
         Icon = FindObjectOfType<RobotIcon>();
-
+        animator = GetComponent<Animator>();
     }
 
 
@@ -63,7 +65,18 @@ public class PlayerController : MonoBehaviour
         rotation *= Time.deltaTime;
 
 
-        transform.Translate(translationx,0, 0 );
+        transform.Translate(translationx, 0, 0);
+        
+        if (stationary && translationx != 0)
+        {
+            if (speed == 80)
+            {
+                animator.SetTrigger("startedSprinting");
+            } else {
+                animator.SetTrigger("startedWalking");
+            }
+        }
+        stationary = translationx == 0;
         //float angle = Mathf.PI * transform.rotation.eulerAngles.y / 180;
         //if (rb.velocity.magnitude < speed)
         //{
@@ -79,7 +92,7 @@ public class PlayerController : MonoBehaviour
         //rightwheel.steerAngle = steering;
         //leftwheel.motorTorque = motor;
         //rightwheel.motorTorque = motor;
-        
+
         transform.Rotate(0, rotation, 0);
 
         if (rotationv != 0 && (currVerRot < 10 && currVerRot > -10))
@@ -105,8 +118,9 @@ public class PlayerController : MonoBehaviour
             //}
             //else
             //{
-               rb.AddForce(Vector3.up * jumpspeed);
-               tilePickupAudio.PlayOneShot(mm.jump);
+            rb.AddForce(Vector3.up * jumpspeed);
+            tilePickupAudio.PlayOneShot(mm.jump);
+            animator.SetTrigger("startedJumping");
             //}
             jump = false;
         }
@@ -128,7 +142,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire3") && carry == false)
         {
-            var hitColliders = Physics.OverlapSphere(transform.position , 4);
+            var hitColliders = Physics.OverlapSphere(transform.position , 5);
 
 
             for (int i = 0; i < hitColliders.Length; i++)
@@ -140,18 +154,10 @@ public class PlayerController : MonoBehaviour
                     carryThing = (hitColliders[i].gameObject);
                     carry = true;
 
-
                 }
                 //tilePickupAudio.PlayOneShot(mm.blastAudio);
             }
-        }
-
-        if (carry && carryThing)
-        {
-            carryThing.transform.position = transform.position + new Vector3(0, 15, 0);
-        }
-
-        if (Input.GetButtonDown("Fire3") && carry )
+        } else if (Input.GetButtonDown("Fire3") && carry )
         {
             var hitColliders = Physics.OverlapSphere(transform.position, 5);
             if ( hitColliders.Length  < 4)
@@ -161,8 +167,12 @@ public class PlayerController : MonoBehaviour
                 carryThing.transform.position = transform.position + forward;
                 carry = false;
             }
-
             
+        }
+
+        if (carry && carryThing)
+        {
+            carryThing.transform.position = transform.position + new Vector3(0, 15, 0);
         }
 
         if (Input.GetKey("r"))

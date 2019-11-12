@@ -150,7 +150,8 @@ public class engineController : MonoBehaviour
             Icon.GetComponent<Image>().sprite = Icon.Float;
         }
 
-
+        Material m = transform.gameObject.GetComponent<Renderer>().material;
+        m.SetColor("_EmissionColor", Color.red);
 
     }
 
@@ -190,6 +191,8 @@ public class engineController : MonoBehaviour
         Icon.GetComponent<Image>().color = Color.white;
         Icon.GetComponent<Image>().sprite = Icon.Teleport;
 
+        Material m = transform.gameObject.GetComponent<Renderer>().material;
+        m.SetColor("_EmissionColor", Color.blue);
     }
 
     public void green()
@@ -228,6 +231,9 @@ public class engineController : MonoBehaviour
         Icon.GetComponent<Image>().color = Color.white;
         Icon.GetComponent<Image>().sprite = Icon.plateform;
 
+        Material m = transform.gameObject.GetComponent<Renderer>().material;
+        m.SetColor("_EmissionColor", Color.green);
+
     }
 
     public void white()
@@ -265,6 +271,8 @@ public class engineController : MonoBehaviour
 
         
         color = Color.white;
+        Material m = transform.gameObject.GetComponent<Renderer>().material;
+        m.SetColor("_EmissionColor", Color.black);
     }
 
     void slideDoors(bool state)
