@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ButtonSelection : MonoBehaviour
 {
     public List<Button> selections;
-    float waitTime = 0.5f;
+    float waitTime = 0.25f;
     int curr = 0;
     // Start is called before the first frame update
     void Start()
@@ -20,21 +20,26 @@ public class ButtonSelection : MonoBehaviour
     {
         //
         float r = Input.GetAxis("Vertical");
-        if (Mathf.Abs(r) > 0.5 && waitTime < 0)
+        bool w = Input.GetKeyDown("w");
+        bool s = Input.GetKeyDown("s");
+        if ((s || w || Mathf.Abs(r) > 0.5 )&& waitTime =< 0)
         {
-            if (r < 0)
+            if (r < 0 || s)
             {
                 selectDown();
             } else {
                 selectUp();
             }
-            waitTime = 0.5f;
+            waitTime = 0.25f;
         }
         if (Input.GetButtonDown("Fire1"))
         {
             selections[curr].onClick.Invoke();
         }
-        waitTime -= Time.deltaTime;
+        if (waitTime > 0)
+        {
+            waitTime -= Time.deltaTime;
+        }
     }
 
     void selectDown()
