@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         rotation *= Time.deltaTime;
 
 
-        transform.Translate(translationx,0, 0 );
+        transform.Translate(translationx, 0, 0);
         
         if (stationary && translationx != 0)
         {
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire3") && carry == false)
         {
-            var hitColliders = Physics.OverlapSphere(transform.position , 4);
+            var hitColliders = Physics.OverlapSphere(transform.position , 5);
 
 
             for (int i = 0; i < hitColliders.Length; i++)
@@ -154,18 +154,10 @@ public class PlayerController : MonoBehaviour
                     carryThing = (hitColliders[i].gameObject);
                     carry = true;
 
-
                 }
                 //tilePickupAudio.PlayOneShot(mm.blastAudio);
             }
-        }
-
-        if (carry && carryThing)
-        {
-            carryThing.transform.position = transform.position + new Vector3(0, 15, 0);
-        }
-
-        if (Input.GetButtonDown("Fire3") && carry )
+        } else if (Input.GetButtonDown("Fire3") && carry )
         {
             var hitColliders = Physics.OverlapSphere(transform.position, 5);
             if ( hitColliders.Length  < 4)
@@ -175,8 +167,12 @@ public class PlayerController : MonoBehaviour
                 carryThing.transform.position = transform.position + forward;
                 carry = false;
             }
-
             
+        }
+
+        if (carry && carryThing)
+        {
+            carryThing.transform.position = transform.position + new Vector3(0, 15, 0);
         }
 
         if (Input.GetKey("r"))
