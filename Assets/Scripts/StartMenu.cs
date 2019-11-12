@@ -11,10 +11,10 @@ public class StartMenu : MonoBehaviour
     {
         if (PlayerData.Level == 2)
         {
-            continue_.gameObject.active = false;
+            continue_.interactable = false;
         } else
         {
-            continue_.gameObject.active = true;
+            continue_.interactable = true;
         }
     }
 }

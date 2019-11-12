@@ -3,7 +3,12 @@ guid: 9bb8f67ce6b5552418c86c00cd8f583d
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bridge_Floor_Bridge_Floor_wire_135006006
+    second: {fileID: 2100000, guid: c897c04baad217341bf92073c4d5dab2, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
