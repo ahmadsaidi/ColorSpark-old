@@ -87,7 +87,7 @@ public class engineController : MonoBehaviour
 
             for (int i = 0; i < objectToFloat.transform.childCount; i++)
             {
-                Debug.Log(objectToFloat.transform);
+
                 Transform box = objectToFloat.transform.GetChild(i);
                 float velocity = -6f;
                 Vector3 targetposition = box.transform.position - new Vector3(0, 1, 0);
