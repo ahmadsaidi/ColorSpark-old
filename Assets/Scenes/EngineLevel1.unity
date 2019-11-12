@@ -313,32 +313,12 @@ PrefabInstance:
     - target: {fileID: 8391440084933882881, guid: 4dc91fda2ca762842af6dcf0af4b8092,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.38
+      value: -29.21
       objectReference: {fileID: 0}
     - target: {fileID: 8391440084933882881, guid: 4dc91fda2ca762842af6dcf0af4b8092,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -30.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8391440084933882881, guid: 4dc91fda2ca762842af6dcf0af4b8092,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8391440084933882881, guid: 4dc91fda2ca762842af6dcf0af4b8092,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8391440084933882881, guid: 4dc91fda2ca762842af6dcf0af4b8092,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8391440084933882881, guid: 4dc91fda2ca762842af6dcf0af4b8092,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8391440084933882881, guid: 4dc91fda2ca762842af6dcf0af4b8092,
         type: 3}
@@ -1363,6 +1343,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8833454466640541587, guid: e124488edffc28f46ad71683709b3024,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675144581134009933, guid: e124488edffc28f46ad71683709b3024,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1307873278}
+    - target: {fileID: 1675144581134009933, guid: e124488edffc28f46ad71683709b3024,
+        type: 3}
+      propertyPath: Icon
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4637717785774424525, guid: e124488edffc28f46ad71683709b3024,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
@@ -1393,11 +1388,6 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8833454466640541587, guid: e124488edffc28f46ad71683709b3024,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 9046026558571235805, guid: e124488edffc28f46ad71683709b3024,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1407,16 +1397,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675144581134009933, guid: e124488edffc28f46ad71683709b3024,
-        type: 3}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 1307873278}
-    - target: {fileID: 1675144581134009933, guid: e124488edffc28f46ad71683709b3024,
-        type: 3}
-      propertyPath: Icon
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6485563648665584910, guid: e124488edffc28f46ad71683709b3024,
         type: 3}
