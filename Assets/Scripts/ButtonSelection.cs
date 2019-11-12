@@ -22,7 +22,7 @@ public class ButtonSelection : MonoBehaviour
         float r = Input.GetAxis("Vertical");
         bool w = Input.GetKeyDown("w");
         bool s = Input.GetKeyDown("s");
-        if ((s || w || Mathf.Abs(r) > 0.5 )&& waitTime =< 0)
+        if ((s || w || Mathf.Abs(r) > 0.5 )&& waitTime <= 0)
         {
             if (r < 0 || s)
             {
