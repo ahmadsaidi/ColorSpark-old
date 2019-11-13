@@ -35,14 +35,14 @@ public class MusicManager : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "TUTbluePU" || SceneManager.GetActiveScene().name == "TUTredPU" || 
             SceneManager.GetActiveScene().name == "TUTgreemPU" || SceneManager.GetActiveScene().name == "TUTyellowPU"||
-           SceneManager.GetActiveScene().name == "powerEngineTut")
+           SceneManager.GetActiveScene().name == "powerEngineTut" || SceneManager.GetActiveScene().name == "basicTut")
         {
             music.clip = tut;
             music.Play();
 
         }
 
-        if (SceneManager.GetActiveScene().name == "EngineLevel2" || SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "EngineLevel1")
+        if (SceneManager.GetActiveScene().name == "EngineLevel2" || SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "EngineLevel1"|| SceneManager.GetActiveScene().name == "LvNoEngine")
        
         {
             music.clip = puzzle1;

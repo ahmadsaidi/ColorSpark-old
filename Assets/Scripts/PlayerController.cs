@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour
             for (int i = 0; i < hitColliders.Length; i++)
             {
                 Debug.Log(hitColliders[i]);
-                if (hitColliders[i].tag == "blast" || hitColliders[i].tag == "move")
+                if (hitColliders[i].tag == "blast")
                 {
                     
                     Destroy(hitColliders[i].gameObject);
