@@ -21,7 +21,7 @@ public class basictut : MonoBehaviour
         "Pick up blue spark (walk through)",
         "Pick up red spark (walk through)",
         "Pick up green spark (walk through)",
-        "Pass the portal(RB) & Play around\n Press start for next level"
+        "Pass the portal(RB) & Play around\n Press Y for next level"
     };
     private int stage = 0; 
     
@@ -103,9 +103,9 @@ public class basictut : MonoBehaviour
             instruction.text = "move around & drop the box (X)";
         }
         
-        if (stage == 2 && Input.GetButtonDown("Restart")){
+        if (stage == 2 && Input.GetButtonDown("Carry")){
             Debug.Log("NEXT");
-            gm.NextLevel();
+            gm.WinLevel();
         }
     }
 }

@@ -13,10 +13,10 @@ public class powerengine_tut : MonoBehaviour
     public GameObject blueEngine;
     private GameObject robot;
     public string[] stageInstructions = {"Get Blue Spark," +
-                                          "Put spark on engine(Press B )",
-                                         "Use Predefiend Teleports(RB)",
+                                          "Put spark on engine(Press B)",
+                                         "Use Predefined Teleports(RB)",
                                          "Put Green Spark on Engine " + "Build the bridge",
-                                         "Get Back to engine1 and Get Spark Again(Press A)" ,
+                                         "Get Back to engine1 and Get Spark Again(Press X)" ,
                                           "Put Red Spark on Engine1"};
 
     private engineController cs0;

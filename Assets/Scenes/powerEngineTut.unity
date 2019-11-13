@@ -722,10 +722,10 @@ MonoBehaviour:
   stageInstructions:
   - Get Blue Spark
   - Put spark on engine(B)
-  - Use Predefiend Teleports(RB)
-  - Put Green Spark on Engine to Build Things
-  - Get Blue Spark Back(Press A)
-  - Put Red Spark On Engine1  to Float
+  - Use Predefined Teleports(RB)
+  - Put Green Spark on Engine to Build a Bridge
+  - Get Blue Spark Back(Press X)
+  - Put Red Spark On Engine1  to Float Boxes
   - Reach the gate
 --- !u!4 &201502851 stripped
 Transform:

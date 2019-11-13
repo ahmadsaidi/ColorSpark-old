@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public void StartPuzzle()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("LvNoEngine");
     }
 
     public void LoseGame()
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
             WinGame();
         } else
         {
-            if (PlayerData.Level >= 7)
+            if (PlayerData.Level >= 4)
             {
                 SceneManager.LoadScene("LevelComplete");
             } else
