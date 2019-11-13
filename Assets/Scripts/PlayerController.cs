@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour
             var hitColliders = Physics.OverlapSphere(transform.position, 5);
             if ( hitColliders.Length  < 4)
             {
-                Vector3 forward = transform.TransformDirection(Vector3.forward);
+                Vector3 forward = transform.TransformDirection(Vector3.left);
                 forward = new Vector3(3 * forward.z, 2, -3 * forward.x);
                 carryThing.transform.position = transform.position + forward;
                 carry = false;
