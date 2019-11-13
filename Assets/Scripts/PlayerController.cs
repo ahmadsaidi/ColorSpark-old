@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     GameManager gm;
     MusicManager mm;
     float currVerRot = 0;
+    float currHorRot = 0;
     public Transform axel;
     Animator animator;
     bool stationary = true;
@@ -113,8 +114,26 @@ public class PlayerController : MonoBehaviour
             currVerRot = 0;
         }
 
+        if (rotationh != 0 && (currHorRot < 90 && currHorRot > -90))
+        {
+            currHorRot += rotationh;
+            led.transform.Rotate(0, rotationh, 0);
+        }
+        else if (rotationh == 0 && (currHorRot > 0.01 || currHorRot < -0.01))
+        {
+            led.transform.Rotate(0, -currHorRot / 10, 0);
+            currHorRot -= currHorRot / 10;
+        }
+        else if (rotationh == 0 && currHorRot < 0.01 && currHorRot > -0.01)
+        {
+            led.transform.Rotate(0, -currHorRot, 0);
+            currHorRot = 0;
+        }
 
-            if (Input.GetButtonDown("Fire1") && jump == true && paused == false)
+
+
+
+        if (Input.GetButtonDown("Fire1") && jump == true && paused == false)
         {
             // red for high jump
             //if (color == Color.red) {
