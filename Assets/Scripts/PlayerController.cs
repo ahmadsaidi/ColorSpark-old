@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public Transform axel;
     Animator animator;
     bool stationary = true;
+    public Transform cameraAnchor;
     //public WheelCollider leftwheel;
     //public WheelCollider rightwheel;
 
@@ -106,30 +107,30 @@ public class PlayerController : MonoBehaviour
         if (rotationv != 0 && (currVerRot < 10 && currVerRot > -10))
         {
             currVerRot += rotationv;
-            led.transform.Rotate(rotationv, 0, 0);
+            cameraAnchor.transform.Rotate(rotationv, 0, 0);
         } else if (rotationv == 0 && (currVerRot > 0.01 || currVerRot < -0.01))
         {
-            led.transform.Rotate(-currVerRot/10, 0, 0);
+            cameraAnchor.transform.Rotate(-currVerRot/10, 0, 0);
             currVerRot -= currVerRot / 10;
         } else if (rotationv == 0 && currVerRot < 0.01 && currVerRot > -0.01)
         {
-            led.transform.Rotate(-currVerRot, 0, 0);
+            cameraAnchor.transform.Rotate(-currVerRot, 0, 0);
             currVerRot = 0;
         }
 
         if (rotationh != 0 && (currHorRot < 90 && currHorRot > -90))
         {
             currHorRot += rotationh;
-            led.transform.Rotate(0, rotationh, 0);
+            cameraAnchor.transform.Rotate(0, rotationh, 0);
         }
         else if (rotationh == 0 && (currHorRot > 0.01 || currHorRot < -0.01))
         {
-            led.transform.Rotate(0, -currHorRot / 10, 0);
+            cameraAnchor.transform.Rotate(0, -currHorRot / 10, 0);
             currHorRot -= currHorRot / 10;
         }
         else if (rotationh == 0 && currHorRot < 0.01 && currHorRot > -0.01)
         {
-            led.transform.Rotate(0, -currHorRot, 0);
+            cameraAnchor.transform.Rotate(0, -currHorRot, 0);
             currHorRot = 0;
         }
 
