@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         float rotationh = Input.GetAxis("Camera Horizontal") * rotationSpeed;
 
         //float motor = translationx*100;
-        //axel.Rotate(0,0, -0.1f * translationx);
+        axel.Rotate(0,0, -0.1f * translationx);
         translationx *= Time.deltaTime;
         rotationv *= Time.deltaTime;
         rotationh *= Time.deltaTime;
