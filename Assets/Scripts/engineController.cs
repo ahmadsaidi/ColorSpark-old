@@ -209,8 +209,10 @@ public class engineController : MonoBehaviour
                 main.GetComponent<cameraCollision>().focus = true;
                 Quaternion torobot = main.transform.rotation;
 
-                main.transform.position = bridge.transform.position + new Vector3(10, 2, 0);
-                main.transform.LookAt(bridge.transform.position);
+                main.transform.position = bridge.transform.position;
+                Camera bridgeCam = bridge.GetComponent<Camera>();
+                bridgeCam.enabled = true;
+                main.GetComponent<Camera>().enabled = false;
                 for (int i = 0; i < bridge.transform.childCount; i++)
                 {
 
@@ -219,6 +221,8 @@ public class engineController : MonoBehaviour
                     yield return new WaitForSeconds(1f);
 
                 }
+                main.GetComponent<Camera>().enabled = true;
+                bridgeCam.enabled = false;
                 main.GetComponent<cameraCollision>().focus = false;
                 main.transform.rotation = torobot;
                 player.GetComponent<PlayerController>().enabled = true;
