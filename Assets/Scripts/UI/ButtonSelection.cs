@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ButtonSelection : MonoBehaviour
 {
     public List<Button> selections;
-    float waitTime = 0.25f;
+    float waitTime = 0.4f;
     int curr = 0;
     // Start is called before the first frame update
     void Start()
