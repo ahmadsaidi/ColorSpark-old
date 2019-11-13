@@ -1023,7 +1023,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Finish the level
+  m_Text: Level Complete!
 --- !u!222 &1458536329
 CanvasRenderer:
   m_ObjectHideFlags: 0
