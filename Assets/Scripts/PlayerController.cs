@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public bool carry = false;
     public GameObject pauseMenu;
     public RobotIcon Icon;
+    public GameObject wheel1;
+    public GameObject wheel2;
     bool paused = false;
     GameObject carryThing;
     GameManager gm;
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
         rotationv *= Time.deltaTime;
         rotationh *= Time.deltaTime;
         rotation *= Time.deltaTime;
+        led.transform.position = led.transform.parent.transform.position;
 
 
         transform.Translate(0 , 0, translationx);
@@ -460,8 +463,12 @@ public class PlayerController : MonoBehaviour
 
     void ChangeColor(Color color)
      {
-        led.color = color;
-      }
+        //led.color = color;
+        Material mymat1 = wheel1.GetComponent<Renderer>().material;
+        mymat1.SetColor("_EmissionColor", color);
+        Material mymat2 = wheel2.GetComponent<Renderer>().material;
+        mymat2.SetColor("_EmissionColor", color);
+    }
 
 
 

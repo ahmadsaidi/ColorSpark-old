@@ -3323,6 +3323,8 @@ MonoBehaviour:
   carry: 0
   pauseMenu: {fileID: 0}
   Icon: {fileID: 0}
+  wheel1: {fileID: 7249106094869338836}
+  wheel2: {fileID: 7249106094881875516}
   axel: {fileID: 0}
 --- !u!114 &7249106094416459379
 MonoBehaviour:
