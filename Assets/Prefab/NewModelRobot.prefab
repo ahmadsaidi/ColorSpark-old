@@ -3355,6 +3355,7 @@ MonoBehaviour:
   wheel2: {fileID: 7249106094881875516}
   axel: {fileID: 624642053119917695}
   cameraAnchor: {fileID: 9185331725806151649}
+  acceleration: 0
 --- !u!114 &7249106094416459379
 MonoBehaviour:
   m_ObjectHideFlags: 0
