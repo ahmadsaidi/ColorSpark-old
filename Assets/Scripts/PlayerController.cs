@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     bool stationary = true;
     public Transform cameraAnchor;
+    private float curspeed ;
+    public float acceleration ;
     //public WheelCollider leftwheel;
     //public WheelCollider rightwheel;
 
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         speed = 40;
+        curspeed = 0f;
+        acceleration = 1f;
         rotationSpeed = 75;
         rb.freezeRotation = true;
         powerups = rb.gameObject.GetComponent<PowerUps>();
@@ -59,7 +63,25 @@ public class PlayerController : MonoBehaviour
             gm.LoseGame();
 
         }
-        float translationx = Input.GetAxis("Vertical") * speed;
+        if (Input.GetAxis("Vertical") != 0)
+        {
+     
+            curspeed += acceleration;
+
+            if (curspeed > speed)
+            {
+                curspeed = speed;
+            }
+
+
+        }
+        else if (curspeed != 0)
+        {
+            curspeed -= acceleration;
+        }
+
+
+        float translationx = Input.GetAxis("Vertical") * curspeed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
         float rotationv = Input.GetAxis("Camera Vertical") * rotationSpeed;
         float rotationh = Input.GetAxis("Camera Horizontal") * rotationSpeed;
@@ -70,7 +92,7 @@ public class PlayerController : MonoBehaviour
         rotationv *= Time.deltaTime;
         rotationh *= Time.deltaTime;
         rotation *= Time.deltaTime;
-        led.transform.position = led.transform.parent.transform.position;
+        //led.transform.position = led.transform.parent.transform.position;
 
 
         transform.Translate(0 , 0, translationx);
