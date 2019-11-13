@@ -140,7 +140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2334091723744808676}
   m_LocalRotation: {x: -0.00061076647, y: -0.9999107, z: -0.013351338, w: -0.000008155278}
-  m_LocalPosition: {x: -0.052, y: 0.756, z: 0.008}
+  m_LocalPosition: {x: -0.052, y: 0.77, z: 0.008}
   m_LocalScale: {x: 0.061905112, y: 0.06190498, z: 0.061905067}
   m_Children: []
   m_Father: {fileID: 7249106094881124902}
@@ -155,7 +155,7 @@ Light:
   m_GameObject: {fileID: 2334091723744808676}
   m_Enabled: 0
   serializedVersion: 9
-  m_Type: 2
+  m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 100
   m_Range: 1.5
@@ -3346,7 +3346,7 @@ MonoBehaviour:
   rotationSpeed: 0
   jumpspeed: 700000
   color: {r: 1, g: 1, b: 1, a: 1}
-  led: {fileID: 7844265805135796065}
+  led: {fileID: 0}
   tilePickupAudio: {fileID: 0}
   carry: 0
   pauseMenu: {fileID: 0}
