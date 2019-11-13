@@ -140,7 +140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2334091723744808676}
   m_LocalRotation: {x: -0.00061076647, y: -0.9999107, z: -0.013351338, w: -0.000008155278}
-  m_LocalPosition: {x: -0.37058744, y: 0.61010426, z: 0.10145699}
+  m_LocalPosition: {x: -0.052, y: 0.756, z: 0.008}
   m_LocalScale: {x: 0.061905112, y: 0.06190498, z: 0.061905067}
   m_Children:
   - {fileID: 3548589692613603615}
@@ -3203,8 +3203,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.42566484, y: 0.74694455, z: 0.36280245}
+  m_Center: {x: 0.024523497, y: 0.3782662, z: 0.0021704435}
 --- !u!82 &7249106094416459381
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3318,7 +3318,7 @@ MonoBehaviour:
   rotationSpeed: 0
   jumpspeed: 700000
   color: {r: 1, g: 1, b: 1, a: 1}
-  led: {fileID: 0}
+  led: {fileID: 7844265805135796065}
   tilePickupAudio: {fileID: 0}
   carry: 0
   pauseMenu: {fileID: 0}
