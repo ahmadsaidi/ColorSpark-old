@@ -29,7 +29,7 @@ public class basictut : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        robot = GameObject.Find("Robot+LED");
+        robot = GameObject.Find("NewModelRobot");
         pc = robot.GetComponent<PlayerController>();
         gm = FindObjectOfType<GameManager>();
 

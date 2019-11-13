@@ -35,18 +35,14 @@ public class MusicManager : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "TUTbluePU" || SceneManager.GetActiveScene().name == "TUTredPU" || 
             SceneManager.GetActiveScene().name == "TUTgreemPU" || SceneManager.GetActiveScene().name == "TUTyellowPU"||
-           SceneManager.GetActiveScene().name == "powerEngineTut")
+           SceneManager.GetActiveScene().name == "powerEngineTut" || SceneManager.GetActiveScene().name == "basicTut")
         {
             music.clip = tut;
             music.Play();
 
         }
 
-<<<<<<< HEAD
-        if (SceneManager.GetActiveScene().name == "Map1"|| SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "EngineLevel1"||SceneManager.GetActiveScene().name == "basicTut")
-=======
-        if (SceneManager.GetActiveScene().name == "EngineLevel2" || SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "EngineLevel1")
->>>>>>> f35bb01fae0f629224c29e5ca7f3713600a43cc7
+        if (SceneManager.GetActiveScene().name == "EngineLevel2" || SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "EngineLevel1"|| SceneManager.GetActiveScene().name == "LvNoEngine")
        
         {
             music.clip = puzzle1;
