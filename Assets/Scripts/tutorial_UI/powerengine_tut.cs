@@ -48,7 +48,7 @@ public class powerengine_tut : MonoBehaviour
             stage = 1;
         }
 
-        if (cs0.color != Color.white && stage < 2) {
+        if (cs0.color == Color.blue && stage < 2) {
             stage = 2;
         }
 
@@ -58,7 +58,7 @@ public class powerengine_tut : MonoBehaviour
 
         }
 
-        if (cs1.color != Color.white && stage < 4)
+        if (cs1.color == Color.green && stage < 4)
         {
             stage = 4;
 

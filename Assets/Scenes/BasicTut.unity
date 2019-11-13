@@ -902,9 +902,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 9eacaa14c786f044eaf048d4945e44d6, type: 3}
+    m_Font: {fileID: 12800000, guid: 937246d602be6884f95925b959290ce0, type: 3}
     m_FontSize: 18
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -2511,15 +2511,15 @@ PrefabInstance:
       propertyPath: wheel1
       value: 
       objectReference: {fileID: 271851761}
+    - target: {fileID: 7249106094416459380, guid: d7ec5d77a1a03224fae71922eda3e388,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1307873278}
     - target: {fileID: 7249106094416459374, guid: d7ec5d77a1a03224fae71922eda3e388,
         type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7249106094782919307, guid: d7ec5d77a1a03224fae71922eda3e388,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 2334091723744808676, guid: d7ec5d77a1a03224fae71922eda3e388,
         type: 3}
@@ -2530,6 +2530,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249106094782919307, guid: d7ec5d77a1a03224fae71922eda3e388,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7ec5d77a1a03224fae71922eda3e388, type: 3}
