@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour
     public Transform axel;
     Animator animator;
     bool stationary = true;
-    public Transform cameraAnchor;
+    public Transform cameraAnchorV;
+    public Transform cameraAnchorH;
     private float curspeed ;
     public float acceleration ;
     //public WheelCollider leftwheel;
@@ -129,30 +130,30 @@ public class PlayerController : MonoBehaviour
         if (rotationv != 0 && (currVerRot < 10 && currVerRot > -10))
         {
             currVerRot += rotationv;
-            cameraAnchor.transform.Rotate(rotationv, 0, 0);
+            cameraAnchorV.transform.Rotate(rotationv, 0, 0.0f);
         } else if (rotationv == 0 && (currVerRot > 0.01 || currVerRot < -0.01))
         {
-            cameraAnchor.transform.Rotate(-currVerRot/10, 0, 0);
+            cameraAnchorV.transform.Rotate(-currVerRot/10, 0, 0.0f);
             currVerRot -= currVerRot / 10;
-        } else if (rotationv == 0 && currVerRot < 0.01 && currVerRot > -0.01)
+        } else if (rotationv == 0 && currVerRot < 0.1 && currVerRot > -0.1)
         {
-            cameraAnchor.transform.Rotate(-currVerRot, 0, 0);
+            cameraAnchorV.transform.Rotate(-currVerRot, 0, 0.0f);
             currVerRot = 0;
         }
 
         if (rotationh != 0 && (currHorRot < 90 && currHorRot > -90))
         {
             currHorRot += rotationh;
-            cameraAnchor.transform.Rotate(0, rotationh, 0);
+            cameraAnchorH.transform.Rotate(0, rotationh, 0.0f);
         }
         else if (rotationh == 0 && (currHorRot > 0.01 || currHorRot < -0.01))
         {
-            cameraAnchor.transform.Rotate(0, -currHorRot / 10, 0);
+            cameraAnchorH.transform.Rotate(0, -currHorRot / 10, 0.0f);
             currHorRot -= currHorRot / 10;
         }
-        else if (rotationh == 0 && currHorRot < 0.01 && currHorRot > -0.01)
+        else if (rotationh == 0 && currHorRot < 0.1 && currHorRot > -0.1)
         {
-            cameraAnchor.transform.Rotate(0, -currHorRot, 0);
+            cameraAnchorH.transform.Rotate(0, -currHorRot, 0.0f);
             currHorRot = 0;
         }
 
