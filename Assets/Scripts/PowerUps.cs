@@ -190,7 +190,7 @@ public class PowerUps : MonoBehaviour
 
                     if (intersecting[j].tag == "green")
                     {
-                        intersecting[0].gameObject.SetActive(false);
+                        intersecting[j].gameObject.SetActive(false);
                         pc.greenPower();
                         gc.white();
                         count_green--;
@@ -200,7 +200,7 @@ public class PowerUps : MonoBehaviour
 
                     if (intersecting[j].tag == "red")
                     {
-                        intersecting[0].gameObject.SetActive(false);
+                        intersecting[j].gameObject.SetActive(false);
                         pc.redPower();
                         gc.white(); 
                         count_red--;
@@ -210,7 +210,7 @@ public class PowerUps : MonoBehaviour
 
                     if (intersecting[j].tag == "blue")
                     {
-                        intersecting[0].gameObject.SetActive(false);
+                        intersecting[j].gameObject.SetActive(false);
                         pc.bluePower();
                         GameObject Boxes = gc.objectToFloat;
                         gc.white();
