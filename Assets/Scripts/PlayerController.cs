@@ -56,17 +56,21 @@ public class PlayerController : MonoBehaviour
 
         }
         float translationx = Input.GetAxis("Vertical") * speed;
-        float rotationv = Input.GetAxis("Camera Vertical") * rotationSpeed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
+        float rotationv = Input.GetAxis("Camera Vertical") * rotationSpeed;
+        float rotationh = Input.GetAxis("Camera Horizontal") * rotationSpeed;
+
         //float motor = translationx*100;
         axel.Rotate(0,0, -0.1f * translationx);
         translationx *= Time.deltaTime;
         rotationv *= Time.deltaTime;
+        rotationh *= Time.deltaTime;
         rotation *= Time.deltaTime;
 
 
-        transform.Translate(translationx, 0, 0);
-        
+        transform.Translate(0 , 0, translationx);
+        transform.Rotate(0, rotation, 0);
+
         if (stationary && translationx != 0)
         {
             if (speed == 80)
@@ -93,7 +97,7 @@ public class PlayerController : MonoBehaviour
         //leftwheel.motorTorque = motor;
         //rightwheel.motorTorque = motor;
 
-        transform.Rotate(0, rotation, 0);
+        
 
         if (rotationv != 0 && (currVerRot < 10 && currVerRot > -10))
         {
