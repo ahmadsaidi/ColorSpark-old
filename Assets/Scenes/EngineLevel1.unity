@@ -1609,12 +1609,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e124488edffc28f46ad71683709b3024, type: 3}
---- !u!4 &294082616 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4176123625421164320, guid: e124488edffc28f46ad71683709b3024,
-    type: 3}
-  m_PrefabInstance: {fileID: 294082615}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &301658058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8654,10 +8648,5 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1307873278}
-    - target: {fileID: 7249106094416459380, guid: d7ec5d77a1a03224fae71922eda3e388,
-        type: 3}
-      propertyPath: axel
-      value: 
-      objectReference: {fileID: 294082616}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7ec5d77a1a03224fae71922eda3e388, type: 3}
