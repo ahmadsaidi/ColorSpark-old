@@ -33,7 +33,7 @@ public class powerengine_tut : MonoBehaviour
         cs0  = blueEngine.GetComponent<engineController>();
         cs1  = greenEngine.GetComponent<engineController>();
         //cs2  = redEngine.GetComponent<engineController>();
-        robot = GameObject.Find("Robot+LED");
+        robot = GameObject.Find("NewModelRobot");
         stage = 0;
         pc = robot.GetComponent<PlayerController>();
     }
