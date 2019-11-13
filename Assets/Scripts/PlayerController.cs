@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             // get forward direciton
-            Vector3 forward = transform.TransformDirection (Vector3.forward);
+            Vector3 forward = transform.TransformDirection (Vector3.left);
             forward = new Vector3(5*forward.z, 8, -5*forward.x);
             powerups.Createbox(transform.position + forward, color);
             
