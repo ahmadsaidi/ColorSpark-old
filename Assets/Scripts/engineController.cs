@@ -10,6 +10,7 @@ public class engineController : MonoBehaviour
     public GameObject yellowbox2;
     public GameObject bridge;
     public GameObject objectToFloat;
+    public GameObject floatCamera;
     public int floatHeight;
     public Color color;
     Vector3 begining ;
@@ -125,14 +126,14 @@ public class engineController : MonoBehaviour
             IEnumerator startFloat()
             {
 
-                //player.GetComponent<PlayerController>().enabled = false;
+                player.GetComponent<PlayerController>().enabled = false;
 
-                //main.GetComponent<cameraCollision>().focus = true;
-                //Quaternion torobot = main.transform.rotation;
+                main.GetComponent<cameraCollision>().focus = true;
 
+                floatCamera.SetActive(true);
+                main.GetComponent<Camera>().enabled = false;
                 Transform box = objectToFloat.transform.GetChild(0);
-                //main.transform.position = box.position + new Vector3(20, 3, 0);
-                //main.transform.LookAt(box.position);
+
                 if (color == Color.red && objectToFloat)
                 {
                     //fall = false;
@@ -141,9 +142,10 @@ public class engineController : MonoBehaviour
                 }
                 yield return new WaitForSeconds(3f);
 
-                //main.GetComponent<cameraCollision>().focus = false;
-                //main.transform.rotation = torobot;
-                //player.GetComponent<PlayerController>().enabled = true;
+                main.GetComponent<Camera>().enabled = true;
+                floatCamera.SetActive(false);
+                main.GetComponent<cameraCollision>().focus = false;
+                player.GetComponent<PlayerController>().enabled = true;
             }
 
             Icon.GetComponent<Image>().color = Color.white;
@@ -207,10 +209,10 @@ public class engineController : MonoBehaviour
                 player.GetComponent<PlayerController>().enabled = false;
 
                 main.GetComponent<cameraCollision>().focus = true;
-                Quaternion torobot = main.transform.rotation;
-
-                main.transform.position = bridge.transform.position + new Vector3(10, 2, 0);
-                main.transform.LookAt(bridge.transform.position);
+                
+                Camera bridgeCam = bridge.GetComponent<Camera>();
+                bridgeCam.enabled = true;
+                main.GetComponent<Camera>().enabled = false;
                 for (int i = 0; i < bridge.transform.childCount; i++)
                 {
 
@@ -219,8 +221,9 @@ public class engineController : MonoBehaviour
                     yield return new WaitForSeconds(1f);
 
                 }
+                main.GetComponent<Camera>().enabled = true;
+                bridgeCam.enabled = false;
                 main.GetComponent<cameraCollision>().focus = false;
-                main.transform.rotation = torobot;
                 player.GetComponent<PlayerController>().enabled = true;
 
             }

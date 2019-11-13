@@ -20,14 +20,20 @@ public class PlayerController : MonoBehaviour
     public bool carry = false;
     public GameObject pauseMenu;
     public RobotIcon Icon;
+    public GameObject wheel1;
+    public GameObject wheel2;
     bool paused = false;
     GameObject carryThing;
     GameManager gm;
     MusicManager mm;
     float currVerRot = 0;
+    float currHorRot = 0;
     public Transform axel;
     Animator animator;
     bool stationary = true;
+    public Transform cameraAnchor;
+    private float curspeed ;
+    public float acceleration ;
     //public WheelCollider leftwheel;
     //public WheelCollider rightwheel;
 
@@ -37,6 +43,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         speed = 40;
+        curspeed = 0f;
+        acceleration = 1f;
         rotationSpeed = 75;
         rb.freezeRotation = true;
         powerups = rb.gameObject.GetComponent<PowerUps>();
@@ -55,18 +63,41 @@ public class PlayerController : MonoBehaviour
             gm.LoseGame();
 
         }
-        float translationx = Input.GetAxis("Vertical") * speed;
-        float rotationv = Input.GetAxis("Camera Vertical") * rotationSpeed;
+        if (Input.GetAxis("Vertical") != 0)
+        {
+     
+            curspeed += acceleration;
+
+            if (curspeed > speed)
+            {
+                curspeed = speed;
+            }
+
+
+        }
+        else if (curspeed != 0)
+        {
+            curspeed -= acceleration;
+        }
+
+
+        float translationx = Input.GetAxis("Vertical") * curspeed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
+        float rotationv = Input.GetAxis("Camera Vertical") * rotationSpeed;
+        float rotationh = Input.GetAxis("Camera Horizontal") * rotationSpeed;
+
         //float motor = translationx*100;
         axel.Rotate(0,0, -0.1f * translationx);
         translationx *= Time.deltaTime;
         rotationv *= Time.deltaTime;
+        rotationh *= Time.deltaTime;
         rotation *= Time.deltaTime;
+        //led.transform.position = led.transform.parent.transform.position;
 
 
-        transform.Translate(translationx, 0, 0);
-        
+        transform.Translate(0 , 0, translationx);
+        transform.Rotate(0, rotation, 0);
+
         if (stationary && translationx != 0)
         {
             if (speed == 80)
@@ -93,24 +124,42 @@ public class PlayerController : MonoBehaviour
         //leftwheel.motorTorque = motor;
         //rightwheel.motorTorque = motor;
 
-        transform.Rotate(0, rotation, 0);
+        
 
         if (rotationv != 0 && (currVerRot < 10 && currVerRot > -10))
         {
             currVerRot += rotationv;
-            led.transform.Rotate(rotationv, 0, 0);
+            cameraAnchor.transform.Rotate(rotationv, 0, 0);
         } else if (rotationv == 0 && (currVerRot > 0.01 || currVerRot < -0.01))
         {
-            led.transform.Rotate(-currVerRot/10, 0, 0);
+            cameraAnchor.transform.Rotate(-currVerRot/10, 0, 0);
             currVerRot -= currVerRot / 10;
         } else if (rotationv == 0 && currVerRot < 0.01 && currVerRot > -0.01)
         {
-            led.transform.Rotate(-currVerRot, 0, 0);
+            cameraAnchor.transform.Rotate(-currVerRot, 0, 0);
             currVerRot = 0;
         }
 
+        if (rotationh != 0 && (currHorRot < 90 && currHorRot > -90))
+        {
+            currHorRot += rotationh;
+            cameraAnchor.transform.Rotate(0, rotationh, 0);
+        }
+        else if (rotationh == 0 && (currHorRot > 0.01 || currHorRot < -0.01))
+        {
+            cameraAnchor.transform.Rotate(0, -currHorRot / 10, 0);
+            currHorRot -= currHorRot / 10;
+        }
+        else if (rotationh == 0 && currHorRot < 0.01 && currHorRot > -0.01)
+        {
+            cameraAnchor.transform.Rotate(0, -currHorRot, 0);
+            currHorRot = 0;
+        }
 
-            if (Input.GetButtonDown("Fire1") && jump == true && paused == false)
+
+
+
+        if (Input.GetButtonDown("Fire1") && jump == true && paused == false)
         {
             // red for high jump
             //if (color == Color.red) {
@@ -128,7 +177,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             // get forward direciton
-            Vector3 forward = transform.TransformDirection (Vector3.forward);
+            Vector3 forward = transform.TransformDirection (Vector3.left);
             forward = new Vector3(5*forward.z, 8, -5*forward.x);
             powerups.Createbox(transform.position + forward, color);
             
@@ -437,8 +486,12 @@ public class PlayerController : MonoBehaviour
 
     void ChangeColor(Color color)
      {
-        led.color = color;
-      }
+        //led.color = color;
+        Material mymat1 = wheel1.GetComponent<Renderer>().material;
+        mymat1.SetColor("_EmissionColor", color);
+        Material mymat2 = wheel2.GetComponent<Renderer>().material;
+        mymat2.SetColor("_EmissionColor", color);
+    }
 
 
 

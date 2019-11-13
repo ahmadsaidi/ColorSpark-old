@@ -42,7 +42,11 @@ public class MusicManager : MonoBehaviour
 
         }
 
+<<<<<<< HEAD
         if (SceneManager.GetActiveScene().name == "Map1"|| SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "EngineLevel1"||SceneManager.GetActiveScene().name == "basicTut")
+=======
+        if (SceneManager.GetActiveScene().name == "EngineLevel2" || SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "EngineLevel1")
+>>>>>>> f35bb01fae0f629224c29e5ca7f3713600a43cc7
        
         {
             music.clip = puzzle1;
