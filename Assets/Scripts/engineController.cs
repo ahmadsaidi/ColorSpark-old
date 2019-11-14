@@ -74,7 +74,7 @@ public class engineController : MonoBehaviour
             //Debug.Log(ending);
             if (objectToFloat.transform.GetChild(0).transform.position.y > ending.y)
             {
-                wait();
+                StartCoroutine(wait());
 
                 IEnumerator wait()
                 {
@@ -83,7 +83,7 @@ public class engineController : MonoBehaviour
 
                     yield return new WaitForSeconds(3f);
 
-                    trigger = true;
+                    trigger = color == Color.red;
                     fall = true;
                 }
 
@@ -108,14 +108,14 @@ public class engineController : MonoBehaviour
             if (objectToFloat.transform.GetChild(0).transform.position.y < begining.y)
             {
 
-                wait();
+                StartCoroutine(wait());
 
                 IEnumerator wait()
                 {
                     fall = false;
                     trigger = false;
                     yield return new WaitForSeconds(3f);
-                    trigger = true; ;
+                    trigger = color == Color.red;
                     flo = true;
 
                 }
