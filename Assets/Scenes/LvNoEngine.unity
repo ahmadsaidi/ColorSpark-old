@@ -327,7 +327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 319.00012, y: 114.29999}
+  m_AnchoredPosition: {x: 319.00012, y: 79}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &21666993
@@ -677,7 +677,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Misson
+  m_Text: Mission
 --- !u!222 &82845217
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11284,6 +11284,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 942273815}
     m_Modifications:
+    - target: {fileID: 10570469610606810, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f,
+        type: 3}
+      propertyPath: m_Name
+      value: Wall_North (8)
+      objectReference: {fileID: 0}
     - target: {fileID: 10570469937055159, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11353,11 +11358,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 80.42044
-      objectReference: {fileID: 0}
-    - target: {fileID: 10570469610606810, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f,
-        type: 3}
-      propertyPath: m_Name
-      value: Wall_North (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f, type: 3}
@@ -13199,7 +13199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979408452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 317.4, y: 4, z: 0}
+  m_LocalPosition: {x: 317.4, y: -17, z: 0}
   m_LocalScale: {x: 0.78283197, y: 0.70360595, z: 0.70360595}
   m_Children:
   - {fileID: 985827077}
@@ -14100,11 +14100,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7249106094782919307, guid: d7ec5d77a1a03224fae71922eda3e388,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.34
-      objectReference: {fileID: 0}
     - target: {fileID: 2334091723744808676, guid: d7ec5d77a1a03224fae71922eda3e388,
         type: 3}
       propertyPath: m_IsActive
@@ -14114,6 +14109,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249106094782919307, guid: d7ec5d77a1a03224fae71922eda3e388,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7ec5d77a1a03224fae71922eda3e388, type: 3}

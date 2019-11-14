@@ -763,7 +763,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Misson
+  m_Text: Mission
 --- !u!222 &82845217
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6139,6 +6139,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 273760175}
     m_Modifications:
+    - target: {fileID: 10570469610606810, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f,
+        type: 3}
+      propertyPath: m_Name
+      value: Wall_North
+      objectReference: {fileID: 0}
     - target: {fileID: 10570469937055159, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6208,11 +6213,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 70.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 10570469610606810, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f,
-        type: 3}
-      propertyPath: m_Name
-      value: Wall_North
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f, type: 3}
@@ -8696,6 +8696,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 273760175}
     m_Modifications:
+    - target: {fileID: 10570469610606810, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f,
+        type: 3}
+      propertyPath: m_Name
+      value: Wall_North (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 10570469937055159, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8765,11 +8770,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 70.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 10570469610606810, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f,
-        type: 3}
-      propertyPath: m_Name
-      value: Wall_North (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a1e5aa2eb9038a4cb662be3aed9eb2f, type: 3}
