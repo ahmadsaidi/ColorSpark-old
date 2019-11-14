@@ -34,7 +34,8 @@ public class PlayerController : MonoBehaviour
     public Transform cameraAnchorV;
     public Transform cameraAnchorH;
     private float curspeed ;
-    public float acceleration ;
+    public float acceleration;
+    float cameraSetBack = 2.5f;
     //public WheelCollider leftwheel;
     //public WheelCollider rightwheel;
 
@@ -95,7 +96,12 @@ public class PlayerController : MonoBehaviour
         rotation *= Time.deltaTime;
         //led.transform.position = led.transform.parent.transform.position;
 
-
+        if (currHorRot != 0 && translationx != 0)
+        {
+            transform.Rotate(0, currHorRot/5, 0);
+            cameraAnchorH.transform.Rotate(0, -currHorRot / 5, 0.0f);
+            currHorRot -= currHorRot / 5;
+        }
         transform.Translate(0 , 0, translationx);
         transform.Rotate(0, rotation, 0);
 
@@ -143,18 +149,22 @@ public class PlayerController : MonoBehaviour
 
         if (rotationh != 0 && (currHorRot < 90 && currHorRot > -90))
         {
-            currHorRot += rotationh;
-            cameraAnchorH.transform.Rotate(0, rotationh, 0.0f);
+            currHorRot -= rotationh;
+            cameraAnchorH.transform.Rotate(0, -rotationh, 0.0f);
+            cameraSetBack = 2.5f;
         }
-        else if (rotationh == 0 && (currHorRot > 0.01 || currHorRot < -0.01))
+        else if (rotationh == 0 && (currHorRot > 0.01 || currHorRot < -0.01) && cameraSetBack < 0)
         {
             cameraAnchorH.transform.Rotate(0, -currHorRot / 10, 0.0f);
             currHorRot -= currHorRot / 10;
         }
-        else if (rotationh == 0 && currHorRot < 0.1 && currHorRot > -0.1)
+        else if (rotationh == 0 && currHorRot < 0.1 && currHorRot > -0.1 && cameraSetBack < 0)
         {
             cameraAnchorH.transform.Rotate(0, -currHorRot, 0.0f);
             currHorRot = 0;
+        } else if (rotationh == 0)
+        {
+            cameraSetBack -= Time.deltaTime;
         }
 
 
