@@ -13,7 +13,7 @@ public class engineController : MonoBehaviour
     public GameObject floatCamera;
     public int floatHeight;
     public Color color;
-    Vector3 begining ;
+    Vector3 begining;
     Vector3 ending;
     public bool trigger = false;
 
@@ -37,13 +37,13 @@ public class engineController : MonoBehaviour
         {
 
 
-                Transform box = objectToFloat.transform.GetChild(0);
-                begining = (box.transform.position);
-                Vector3 targetposition = box.transform.position + new Vector3(0, floatHeight, 0);
-                ending = targetposition;
+            Transform box = objectToFloat.transform.GetChild(0);
+            begining = (box.transform.position);
+            Vector3 targetposition = box.transform.position + new Vector3(0, floatHeight, 0);
+            ending = targetposition;
 
-   
-  
+
+
 
 
 
@@ -74,29 +74,24 @@ public class engineController : MonoBehaviour
             //Debug.Log(ending);
             if (objectToFloat.transform.GetChild(0).transform.position.y > ending.y)
             {
-                //wait();
+                StartCoroutine(wait());
 
-                //IEnumerator wait()
-                //{
-                //    flo = false;
-                //    trigger = false;
+                IEnumerator wait()
+                {
+                    flo = false;
+                    trigger = false;
 
-                //    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(3f);
 
-                //    trigger = true;
-                //    fall = true;
-                //}
-                flo = false;
-
-                fall = true;
-
-
+                    trigger = color == Color.red;
+                    fall = true;
+                }
 
             }
 
         }
 
-        if(fall && trigger)
+        if (fall && trigger)
         {
             Transform[] ts = objectToFloat.GetComponentsInChildren<Transform>();
 
@@ -113,19 +108,17 @@ public class engineController : MonoBehaviour
             if (objectToFloat.transform.GetChild(0).transform.position.y < begining.y)
             {
 
-                //wait();
+                StartCoroutine(wait());
 
-                //IEnumerator wait()
-                //{
-                //    fall = false;
-                //    trigger = false;
-                //    yield return new WaitForSeconds(3f);
-                //    trigger = true; ;
-                //    flo = true;
+                IEnumerator wait()
+                {
+                    fall = false;
+                    trigger = false;
+                    yield return new WaitForSeconds(3f);
+                    trigger = color == Color.red;
+                    flo = true;
 
-                //}
-                fall = false;
-                flo = true;
+                }
             }
 
         }
@@ -137,7 +130,7 @@ public class engineController : MonoBehaviour
     }
 
 
-    
+
 
     public void red()
     {
@@ -198,10 +191,10 @@ public class engineController : MonoBehaviour
 
                 main.transform.position = yellowbox1.transform.position + new Vector3(15, 0, -5);
                 main.transform.LookAt(yellowbox1.transform.position);
-                yellowbox1.SetActive(true);    
+                yellowbox1.SetActive(true);
                 yield return new WaitForSeconds(1.5f);
- 
-                main.transform.position = yellowbox2.transform.position + new Vector3(15,0,-5);
+
+                main.transform.position = yellowbox2.transform.position + new Vector3(15, 0, -5);
                 main.transform.LookAt(yellowbox2.transform.position);
                 yellowbox2.SetActive(true);
                 yield return new WaitForSeconds(1.5f);
@@ -234,7 +227,7 @@ public class engineController : MonoBehaviour
                 player.GetComponent<PlayerController>().enabled = false;
 
                 main.GetComponent<cameraCollision>().focus = true;
-                
+
                 Camera bridgeCam = bridge.GetComponent<Camera>();
                 bridgeCam.enabled = true;
                 main.GetComponent<Camera>().enabled = false;
@@ -295,9 +288,9 @@ public class engineController : MonoBehaviour
         };
 
 
-        
 
-        
+
+
         color = Color.white;
         Material m = transform.gameObject.GetComponent<Renderer>().material;
         m.SetColor("_EmissionColor", Color.black);
@@ -317,5 +310,3 @@ public class engineController : MonoBehaviour
 
 
 }
-
-

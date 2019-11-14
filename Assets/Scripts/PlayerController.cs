@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     bool stationary = true;
     public Transform cameraAnchorV;
     public Transform cameraAnchorH;
-    private float curspeed ;
+    private float curspeed;
     public float acceleration;
     float cameraSetBack = 2.5f;
     //public WheelCollider leftwheel;
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetAxis("Vertical") != 0)
         {
-     
+
             curspeed += acceleration;
 
             if (curspeed > speed)
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         float rotationh = Input.GetAxis("Camera Horizontal") * rotationSpeed;
 
         //float motor = translationx*100;
-        axel.Rotate(0,0, -0.1f * translationx);
+        axel.Rotate(0, 0, -0.1f * translationx);
         translationx *= Time.deltaTime;
         rotationv *= Time.deltaTime;
         rotationh *= Time.deltaTime;
@@ -98,11 +98,11 @@ public class PlayerController : MonoBehaviour
 
         if (currHorRot != 0 && translationx != 0)
         {
-            transform.Rotate(0, currHorRot/5, 0);
+            transform.Rotate(0, currHorRot / 5, 0);
             cameraAnchorH.transform.Rotate(0, -currHorRot / 5, 0.0f);
             currHorRot -= currHorRot / 5;
         }
-        transform.Translate(0 , 0, translationx);
+        transform.Translate(0, 0, translationx);
         transform.Rotate(0, rotation, 0);
 
         if (stationary && translationx != 0)
@@ -110,7 +110,9 @@ public class PlayerController : MonoBehaviour
             if (speed == 80)
             {
                 animator.SetTrigger("startedSprinting");
-            } else {
+            }
+            else
+            {
                 animator.SetTrigger("startedWalking");
             }
         }
@@ -131,17 +133,19 @@ public class PlayerController : MonoBehaviour
         //leftwheel.motorTorque = motor;
         //rightwheel.motorTorque = motor;
 
-        
+
 
         if (rotationv != 0 && (currVerRot < 10 && currVerRot > -10))
         {
             currVerRot += rotationv;
             cameraAnchorV.transform.Rotate(rotationv, 0, 0.0f);
-        } else if (rotationv == 0 && (currVerRot > 0.01 || currVerRot < -0.01))
+        }
+        else if (rotationv == 0 && (currVerRot > 0.01 || currVerRot < -0.01))
         {
-            cameraAnchorV.transform.Rotate(-currVerRot/10, 0, 0.0f);
+            cameraAnchorV.transform.Rotate(-currVerRot / 10, 0, 0.0f);
             currVerRot -= currVerRot / 10;
-        } else if (rotationv == 0 && currVerRot < 0.1 && currVerRot > -0.1)
+        }
+        else if (rotationv == 0 && currVerRot < 0.1 && currVerRot > -0.1)
         {
             cameraAnchorV.transform.Rotate(-currVerRot, 0, 0.0f);
             currVerRot = 0;
@@ -149,8 +153,8 @@ public class PlayerController : MonoBehaviour
 
         if (rotationh != 0 && (currHorRot < 90 && currHorRot > -90))
         {
-            currHorRot -= rotationh;
-            cameraAnchorH.transform.Rotate(0, -rotationh, 0.0f);
+            currHorRot += rotationh;
+            cameraAnchorH.transform.Rotate(0, rotationh, 0.0f);
             cameraSetBack = 2.5f;
         }
         else if (rotationh == 0 && (currHorRot > 0.01 || currHorRot < -0.01) && cameraSetBack < 0)
@@ -162,7 +166,8 @@ public class PlayerController : MonoBehaviour
         {
             cameraAnchorH.transform.Rotate(0, -currHorRot, 0.0f);
             currHorRot = 0;
-        } else if (rotationh == 0)
+        }
+        else if (rotationh == 0)
         {
             cameraSetBack -= Time.deltaTime;
         }
@@ -188,12 +193,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             // get forward direciton
-
-            powerups.Createbox(transform.position , color, 0);
-            //Vector3 forward = new Vector3(0, 15, 0);
-            //powerups.Createbox(transform.position + forward, color, );
-
-
+            Vector3 forward = transform.TransformDirection(Vector3.forward);
+            forward = new Vector3(-5 * forward.x, 8, -5 * forward.z);
+            powerups.Createbox(transform.position + forward, color);
         }
 
         if (Input.GetButtonDown("Fire3"))
@@ -203,7 +205,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire3") && carry == false)
         {
-            var hitColliders = Physics.OverlapSphere(transform.position , 5);
+            var hitColliders = Physics.OverlapSphere(transform.position, 5);
 
 
             for (int i = 0; i < hitColliders.Length; i++)
@@ -218,17 +220,18 @@ public class PlayerController : MonoBehaviour
                 }
                 //tilePickupAudio.PlayOneShot(mm.blastAudio);
             }
-        } else if (Input.GetButtonDown("Fire3") && carry )
+        }
+        else if (Input.GetButtonDown("Fire3") && carry)
         {
             var hitColliders = Physics.OverlapSphere(transform.position, 5);
-            if ( hitColliders.Length  < 4)
+            if (hitColliders.Length < 5)
             {
                 Vector3 forward = transform.TransformDirection(Vector3.left);
                 forward = new Vector3(3 * forward.z, 2, -3 * forward.x);
                 carryThing.transform.position = transform.position + forward;
                 carry = false;
             }
-            
+
         }
 
         if (carry && carryThing)
@@ -241,7 +244,7 @@ public class PlayerController : MonoBehaviour
             gm.RestartLevel();
         }
 
-        if (Input.GetButtonDown("Jump") && (color == Color.red) )
+        if (Input.GetButtonDown("Jump") && (color == Color.red))
         {
             var hitColliders = Physics.OverlapSphere(transform.position, 6);
 
@@ -251,7 +254,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(hitColliders[i]);
                 if (hitColliders[i].tag == "blast")
                 {
-                    
+
                     Destroy(hitColliders[i].gameObject);
 
 
@@ -272,7 +275,7 @@ public class PlayerController : MonoBehaviour
             speed = 40;
         }
 
-        if (Input.GetButtonDown("Jump") && (color == Color.blue)  && powerups.tele_num < 2)
+        if (Input.GetButtonDown("Jump") && (color == Color.blue) && powerups.tele_num < 2)
         {
             Vector3 forward = transform.TransformDirection(Vector3.left);
             forward = new Vector3(10 * forward.z, 8, -10 * forward.x);
@@ -292,19 +295,21 @@ public class PlayerController : MonoBehaviour
             {
                 if (hitColliders[i].tag == "tele" && powerups.tele_num == 2)
                 {
-        
+
                     float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
                     float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
                     if (d1 < d2)
                     {
                         tilePickupAudio.PlayOneShot(mm.teleportAudio);
+                        Vector3 off = 2 * powerups.yellowbox2.transform.TransformDirection(Vector3.up);
 
-                        transform.position = powerups.yellowbox2.transform.position + new Vector3(2, 0, 0);
+                        transform.position = powerups.yellowbox2.transform.position + new Vector3(off.x, 0, off.z);
                     }
                     else if (d1 > d2)
                     {
                         tilePickupAudio.PlayOneShot(mm.teleportAudio);
-                        transform.position = powerups.yellowbox1.transform.position + new Vector3(2, 0, 0);
+                        Vector3 off = 2 * powerups.yellowbox1.transform.TransformDirection(Vector3.up);
+                        transform.position = powerups.yellowbox1.transform.position + new Vector3(off.x, 0, off.z);
                     }
 
 
@@ -316,8 +321,8 @@ public class PlayerController : MonoBehaviour
                     GameObject other = tc.teleport_other;
 
                     tilePickupAudio.PlayOneShot(mm.teleportAudio);
-
-                    transform.position = other.transform.position + new Vector3(2, 0, 0);
+                    Vector3 off = 2 * other.transform.TransformDirection(Vector3.up);
+                    transform.position = other.transform.position + new Vector3(off.x, 0, off.z);
 
 
 
@@ -379,17 +384,18 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         jump = true;
-    
+
         eatPower(collision);
 
 
 
 
 
-        if (collision.collider.gameObject.CompareTag("sand")) {
+        if (collision.collider.gameObject.CompareTag("sand"))
+        {
             //if (color != Color.green) {
-                jump = false;
-                StartCoroutine(dekroy(collision.collider.gameObject));
+            jump = false;
+            StartCoroutine(dekroy(collision.collider.gameObject));
             //}
         }
     }
@@ -433,7 +439,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-            
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -442,17 +448,24 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (other.gameObject.CompareTag("finish"))
+        if (other.gameObject.CompareTag("hole"))
+        {
+            gm.LoseGame();
+
+        }
+        else if (other.gameObject.CompareTag("finish"))
         {
             Debug.Log("win");
             gm.WinLevel();
         }
 
 
+        // }
+
 
     }
 
-    
+
 
     public void redPower()
     {
@@ -474,7 +487,7 @@ public class PlayerController : MonoBehaviour
         Icon.GetComponent<Image>().sprite = Icon.Teleport;
     }
 
-    public  void greenPower()
+    public void greenPower()
     {
         tilePickupAudio.PlayOneShot(mm.greenAudio);
         ChangeColor(Color.green);
@@ -492,7 +505,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void ChangeColor(Color color)
-     {
+    {
         //led.color = color;
         Material mymat1 = wheel1.GetComponent<Renderer>().material;
         mymat1.SetColor("_EmissionColor", color);
@@ -504,7 +517,7 @@ public class PlayerController : MonoBehaviour
 
     void eatPower(Collision item)
     {
-        if ((item.gameObject.CompareTag("green")) || (item.gameObject.CompareTag("blue"))|| 
+        if ((item.gameObject.CompareTag("green")) || (item.gameObject.CompareTag("blue")) ||
             (item.gameObject.CompareTag("red")) || (item.gameObject.CompareTag("yellow")))
         {
             bool check = item.gameObject.GetComponent<SparkController>().eat;
@@ -514,47 +527,28 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(color != Color.white)
+
+        if (item.gameObject.CompareTag("green") && color == Color.white)
         {
-            return;
-        }
-
-
-        if ( item.gameObject.CompareTag("green") )
-        {
-             item.gameObject.SetActive(false);
-            if (color != Color.white)
-            {
-                //powerups.Createbox(transform.position, color, 1);
-            }
-            greenPower();
-             powerups.count_green--;
-
-        }
-
-        else if ((item.gameObject.CompareTag("blue") ))
-        {
-             item.gameObject.SetActive(false);
-            if (color != Color.white)
-            {
-                //powerups.Createbox(transform.position,color, 1);
-            }
-            bluePower();
-             powerups.count_blue--;
-
-
-        }
-        else if (item.gameObject.CompareTag("red")  )
-        {
-            
             item.gameObject.SetActive(false);
-            if (color != Color.white)
-            {
-                //powerups.Createbox(transform.position, color, 1);
-            }
+            greenPower();
+            powerups.count_green--;
+
+        }
+
+        else if ((item.gameObject.CompareTag("blue") && color == Color.white))
+        {
+            item.gameObject.SetActive(false);
+            bluePower();
+            powerups.count_blue--;
+
+        }
+        else if (item.gameObject.CompareTag("red") && color == Color.white)
+        {
+
+            item.gameObject.SetActive(false);
             redPower();
             powerups.count_red--;
-
 
         }
 
@@ -566,7 +560,4 @@ public class PlayerController : MonoBehaviour
     }
 
 }
-        
-     
- 
 
