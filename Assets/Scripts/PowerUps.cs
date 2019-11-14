@@ -44,47 +44,23 @@ public class PowerUps : MonoBehaviour
         }
         
         var hitColliders = Physics.OverlapSphere(position, 6);
-        if (hitColliders.Length  <=2)
+        Vector3 forward = pc.transform.TransformDirection(Vector3.forward);
+        var hitCollidersFront = Physics.OverlapSphere(position + 10*new Vector3(forward.x,0, forward.z), 6);
+        bool foundEngine = false;
+        if (hitCollidersFront.Length > 2)
         {
-            
-
-            
-            if (color == Color.blue && count_blue < 1)
-            {
-                Instantiate(bluespark, position, Quaternion.identity);
-                count_blue++;
-                pc.whitePower();
-            }
-            if (color == Color.red && count_red < 1)
-            {
-                Instantiate(redspark, position, Quaternion.identity);
-                count_red++;
-                pc.whitePower();
-            }
-            if (color == Color.green && count_green <1)
-            {
-                Instantiate(greenspark, position, Quaternion.identity);
-                count_green++;
-                pc.whitePower();
-            }
-
-        }
-        else
-        {
-            for (int i = 0; i < hitColliders.Length; i++)
+            for (int i = 0; i < hitCollidersFront.Length; i++)
             {
 
-                if (hitColliders[i].tag == "engine")
+                if (hitCollidersFront[i].tag == "engine")
                 {
-                    Vector3 newpos = hitColliders[i].transform.position + new Vector3(0, 10, 0);
-                    engineController gc = hitColliders[i].GetComponent<engineController>();
+                    Vector3 newpos = hitCollidersFront[i].transform.position + new Vector3(0, 10, 0);
+                    engineController gc = hitCollidersFront[i].GetComponent<engineController>();
                     if (gc.color != Color.white)
                     {
-                        return;
+                        break;
                     }
-
-                    
-
+                    foundEngine = true;
                     if (color == Color.blue && count_blue < 1)
                     {
                         GameObject spark = Instantiate(bluespark, newpos, Quaternion.identity);
@@ -109,7 +85,7 @@ public class PowerUps : MonoBehaviour
                     if (color == Color.red && count_red < 1)
                     {
                         GameObject spark = Instantiate(redspark, newpos, Quaternion.identity);
-                        spark.transform.parent = hitColliders[i].gameObject.transform;
+                        spark.transform.parent = hitCollidersFront[i].gameObject.transform;
                         spark.GetComponent<SparkController>().eat = false;
                         count_red++;
                         //engine_color = Color.red;
@@ -131,18 +107,41 @@ public class PowerUps : MonoBehaviour
                         tilePickupAudio.PlayOneShot(mm.spark_to_engine);
                     }
 
-                   
+
                 }
 
                 // scripts for TUT1 
-                if (hitColliders[i].name == "mission")
+                if (hitCollidersFront[i].name == "mission")
                 {
-                    Vector3 newpos = hitColliders[i].transform.position + new Vector3(0, 10, 0);
-                    if (color == Color.blue){
+                    Vector3 newpos = hitCollidersFront[i].transform.position + new Vector3(0, 10, 0);
+                    if (color == Color.blue)
+                    {
                         GameManager gm = FindObjectOfType<GameManager>();
                         gm.WinLevel();
                     }
                 }
+            }
+        }
+
+        if (hitColliders.Length <= 2 && !foundEngine)
+        {
+            if (color == Color.blue && count_blue < 1)
+            {
+                GameObject spark = Instantiate(bluespark, position, Quaternion.identity);
+                count_blue++;
+                pc.whitePower();
+            }
+            if (color == Color.red && count_red < 1)
+            {
+                Instantiate(redspark, position, Quaternion.identity);
+                count_red++;
+                pc.whitePower();
+            }
+            if (color == Color.green && count_green < 1)
+            {
+                Instantiate(greenspark, position, Quaternion.identity);
+                count_green++;
+                pc.whitePower();
             }
         }
 
