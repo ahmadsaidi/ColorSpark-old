@@ -288,12 +288,12 @@ public class PlayerController : MonoBehaviour
                     {
                         tilePickupAudio.PlayOneShot(mm.teleportAudio);
 
-                        transform.position = powerups.yellowbox2.transform.position + new Vector3(-2, 0, 0);
+                        transform.position = powerups.yellowbox2.transform.position + new Vector3(2, 0, 0);
                     }
                     else if (d1 > d2)
                     {
                         tilePickupAudio.PlayOneShot(mm.teleportAudio);
-                        transform.position = powerups.yellowbox1.transform.position + new Vector3(-2, 0, 0);
+                        transform.position = powerups.yellowbox1.transform.position + new Vector3(2, 0, 0);
                     }
 
 
@@ -306,7 +306,7 @@ public class PlayerController : MonoBehaviour
 
                     tilePickupAudio.PlayOneShot(mm.teleportAudio);
 
-                    transform.position = other.transform.position + new Vector3(-2, 0, 0);
+                    transform.position = other.transform.position + new Vector3(2, 0, 0);
 
 
 

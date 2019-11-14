@@ -58,7 +58,6 @@ public class engineController : MonoBehaviour
     void Update()
     {
         if (flo && trigger)
-        //if (flo && count < 2000 && trigger)
         {
 
 
@@ -75,8 +74,18 @@ public class engineController : MonoBehaviour
             //Debug.Log(ending);
             if (objectToFloat.transform.GetChild(0).transform.position.y > ending.y)
             {
-                flo = false;
-                fall = true;
+                wait();
+
+                IEnumerator wait()
+                {
+                    flo = false;
+                    trigger = false;
+
+                    yield return new WaitForSeconds(3f);
+
+                    trigger = true;
+                    fall = true;
+                }
 
             }
 
@@ -98,9 +107,18 @@ public class engineController : MonoBehaviour
 
             if (objectToFloat.transform.GetChild(0).transform.position.y < begining.y)
             {
-                fall = false;
-                flo = true;
 
+                wait();
+
+                IEnumerator wait()
+                {
+                    fall = false;
+                    trigger = false;
+                    yield return new WaitForSeconds(3f);
+                    trigger = true; ;
+                    flo = true;
+
+                }
             }
 
         }
