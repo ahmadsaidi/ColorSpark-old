@@ -41,6 +41,17 @@ public class MainManager : MonoBehaviour
                 gm.StartPuzzle();
             }
         }
+        else if (SceneManager.GetActiveScene().name == "Introduction2")
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                gm.tut2();
+            }
+            else if (Input.GetButtonDown("Fire2"))
+            {
+                gm.StartPuzzle();
+            }
+        }
         else
         {
             if (Input.GetButtonDown("Fire2"))

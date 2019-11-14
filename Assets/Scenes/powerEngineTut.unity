@@ -5577,7 +5577,7 @@ MonoBehaviour:
   - Get Blue Spark,Put spark on engine(Press B)
   - Use Predefined Teleports(RB)
   - Put Green Spark on Engine Build the bridge
-  - Get Back to engine1 and Get Spark Again(Press X)
+  - Get Back to engine1 and put Red Spark(Press B)
   - Put Red Spark on Engine1
 --- !u!114 &1264036327
 MonoBehaviour:
@@ -6365,6 +6365,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5866764932791297908, guid: f0139f7a577c66b47a3171905007130a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4339421954271519796, guid: f0139f7a577c66b47a3171905007130a,
         type: 3}
       propertyPath: teleport_other
@@ -6373,7 +6378,7 @@ PrefabInstance:
     - target: {fileID: 7435924878377129319, guid: f0139f7a577c66b47a3171905007130a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -247.4
+      value: -247.17
       objectReference: {fileID: 0}
     - target: {fileID: 7435924878377129319, guid: f0139f7a577c66b47a3171905007130a,
         type: 3}
@@ -6383,7 +6388,27 @@ PrefabInstance:
     - target: {fileID: 7435924878377129319, guid: f0139f7a577c66b47a3171905007130a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -177.6
+      value: -217.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435924878377129319, guid: f0139f7a577c66b47a3171905007130a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.49607292
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435924878377129319, guid: f0139f7a577c66b47a3171905007130a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.500421
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435924878377129319, guid: f0139f7a577c66b47a3171905007130a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.4995482
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435924878377129319, guid: f0139f7a577c66b47a3171905007130a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.50392675
       objectReference: {fileID: 0}
     - target: {fileID: 7435924878377129319, guid: f0139f7a577c66b47a3171905007130a,
         type: 3}
@@ -6413,7 +6438,7 @@ PrefabInstance:
     - target: {fileID: 7435924878377129319, guid: f0139f7a577c66b47a3171905007130a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -91.93
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7435924878377129319, guid: f0139f7a577c66b47a3171905007130a,
         type: 3}

@@ -28,8 +28,8 @@ public class basictut : MonoBehaviour
         "Carry the Box (X)",
         "Pass the portal(RB) & Play around\n Press Y for next level"
     };
-    private int stage = 0; 
-    
+    private int stage = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,16 +39,16 @@ public class basictut : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         green.SetActive(false);
         red.SetActive(false);
-        
 
-        
-        
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         if (Input.GetAxis("Vertical") != 0)
         {
             instructions[0] = null;
@@ -69,18 +69,18 @@ public class basictut : MonoBehaviour
         for (int i = 0; i < instructions.Length; i++){
             if (i == instructions.Length-1){
                 stage = 2;
- 
+
             }
             if (instructions[i]!= null){
                 instruction.text = instructions[i];
                 break;
             }
-            
+
         }
 
         if (blast == null){
             instructions[4] = null;
-           
+
         }
 
         if(instructions[3] == null && redisntpresent){
@@ -109,25 +109,25 @@ public class basictut : MonoBehaviour
         if (pc.color ==  Color.red && instructions[4]!= null){
             instruction.text = "Use Red to destroy the red materials (RB)";
         }
-        // detect wall destroyed 
+        // detect wall destroyed
         if (pc.color ==  Color.green && instructions[5]!= null){
             instruction.text = "Use green to speed up (hold RB)";
         }
         if (Input.GetButton("Jump") && pc.color == Color.green && Input.GetAxis("Vertical") != 0){
             instructions[5] = null;
         }
-        
+
         if ((stage == 0) && ((pc.color == Color.red && instructions[4]== null) || (pc.color ==  Color.green && instructions[5]== null) || (pc.color ==  Color.blue && instructions[3]== null))){
-            instruction.text = "Drop Spark (B) and get new spark";
+            instruction.text = "Drop(Press B) current spark ";
             Debug.Log(stage);
         }
         if (pc.carry){
             instructions[6] = null;
             instruction.text = "move around & drop the box (X)";
         }
-        
+
         if (stage == 2 && Input.GetButtonDown("Carry")){
-            gm.WinLevel();
+            gm.Intro2();
         }
     }
 }
