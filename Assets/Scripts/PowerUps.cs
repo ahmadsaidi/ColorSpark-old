@@ -44,7 +44,7 @@ public class PowerUps : MonoBehaviour
         }
         
         var hitColliders = Physics.OverlapSphere(position, 6);
-        if (hitColliders.Length  <=1)
+        if (hitColliders.Length  <=2)
         {
             
 

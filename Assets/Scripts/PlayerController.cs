@@ -149,8 +149,8 @@ public class PlayerController : MonoBehaviour
 
         if (rotationh != 0 && (currHorRot < 90 && currHorRot > -90))
         {
-            currHorRot -= rotationh;
-            cameraAnchorH.transform.Rotate(0, -rotationh, 0.0f);
+            currHorRot += rotationh;
+            cameraAnchorH.transform.Rotate(0, rotationh, 0.0f);
             cameraSetBack = 2.5f;
         }
         else if (rotationh == 0 && (currHorRot > 0.01 || currHorRot < -0.01) && cameraSetBack < 0)
@@ -188,8 +188,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             // get forward direciton
-            Vector3 forward = transform.TransformDirection (Vector3.left);
-            forward = new Vector3(5*forward.z, 8, -5*forward.x);
+            Vector3 forward = transform.TransformDirection (Vector3.forward);
+            forward = new Vector3(-5*forward.x, 8, -5*forward.z);
             powerups.Createbox(transform.position + forward, color);
             
 
@@ -220,7 +220,7 @@ public class PlayerController : MonoBehaviour
         } else if (Input.GetButtonDown("Fire3") && carry )
         {
             var hitColliders = Physics.OverlapSphere(transform.position, 5);
-            if ( hitColliders.Length  < 4)
+            if ( hitColliders.Length  < 5)
             {
                 Vector3 forward = transform.TransformDirection(Vector3.left);
                 forward = new Vector3(3 * forward.z, 2, -3 * forward.x);
