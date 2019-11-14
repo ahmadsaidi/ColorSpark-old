@@ -263,8 +263,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && (color == Color.blue)  && powerups.tele_num < 2)
         {
-            Vector3 forward = transform.TransformDirection(Vector3.forward);
-            forward = new Vector3(5 * forward.z, 8, -5 * forward.x);
+            Vector3 forward = transform.TransformDirection(Vector3.left);
+            forward = new Vector3(10 * forward.z, 8, -10 * forward.x);
             powerups.Createtele(transform.position + forward, color);
 
 
@@ -281,6 +281,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (hitColliders[i].tag == "tele" && powerups.tele_num == 2)
                 {
+        
                     float d1 = Vector3.Distance(powerups.yellowbox1.transform.position, transform.position);
                     float d2 = Vector3.Distance(powerups.yellowbox2.transform.position, transform.position);
                     if (d1 < d2)
