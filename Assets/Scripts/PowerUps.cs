@@ -45,7 +45,7 @@ public class PowerUps : MonoBehaviour
         
         var hitColliders = Physics.OverlapSphere(position, 6);
         Vector3 forward = pc.transform.TransformDirection(Vector3.forward);
-        var hitCollidersFront = Physics.OverlapSphere(position + 10*new Vector3(forward.x,0, forward.z), 6);
+        var hitCollidersFront = Physics.OverlapSphere(position + 5*new Vector3(forward.x,0, forward.z), 6);
         bool foundEngine = false;
         if (hitCollidersFront.Length > 2)
         {
@@ -56,9 +56,10 @@ public class PowerUps : MonoBehaviour
                 {
                     Vector3 newpos = hitCollidersFront[i].transform.position + new Vector3(0, 10, 0);
                     engineController gc = hitCollidersFront[i].GetComponent<engineController>();
+                    pc.whitePower();
                     if (gc.color != Color.white)
                     {
-                        break;
+                        GetEnginePower(position + 5 * new Vector3(forward.x, 0, forward.z));
                     }
                     foundEngine = true;
                     if (color == Color.blue && count_blue < 1)
@@ -68,7 +69,6 @@ public class PowerUps : MonoBehaviour
 
                         //  engine_color = Color.yellow;
                         count_blue++;
-                        pc.whitePower();
                         gc.color = Color.blue;
                         gc.blue();
                         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("tele");
@@ -89,7 +89,6 @@ public class PowerUps : MonoBehaviour
                         spark.GetComponent<SparkController>().eat = false;
                         count_red++;
                         //engine_color = Color.red;
-                        pc.whitePower();
                         gc.color = Color.red;
                         gc.red();
                         tilePickupAudio.PlayOneShot(mm.spark_to_engine);
@@ -101,12 +100,10 @@ public class PowerUps : MonoBehaviour
                         spark.GetComponent<SparkController>().eat = false;
                         count_green++;
                         //engine_color = Color.green;
-                        pc.whitePower();
                         gc.color = Color.green;
                         gc.green();
                         tilePickupAudio.PlayOneShot(mm.spark_to_engine);
                     }
-
 
                 }
 
@@ -144,7 +141,6 @@ public class PowerUps : MonoBehaviour
                 pc.whitePower();
             }
         }
-
     }
 
     public void Createtele(Vector3 position, Color color)
