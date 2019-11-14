@@ -27,6 +27,7 @@ TagManager:
   - wall
   - robot_light
   - float
+  - need_tele
   layers:
   - Default
   - TransparentFX
