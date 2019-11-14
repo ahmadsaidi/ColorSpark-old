@@ -21,7 +21,14 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("LvNoEngine");
     }
-
+    public void Intro2()
+    {
+        SceneManager.LoadScene("Introduction2");
+    }
+    public void tut2()
+    {
+        SceneManager.LoadScene(3);
+    }
     public void LoseGame()
     {
         PlayerData.Level = SceneManager.GetActiveScene().buildIndex;

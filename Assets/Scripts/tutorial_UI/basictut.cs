@@ -118,7 +118,7 @@ public class basictut : MonoBehaviour
         }
         
         if ((stage == 0) && ((pc.color == Color.red && instructions[4]== null) || (pc.color ==  Color.green && instructions[5]== null) || (pc.color ==  Color.blue && instructions[3]== null))){
-            instruction.text = "Drop(B) to be white agian or walk through spark to take spark";
+            instruction.text = "Drop(Press B) current spark ";
             Debug.Log(stage);
         }
         if (pc.carry){
@@ -127,7 +127,7 @@ public class basictut : MonoBehaviour
         }
         
         if (stage == 2 && Input.GetButtonDown("Carry")){
-            gm.NextLevel();
+            gm.Intro2();
         }
     }
 }
