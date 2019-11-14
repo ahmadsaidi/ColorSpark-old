@@ -36,15 +36,18 @@ public class PowerUps : MonoBehaviour
 
     }
 
-    public void Createbox(Vector3 position, Color color)
+    public void Createbox(Vector3 position, Color color, int check)
     {
         if (pc.carry)
         {
             return;
         }
-        
+        Vector3 original = position;
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        forward = new Vector3(5 * forward.z, 8, -5 * forward.x);
+        position = position + forward;
         var hitColliders = Physics.OverlapSphere(position, 6);
-        if (hitColliders.Length  <=1)
+        if (hitColliders.Length  <=1 && check == 0)
         {
             
 
@@ -69,7 +72,7 @@ public class PowerUps : MonoBehaviour
             }
 
         }
-        else
+        else if (check == 0)
         {
             for (int i = 0; i < hitColliders.Length; i++)
             {
@@ -145,8 +148,151 @@ public class PowerUps : MonoBehaviour
                 }
             }
         }
+        else if (check == 1)
+        {
+            hitAndcreate(color, position);
+        }
 
     }
+    public void hitAndcreate(Color color, Vector3 position)
+    {
+        Vector3 original = position;
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        forward = new Vector3(5 * forward.z, 0, -5 * forward.x);
+        position = position + forward;
+        var hitColliders = Physics.OverlapSphere(position, 6);
+        if (hitColliders.Length <= 1 && checkTag(hitColliders))
+        {
+            creatAt(color, position);
+            return;
+
+        }
+        forward = transform.TransformDirection(Vector3.forward);
+        forward = new Vector3(5 * forward.x, 0, -5 * forward.z);
+        position = original + forward;
+        hitColliders = Physics.OverlapSphere(position, 6);
+        if (hitColliders.Length <=1 && checkTag(hitColliders))
+        {
+            creatAt(color, position);
+            return;
+
+        }
+        forward = transform.TransformDirection(Vector3.forward);
+        forward = new Vector3(5 * forward.z, 0, 5 * forward.x);
+        position = original + forward;
+        hitColliders = Physics.OverlapSphere(position, 6);
+        if (hitColliders.Length <= 1 && checkTag(hitColliders))
+        {
+            creatAt(color, position);
+            return;
+
+        }
+
+        forward = transform.TransformDirection(Vector3.forward);
+        forward = new Vector3(5 * forward.x, 0, 5 * forward.z);
+        position = original + forward;
+        hitColliders = Physics.OverlapSphere(position, 6);
+        if (hitColliders.Length <= 1 && checkTag(hitColliders))
+        {
+            creatAt(color, position);
+            return;
+
+        }
+
+        forward = transform.TransformDirection(Vector3.forward);
+        forward = new Vector3(-5 * forward.z, 0, -5 * forward.x);
+        position = position + forward;
+        hitColliders = Physics.OverlapSphere(position, 6);
+        if (hitColliders.Length <= 1 && checkTag(hitColliders))
+        {
+            creatAt(color, position);
+            return;
+
+        }
+        forward = transform.TransformDirection(Vector3.forward);
+        forward = new Vector3(-5 * forward.x, 0, -5 * forward.z);
+        position = original + forward;
+        hitColliders = Physics.OverlapSphere(position, 6);
+        if (hitColliders.Length <= 1 && checkTag(hitColliders))
+        {
+            creatAt(color, position);
+            return;
+
+        }
+        forward = transform.TransformDirection(Vector3.forward);
+        forward = new Vector3(-5 * forward.z, 0, 5 * forward.x);
+        position = original + forward;
+        hitColliders = Physics.OverlapSphere(position, 6);
+        if (hitColliders.Length <= 1 && checkTag(hitColliders)  )
+        {
+            creatAt(color, position);
+            return;
+
+        }
+
+        forward = transform.TransformDirection(Vector3.forward);
+        forward = new Vector3(-5 * forward.x, 0, 5 * forward.z);
+        position = original + forward;
+        hitColliders = Physics.OverlapSphere(position, 6);
+        if (hitColliders.Length <= 1 &&checkTag(hitColliders) )
+        {
+            creatAt(color, position);
+            return;
+
+        }
+        forward = transform.TransformDirection(Vector3.left);
+        forward = new Vector3(0, 12, 0);
+        position = original + forward;
+        hitColliders = Physics.OverlapSphere(position, 6);
+        if (hitColliders.Length <= 1&& checkTag(hitColliders))
+        {
+
+
+
+            creatAt(color, position);
+            return;
+
+        }
+
+    }
+
+    void creatAt(Color color, Vector3 position)
+    {
+        if (color == Color.blue && count_blue < 1)
+        {
+            Instantiate(bluespark, position, Quaternion.identity);
+            count_blue++;
+            pc.whitePower();
+        }
+        if (color == Color.red && count_red < 1)
+        {
+            Instantiate(redspark, position, Quaternion.identity);
+            count_red++;
+            pc.whitePower();
+        }
+        if (color == Color.green && count_green < 1)
+        {
+            Instantiate(greenspark, position, Quaternion.identity);
+            count_green++;
+            pc.whitePower();
+        }
+
+    }
+
+    bool checkTag(Collider[] hitColliders)
+    {
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+
+            if (hitColliders[i].tag == "red "|| hitColliders[i].tag == "blue " || (hitColliders[i].tag == "yellow"))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 
     public void Createtele(Vector3 position, Color color)
     {

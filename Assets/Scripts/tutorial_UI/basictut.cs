@@ -13,6 +13,7 @@ public class basictut : MonoBehaviour
     public GameObject blast;
     public GameObject green;
     public GameObject red;
+    public GameObject blue;
     private bool redisntpresent = true;
     private bool greenisntpresent = true;
     GameManager gm;
@@ -38,6 +39,7 @@ public class basictut : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         green.SetActive(false);
         red.SetActive(false);
+        
 
         
         
@@ -67,6 +69,7 @@ public class basictut : MonoBehaviour
         for (int i = 0; i < instructions.Length; i++){
             if (i == instructions.Length-1){
                 stage = 2;
+ 
             }
             if (instructions[i]!= null){
                 instruction.text = instructions[i];
@@ -77,14 +80,18 @@ public class basictut : MonoBehaviour
 
         if (blast == null){
             instructions[4] = null;
+           
         }
 
         if(instructions[3] == null && redisntpresent){
             red.SetActive(true);
+            blue.SetActive(false);
             redisntpresent = false;
         }
         if(instructions[4] == null && greenisntpresent){
             green.SetActive(true);
+            red.SetActive(false);
+            blue.SetActive(false);
             greenisntpresent = false;
         }
 
@@ -111,7 +118,7 @@ public class basictut : MonoBehaviour
         }
         
         if ((stage == 0) && ((pc.color == Color.red && instructions[4]== null) || (pc.color ==  Color.green && instructions[5]== null) || (pc.color ==  Color.blue && instructions[3]== null))){
-            instruction.text = "Drop spark (B) to take another";
+            instruction.text = "Drop(B) to be white agian or walk through spark to take spark";
             Debug.Log(stage);
         }
         if (pc.carry){

@@ -74,18 +74,23 @@ public class engineController : MonoBehaviour
             //Debug.Log(ending);
             if (objectToFloat.transform.GetChild(0).transform.position.y > ending.y)
             {
-                wait();
+                //wait();
 
-                IEnumerator wait()
-                {
-                    flo = false;
-                    trigger = false;
+                //IEnumerator wait()
+                //{
+                //    flo = false;
+                //    trigger = false;
 
-                    yield return new WaitForSeconds(3f);
+                //    yield return new WaitForSeconds(3f);
 
-                    trigger = true;
-                    fall = true;
-                }
+                //    trigger = true;
+                //    fall = true;
+                //}
+                flo = false;
+
+                fall = true;
+
+
 
             }
 
@@ -108,17 +113,19 @@ public class engineController : MonoBehaviour
             if (objectToFloat.transform.GetChild(0).transform.position.y < begining.y)
             {
 
-                wait();
+                //wait();
 
-                IEnumerator wait()
-                {
-                    fall = false;
-                    trigger = false;
-                    yield return new WaitForSeconds(3f);
-                    trigger = true; ;
-                    flo = true;
+                //IEnumerator wait()
+                //{
+                //    fall = false;
+                //    trigger = false;
+                //    yield return new WaitForSeconds(3f);
+                //    trigger = true; ;
+                //    flo = true;
 
-                }
+                //}
+                fall = false;
+                flo = true;
             }
 
         }

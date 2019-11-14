@@ -188,10 +188,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             // get forward direciton
-            Vector3 forward = transform.TransformDirection (Vector3.left);
-            forward = new Vector3(5*forward.z, 8, -5*forward.x);
-            powerups.Createbox(transform.position + forward, color);
-            
+
+            powerups.Createbox(transform.position , color, 0);
+            //Vector3 forward = new Vector3(0, 15, 0);
+            //powerups.Createbox(transform.position + forward, color, );
+
 
         }
 
@@ -441,18 +442,12 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (other.gameObject.CompareTag("hole")) {
-            gm.LoseGame();
-
-        }
-        else if (other.gameObject.CompareTag("finish"))
+        if (other.gameObject.CompareTag("finish"))
         {
             Debug.Log("win");
             gm.WinLevel();
         }
 
-   
-        // }
 
 
     }
@@ -519,28 +514,47 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if(color != Color.white)
+        {
+            return;
+        }
 
-        if ( item.gameObject.CompareTag("green")  && color == Color.white)
+
+        if ( item.gameObject.CompareTag("green") )
         {
              item.gameObject.SetActive(false);
-             greenPower();
+            if (color != Color.white)
+            {
+                //powerups.Createbox(transform.position, color, 1);
+            }
+            greenPower();
              powerups.count_green--;
 
         }
 
-        else if ((item.gameObject.CompareTag("blue")  && color == Color.white))
+        else if ((item.gameObject.CompareTag("blue") ))
         {
              item.gameObject.SetActive(false);
-             bluePower();
+            if (color != Color.white)
+            {
+                //powerups.Createbox(transform.position,color, 1);
+            }
+            bluePower();
              powerups.count_blue--;
- 
+
+
         }
-        else if (item.gameObject.CompareTag("red")  && color == Color.white)
+        else if (item.gameObject.CompareTag("red")  )
         {
             
             item.gameObject.SetActive(false);
+            if (color != Color.white)
+            {
+                //powerups.Createbox(transform.position, color, 1);
+            }
             redPower();
             powerups.count_red--;
+
 
         }
 
