@@ -152,12 +152,12 @@ public class PowerUps : MonoBehaviour
     {
         if (tele_num == 0)
         {
-            yellowbox1 = Instantiate(tele, position, Quaternion.identity);
+            yellowbox1 = Instantiate(tele, position , Quaternion.Euler(-90, 0,-180));
 
         }
         if (tele_num == 1)
         {
-            yellowbox2 = Instantiate(tele, position, Quaternion.identity);
+            yellowbox2 = Instantiate(tele, position , Quaternion.Euler(-90, 0, -180));
         }
         tele_num++;
 
