@@ -295,13 +295,15 @@ public class PlayerController : MonoBehaviour
                     if (d1 < d2)
                     {
                         tilePickupAudio.PlayOneShot(mm.teleportAudio);
+                        Vector3 off = 2 * powerups.yellowbox2.transform.TransformDirection(Vector3.up);
 
-                        transform.position = powerups.yellowbox2.transform.position + new Vector3(2, 0, 0);
+                        transform.position = powerups.yellowbox2.transform.position + new Vector3(off.x, 0, off.z);
                     }
                     else if (d1 > d2)
                     {
                         tilePickupAudio.PlayOneShot(mm.teleportAudio);
-                        transform.position = powerups.yellowbox1.transform.position + new Vector3(2, 0, 0);
+                        Vector3 off = 2 * powerups.yellowbox1.transform.TransformDirection(Vector3.up);
+                        transform.position = powerups.yellowbox1.transform.position + new Vector3(off.x,0,off.z);
                     }
 
 
@@ -313,8 +315,8 @@ public class PlayerController : MonoBehaviour
                     GameObject other = tc.teleport_other;
 
                     tilePickupAudio.PlayOneShot(mm.teleportAudio);
-
-                    transform.position = other.transform.position + new Vector3(2, 0, 0);
+                    Vector3 off = 2*other.transform.TransformDirection(Vector3.up); 
+                    transform.position = other.transform.position + new Vector3(off.x, 0, off.z);
 
 
 
