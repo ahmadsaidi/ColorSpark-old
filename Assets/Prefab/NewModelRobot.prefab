@@ -3194,6 +3194,7 @@ GameObject:
   - component: {fileID: 7249106094416459381}
   - component: {fileID: 7249106094416459380}
   - component: {fileID: 7249106094416459379}
+  - component: {fileID: 9055264397425044481}
   m_Layer: 0
   m_Name: NewModelRobot
   m_TagString: Player
@@ -3263,8 +3264,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.42566484, y: 0.74694455, z: 0.36280245}
-  m_Center: {x: 0.024523497, y: 0.3782662, z: 0.0021704435}
+  m_Size: {x: 0.455284, y: 0.29600757, z: 0.36280245}
+  m_Center: {x: 0.009713888, y: 0.15279804, z: 0.0021704435}
 --- !u!82 &7249106094416459381
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3417,6 +3418,19 @@ MonoBehaviour:
   yellowbox1: {fileID: 0}
   yellowbox2: {fileID: 0}
   tele_num: 0
+--- !u!65 &9055264397425044481
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7249106094416459383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.22497347, y: 0.46242976, z: 0.27770784}
+  m_Center: {x: -0.0009365167, y: 0.5351881, z: 0.030332267}
 --- !u!1 &7249106094478476768
 GameObject:
   m_ObjectHideFlags: 0
