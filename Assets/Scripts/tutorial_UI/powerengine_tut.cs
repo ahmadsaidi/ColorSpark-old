@@ -43,34 +43,27 @@ public class powerengine_tut : MonoBehaviour
     {
 
 
-        if (pc.color == Color.blue && stage < 1)
-        {
+
+
+        if (cs0.color == Color.blue && stage < 2) {
             stage = 1;
         }
 
-        if (cs0.color == Color.blue && stage < 2) {
+        if (robot.transform.position.z < ( -150) && stage <3)
+        {
             stage = 2;
+
         }
 
-        if (robot.transform.position.z < ( -150) && stage <3)
+        if (cs1.color == Color.green && stage < 3)
         {
             stage = 3;
 
         }
 
-        if (cs1.color == Color.green && stage < 4)
+        if (cs0.color == Color.red && stage  == 3)
         {
             stage = 4;
-
-        }
-        if (pc.color == Color.blue &&  stage == 4)
-        {
-            stage = 5;
-
-        }
-        if (cs0.color == Color.red && stage  == 5)
-        {
-            stage = 6;
 
         }
         if (instruction != null)instruction.text = stageInstructions[stage];
