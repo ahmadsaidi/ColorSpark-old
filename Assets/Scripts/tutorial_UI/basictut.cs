@@ -11,16 +11,20 @@ public class basictut : MonoBehaviour
     private GameObject b1;
     private GameObject b2;
     public GameObject blast;
+    public GameObject green;
+    public GameObject red;
+    private bool redisntpresent = true;
+    private bool greenisntpresent = true;
     GameManager gm;
 
     private string[] instructions = {
         "Move forward (Left Handle)",
         "Change your direction (Left Handle)",
-        "Jump (A)",
-        "Carry the Box (X)",
+        "Jump to pass obstacles (A)",
         "Pick up blue spark (walk through)",
         "Pick up red spark (walk through)",
         "Pick up green spark (walk through)",
+        "Carry the Box (X)",
         "Pass the portal(RB) & Play around\n Press Y for next level"
     };
     private int stage = 0; 
@@ -32,6 +36,8 @@ public class basictut : MonoBehaviour
         robot = GameObject.Find("NewModelRobot");
         pc = robot.GetComponent<PlayerController>();
         gm = FindObjectOfType<GameManager>();
+        green.SetActive(false);
+        red.SetActive(false);
 
         
         
@@ -54,7 +60,7 @@ public class basictut : MonoBehaviour
             instructions[2] = null;
         }
 
-        if (instructions [4] == null && instructions [5] == null && instructions [6] == null){
+        if (instructions [3] == null && instructions [4] == null && instructions [5] == null){
             stage = 1;
         }
 
@@ -70,42 +76,51 @@ public class basictut : MonoBehaviour
         }
 
         if (blast == null){
-            instructions[5] = null;
+            instructions[4] = null;
         }
 
-        if (pc.color == Color.blue && instructions[4]!=null){
+        if(instructions[3] == null && redisntpresent){
+            red.SetActive(true);
+            redisntpresent = false;
+        }
+        if(instructions[4] == null && greenisntpresent){
+            green.SetActive(true);
+            greenisntpresent = false;
+        }
+
+        if (pc.color == Color.blue && instructions[3]!=null){
             b1 = robot.GetComponent<PowerUps>().yellowbox1;
             b2 = robot.GetComponent<PowerUps>().yellowbox2;
             if (b1 != null && b2 != null){
-                instructions[4] = null;
+                instructions[3] = null;
             }
             else{
                 instruction.text = "Use blue to create portals (RB)";
             }
         }
         // detect pass portals
-        if (pc.color ==  Color.red && instructions[5]!= null){
+        if (pc.color ==  Color.red && instructions[4]!= null){
             instruction.text = "Use Red to destroy the red materials (RB)";
         }
         // detect wall destroyed 
-        if (pc.color ==  Color.green && instructions[6]!= null){
+        if (pc.color ==  Color.green && instructions[5]!= null){
             instruction.text = "Use green to speed up (hold RB)";
         }
         if (Input.GetButton("Jump") && pc.color == Color.green && Input.GetAxis("Vertical") != 0){
-            instructions[6] = null;
+            instructions[5] = null;
         }
         
-        if ((stage == 0) && (pc.color == Color.red && instructions[5]== null) || (pc.color ==  Color.green && instructions[6]== null) || (pc.color ==  Color.blue && instructions[4]== null)){
+        if ((stage == 0) && ((pc.color == Color.red && instructions[4]== null) || (pc.color ==  Color.green && instructions[5]== null) || (pc.color ==  Color.blue && instructions[3]== null))){
             instruction.text = "Drop spark (B) to take another";
+            Debug.Log(stage);
         }
         if (pc.carry){
-            instructions[3] = null;
+            instructions[6] = null;
             instruction.text = "move around & drop the box (X)";
         }
         
         if (stage == 2 && Input.GetButtonDown("Carry")){
-            Debug.Log("NEXT");
-            gm.WinLevel();
+            gm.NextLevel();
         }
     }
 }
