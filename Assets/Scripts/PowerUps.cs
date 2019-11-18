@@ -122,6 +122,7 @@ public class PowerUps : MonoBehaviour
 
         if (hitColliders.Length <= 2 && !foundEngine)
         {
+            
             if (color == Color.blue && count_blue < 1)
             {
                 GameObject spark = Instantiate(bluespark, position, Quaternion.identity);
@@ -145,14 +146,22 @@ public class PowerUps : MonoBehaviour
 
     public void Createtele(Vector3 position, Color color)
     {
+        var hitColliders = Physics.OverlapSphere(position, 6);
+        Vector3 forward = pc.transform.TransformDirection(Vector3.forward);
+        var hitCollidersFront = Physics.OverlapSphere(position + 5 * new Vector3(forward.x, 0, forward.z), 6);
+        Vector3 forwardDirection =  new Vector3 (-90 *forward.x, 0, -180 * forward.z);
+        if (hitColliders.Length >= 1)
+        {
+            return;
+        }
         if (tele_num == 0)
         {
-            yellowbox1 = Instantiate(tele, position, Quaternion.Euler(-90, 0, -180));
+            yellowbox1 = Instantiate(tele, position, Quaternion.Euler( -90, 0, -180 * forward.z) );
 
         }
         if (tele_num == 1)
         {
-            yellowbox2 = Instantiate(tele, position, Quaternion.Euler(-90, 0, -180));
+            yellowbox2 = Instantiate(tele, position, Quaternion.Euler(-90, 0, -180 * forward.z));
         }
         tele_num++;
 

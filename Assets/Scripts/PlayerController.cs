@@ -203,9 +203,38 @@ public class PlayerController : MonoBehaviour
             powerups.GetEnginePower(transform.position);
         }
 
-        if (Input.GetButtonDown("Fire3") && carry == false)
+        var hitColliders = Physics.OverlapSphere(transform.position, 4);
+        bool teleHere = false;
+
+        for (int i = 0; i < hitColliders.Length; i++)
         {
-            var hitColliders = Physics.OverlapSphere(transform.position, 5);
+            if (hitColliders[i].tag == "tele" && powerups.tele_num > 0)
+            {
+                teleHere = true;
+                break;
+
+            }
+        }
+        if (Input.GetButtonDown("Fire3") && (color == Color.blue) && teleHere)
+        {
+            
+
+
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                if (hitColliders[i].tag == "tele" && powerups.tele_num > 0)
+                {
+                    Destroy(hitColliders[i].gameObject);
+                    powerups.tele_num--;
+
+                }
+            }
+
+
+        }
+        else if (Input.GetButtonDown("Fire3") && carry == false)
+        {
+           
 
 
             for (int i = 0; i < hitColliders.Length; i++)
@@ -221,9 +250,9 @@ public class PlayerController : MonoBehaviour
                 //tilePickupAudio.PlayOneShot(mm.blastAudio);
             }
         }
-        else if (Input.GetButtonDown("Fire3") && carry)
+        else if (Input.GetButtonDown("Fire2") && carry)
         {
-            var hitColliders = Physics.OverlapSphere(transform.position, 5);
+       
             if (hitColliders.Length < 5)
             {
                 Vector3 forward = transform.TransformDirection(Vector3.left);
@@ -233,6 +262,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+
 
         if (carry && carryThing)
         {
@@ -246,8 +276,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && (color == Color.red))
         {
-            var hitColliders = Physics.OverlapSphere(transform.position, 6);
-
+           
 
             for (int i = 0; i < hitColliders.Length; i++)
             {
@@ -288,7 +317,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetButtonDown("Jump"))
         {
-            var hitColliders = Physics.OverlapSphere(transform.position, 6);
+            
 
 
             for (int i = 0; i < hitColliders.Length; i++)
