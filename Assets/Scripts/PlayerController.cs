@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     bool jump = true;
     public bool carry = false;
     public GameObject pauseMenu;
+    public GameObject controller;
     public RobotIcon Icon;
     public GameObject wheel1;
     public GameObject wheel2;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private float curspeed;
     public float acceleration;
     float cameraSetBack = 2.5f;
+    public bool control;
     //public WheelCollider leftwheel;
     //public WheelCollider rightwheel;
 
@@ -55,6 +57,7 @@ public class PlayerController : MonoBehaviour
         tilePickupAudio = GetComponent<AudioSource>();
         Icon = FindObjectOfType<RobotIcon>();
         animator = GetComponent<Animator>();
+        control = false;
     }
 
 
@@ -368,7 +371,7 @@ public class PlayerController : MonoBehaviour
             paused = true;
         }
 
-        if (Input.GetButtonDown("Fire1") && paused)
+        if (Input.GetButtonDown("Fire1") && paused && control == false)
         {
             pauseMenu.SetActive(false);
             jump = true;
@@ -377,7 +380,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (Input.GetButtonDown("Fire2") && paused)
+        if (Input.GetButtonDown("Fire2") && paused && control == false)
         {
             Time.timeScale = 1;
             paused = false;
@@ -385,7 +388,7 @@ public class PlayerController : MonoBehaviour
             gm.RestartLevel();
         }
 
-        if (Input.GetButtonDown("Fire3") && paused)
+        if (Input.GetButtonDown("Fire3") && paused && control == false)
         {
             Time.timeScale = 1;
             paused = false;
@@ -393,6 +396,23 @@ public class PlayerController : MonoBehaviour
             gm.MainMenu();
         }
 
+        if (Input.GetButtonDown("Carry") && paused && control == false)
+        {
+            Time.timeScale = 0;
+            pauseMenu.SetActive(false);
+            controller.SetActive(true);
+            control = true;
+       
+        }
+
+        if (Input.GetButtonDown("Fire1") && paused && control == true)
+        {
+            Time.timeScale = 1;
+            controller.SetActive(false);
+            pauseMenu.SetActive(false);
+            control = false;
+
+        }
 
 
 
